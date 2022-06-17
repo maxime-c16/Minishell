@@ -21,8 +21,12 @@ CFLAGS		=	-Wall -Wextra -Werror
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJ)
-				ar rc $(NAME) $(OBJ)
-				ranlib $(NAME)
+				@ar rc $(NAME) $(OBJ)
+				@ranlib $(NAME)
+
+%.o			:	%.c
+				@echo "Compiling $(notdir $<)..."
+				@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean		:
 				/bin/rm -f $(OBJ)
