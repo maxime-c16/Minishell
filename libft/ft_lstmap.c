@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:57:27 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/06/17 17:37:05 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/20 20:58:15 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		return (NULL);
 	while (lst)
 	{
-		new = ft_lstnew((*f)(lst->content));
+		new = ft_lstnew((*f)(lst->token));
 		if (!new)
 		{
 			while (tmp)
 			{
 				new = tmp->next;
-				(*del)(tmp->content);
+				(*del)(tmp->token);
 				free(tmp);
 				tmp = new;
 			}

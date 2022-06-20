@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/17 21:11:18 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/20 23:14:48 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,21 @@
 # define REDIR_SIMPLE 2
 # define REDIR_DOUBLE 3
 
-typedef	struct s_token
-{
-	char	**str;
-	int		type;
-}	t_token;
-
-typedef struct s_data
-{
-	t_token			*token;
-	struct s_data	*next;
-}	t_data;
-
 //free.c
 
 void	hasta_la_vista(void);
+void	ft_free_tab(char **tab);
 
 //singleton.c
 
-t_data	*_data(void);
+t_list	*_data(void);
 
 //parsing.c
 
-void	parsing(char *cmd);
+t_list	*parsing(char *cmd);
+
+//redirections.c
+
+t_list	*ft_redirections(t_list *lst);
 
 #endif

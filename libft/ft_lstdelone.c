@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 19:00:58 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/06/17 17:37:05 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/20 20:58:15 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 		return ;
 	if (lst)
 	{
-		(*del)(lst->content);
+		(*del)(lst->token);
 		free(lst);
 	}
 	return ;

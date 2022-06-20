@@ -6,11 +6,11 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/06/17 21:26:52 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/06/20 22:50:31 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES 			=	main.c singleton.c free.c parsing.c
+FILES 			=	main.c singleton.c free.c parsing.c redirections.c
 
 SRC_DIR 		=	srcs
 
@@ -24,7 +24,7 @@ OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -g3
+CFLAGS 			=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME 			=	minishell
 

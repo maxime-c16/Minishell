@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 19:41:07 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/06/17 19:16:34 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/20 21:46:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,48 +45,55 @@ static int	word_count(char const *s, char c)
 	return (wd);
 }
 
-static int check_cmd(char const *s, char c, int i)
+static char **check_cmd(char const *s, int *i, char **tab, int *ind)
 {
-	if (c == '"')
+	int		start;
+
+	start = *i;
+	if (s[*i] == '"')
 	{
-		i++;
-		while (s[i] != '"')
-			i++;
+		(*i)++;
+		while (s[*i] != '"')
+			(*i)++;
+		(*i)++;
+		tab[*ind] = ft_substr(s, start, (*i) - start);
+		(*ind)++;
 	}
-	else if (c == '\'')
+	else if (s[*i] == '\'')
 	{
-		i++;
-		while (s[i] != '\'')
-			i++;
+		(*i)++;
+		while (s[*i] != '\'')
+			(*i)++;
+		(*i)++;
+		tab[*ind] = ft_substr(s, start, (*i) - start);
+		(*ind)++;
 	}
-	return (i);
+	else
+	{
+		while (s[*i] && s[*i] != ' ')
+			(*i)++;
+		tab[*ind] = ft_substr(s, start, (*i) - start);
+		(*ind)++;
+	}
+	tab[*ind] = NULL;
+	return (tab);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	int		i;
-	int		j;
 	int		ind;
-	char	*tmp;
 	char	**tab;
 
 	i = -1;
-	ind = -1;
+	ind = 0;
 	tab = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!s || !tab)
 		return (NULL);
 	while (s[++i])
 	{
-		i = check_cmd(s, c, i);
 		if (s[i] != c && (i == 0 || s[i - 1] == c))
-		{
-			j = 0;
-			while (s[i + j] && s[i + j] != c)
-				j++;
-			tmp = ft_substr(s, i, j);
-			tab[++ind] = tmp;
-			i += j - 1;
-		}
+			tab = check_cmd(s, &i, tab, &ind);
 	}
 	return (tab);
 }
