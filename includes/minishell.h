@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/20 23:14:48 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:24:11 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -28,6 +28,14 @@
 # define PIPE 1
 # define REDIR_SIMPLE 2
 # define REDIR_DOUBLE 3
+# define EXIT_FAILURE 1
+
+char	**ft_split(char const *s, char c);
+
+//main.c
+
+void	ft_print_tab(char **tab);
+void	ft_print_lst(t_list *lst);
 
 //free.c
 
@@ -36,14 +44,23 @@ void	ft_free_tab(char **tab);
 
 //singleton.c
 
-t_list	*_data(void);
+t_list	*_lst(void);
 
 //parsing.c
 
-t_list	*parsing(char *cmd);
+t_list	*parsing(char *cmd, char **env);
 
 //redirections.c
 
-t_list	*ft_redirections(t_list *lst);
+void	ft_redirections(char **token, int *i, t_list **lst, char **env);
+
+//exec.c
+
+void	ft_exec(void);
+
+//paths.c
+
+char	*ft_path(char **full_path, char *cmd);
+
 
 #endif

@@ -6,42 +6,30 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 19:59:53 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/06/17 17:37:05 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/22 12:21:04 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static char	*ft_strcat(char *dest, char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (dest[i])
-		i++;
-	j = 0;
-	while (src[j])
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
-}
+#include "../includes/libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s3;
-	size_t	len1;
-	size_t	len2;
+	char	*output;
+	int		i;
+	int		j;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!s3)
+	if (!s1 || !s2)
 		return (NULL);
-	s3 = ft_strcat(s3, (char *)s1);
-	s3 = ft_strcat(s3, (char *)s2);
-	return (s3);
+	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!output)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		output[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		output[j++] = s2[i++];
+	output[j] = '\0';
+	return (output);
 }

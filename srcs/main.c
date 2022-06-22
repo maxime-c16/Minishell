@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/21 11:26:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:25:51 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_print_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
@@ -38,8 +40,9 @@ void	ft_print_tab(char **tab)
 
 void	ft_print_lst(t_list *lst)
 {
-	while (lst->token->cmd)
+	while (lst)
 	{
+		printf("------------nouveau maillon------------\n");
 		ft_print_tab(lst->token->cmd);
 		lst = lst->next;
 	}
@@ -47,18 +50,18 @@ void	ft_print_lst(t_list *lst)
 
 int	main(int ac, char **av, char **env)
 {
-
 	(void)ac;
 	(void)av;
-	(void)env;
 	char	*line;
 	t_list	*lst;
 
-	lst = _data();
+	lst = _lst();
 	line = readline("Minishell$> ");
 	while (ft_strncmp(line, "exit", 4) != 0)
 	{
-		lst = parsing(line);
+		lst = parsing(line, env);
+		//ft_print_lst(lst);
+		ft_exec();
 		line = readline("Minishell$> ");
 	}
 	return (0);

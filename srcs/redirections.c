@@ -6,55 +6,61 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:50:35 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/20 23:18:38 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:25:38 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_list	*ft_redirections(t_list *lst)
+void	init_new_token(char **env)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**token;
-	t_list	*tmp;
+	t_list	*data;
 
-	i = *lst->help->l;
-	j = *lst->help->m;
-	k = *lst->help->n;
-	token = lst->help->token;
-	if (j == 1)
-		lst->token->type = 0;
-	else if (ft_strncmp(token[i - 1], "|", 1) == 0)
-		lst->token->type = PIPE;
-	else
-		lst->token->type = 0;
-	if (!token[i])
-		lst->token->cmd = malloc(sizeof(char *) * (i - j + 2));
-	else
-		lst->token->cmd = malloc(sizeof(char *) * (i - j + 1));
-	while (j < i)
+	data = _lst();
+	ft_lstadd_back(&data, ft_lstnew(env));
+	return ;
+}
+
+void	ft_redirections(char **token, int *i, t_list **lst, char **env)
+{
+	t_list		*data;
+	static int	k = 1;
+	int			j;
+	int			l;
+
+	l = 0;
+	j = *i;
+	data = *lst;
+	while (data->next)
+		data = data->next;
+	if (strncmp(token[j - 1], "|", 1) == 0 || !token[j])
 	{
-		lst->token->cmd[k] = ft_strdup(token[j - 1]);
-		printf("%s\n", lst->token->cmd[k]);
-		j++;
-		k++;
+		data->token = malloc(sizeof(t_token));
+		data->help = malloc(sizeof(t_help));
+		if (!data->token || !data->help)
+			hasta_la_vista();
+		data->help->env = env;
+		if (token[j])
+			data->token->cmd = malloc(sizeof(char *) * (j - k + 1));
+		else
+			data->token->cmd = malloc(sizeof(char *) * (j - k + 2));
+		while (k < j)
+		{
+			data->token->cmd[l] = ft_strdup(token[k - 1]);
+			k++;
+			l++;
+		}
+		if (!token[j])
+		{
+			data->token->cmd[l] = token[j - 1];
+			data->token->cmd[l + 1] = NULL;
+			return ;
+		}
+		data->token->cmd[l] = NULL;
+		k = j;
+		init_new_token(env);
 	}
-	if (!token[i])
-	{
-		lst->token->cmd[k] = ft_strdup(token[j - 1]);
-		printf("%s\n", lst->token->cmd[k]);
-		lst->token->cmd[k + 1] = NULL;
-	}
-	else
-		lst->token->cmd[k] = NULL;
-	j = i;
-	if (!token[i])
-		return (lst);
-	tmp = ft_lstnew(NULL);
-	tmp->token = malloc(sizeof(t_token));
-	tmp->token->cmd = NULL;
-	ft_lstadd_back(&lst, tmp);
-	return (lst);
+	if (!data)
+		hasta_la_vista();
+	return ;
 }

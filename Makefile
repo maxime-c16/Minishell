@@ -6,11 +6,12 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/06/20 22:50:31 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/06/21 15:22:10 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES 			=	main.c singleton.c free.c parsing.c redirections.c
+FILES 			=	main.c singleton.c free.c parsing.c redirections.c exec.c \
+					path.c ft_split.c init.c
 
 SRC_DIR 		=	srcs
 
@@ -38,7 +39,6 @@ $(NAME) 		: 	$(OBJS)
 					@make -C $(LIBFT_DIR)
 					@make -C $(LIBFT_DIR) bonus
 					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
-					@sleep 1
 					@clear
 					@echo "Compilation done."
 					@sleep 1

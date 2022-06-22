@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/20 21:35:09 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/21 16:26:21 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	hasta_la_vista(void)
 {
 	t_list	*data;
 
-	data = _data();
+	data = _lst();
 	if (data->token)
 	{
 		ft_free_lst(data);
