@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:50:35 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/23 12:59:29 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/23 13:02:37 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_redirections(char **token, int *i, t_list **lst, char **env)
 			data->token->cmd = malloc(sizeof(char *) * (j - k + 3));
 		while (k < j)
 		{
-			printf("%s\n", token[k - 1]);
 			data->token->cmd[l] = ft_strdup(token[k - 1]);
 			k++;
 			l++;
