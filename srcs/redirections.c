@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:50:35 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/22 13:25:38 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/23 12:59:29 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_redirections(char **token, int *i, t_list **lst, char **env)
 	l = 0;
 	j = *i;
 	data = *lst;
+	if (j < k)
+		k = 1;
 	while (data->next)
 		data = data->next;
 	if (strncmp(token[j - 1], "|", 1) == 0 || !token[j])
@@ -41,11 +43,12 @@ void	ft_redirections(char **token, int *i, t_list **lst, char **env)
 			hasta_la_vista();
 		data->help->env = env;
 		if (token[j])
-			data->token->cmd = malloc(sizeof(char *) * (j - k + 1));
-		else
 			data->token->cmd = malloc(sizeof(char *) * (j - k + 2));
+		else
+			data->token->cmd = malloc(sizeof(char *) * (j - k + 3));
 		while (k < j)
 		{
+			printf("%s\n", token[k - 1]);
 			data->token->cmd[l] = ft_strdup(token[k - 1]);
 			k++;
 			l++;
@@ -54,6 +57,7 @@ void	ft_redirections(char **token, int *i, t_list **lst, char **env)
 		{
 			data->token->cmd[l] = token[j - 1];
 			data->token->cmd[l + 1] = NULL;
+			data->next = NULL;
 			return ;
 		}
 		data->token->cmd[l] = NULL;
