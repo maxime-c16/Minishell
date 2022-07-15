@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/23 12:42:50 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/06/23 13:13:13 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av, char **env)
 
 	lst = _lst();
 	line = readline("Minishell$> ");
-	while (ft_strncmp(line, "exit", 4) != 0)
+	while (line && ft_strncmp(line, "exit", 4) != 0)
 	{
 		lst = parsing(line, env);
 		//ft_print_lst(lst);
