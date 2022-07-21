@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/23 12:56:17 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/21 14:15:26 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_list	*parsing(char *cmd, char **env)
 	data = _lst();
 	i = 1;
 	j = 1;
+	if (!cmd)
+		hasta_la_vista();
 	token = ft_split_parsing(cmd, ' ');
 	data->token = malloc(sizeof(t_token));
 	data->help = malloc(sizeof(t_help));

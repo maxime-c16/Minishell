@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/23 12:25:17 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/21 14:10:32 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		printf("freeing %s\n", tab[i]);
 		free(tab[i]);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/06/23 13:13:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/21 14:11:23 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av, char **env)
 		lst = parsing(line, env);
 		//ft_print_lst(lst);
 		ft_exec();
-		// hasta_la_vista();
+		hasta_la_vista();
 		line = readline("Minishell$> ");
 	}
 	return (0);
