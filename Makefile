@@ -6,11 +6,11 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/06/21 15:22:10 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/07/27 12:16:07 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES 			=	main.c singleton.c free.c parsing.c redirections.c exec.c \
+FILES 			=	main.c singleton.c free.c parsing.c insertion.c exec.c \
 					path.c ft_split.c init.c
 
 SRC_DIR 		=	srcs

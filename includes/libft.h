@@ -44,6 +44,12 @@ char	**ft_split_parsing(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
+typedef struct	s_data
+{
+	int			*pid;
+	int			nb_cmd;
+}			t_data;
+
 typedef struct	s_help
 {
 	char	**token;
@@ -52,18 +58,25 @@ typedef struct	s_help
 	int		*m;
 }	t_help;
 
-typedef	struct s_token
+typedef struct	s_token
 {
 	char	**cmd;
 	int		type;
 }	t_token;
 
-typedef struct s_list
+typedef struct	s_list
 {
 	t_token			*token;
 	struct s_help	*help;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct	s_history
+{
+	char			*cmd;
+	struct s_history	*next;
+	struct s_history	*prev;
+}					t_history;
 
 void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
