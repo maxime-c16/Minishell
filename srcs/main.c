@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/21 14:11:23 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/26 14:49:56 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_print_tab(char **tab)
 		return ;
 	while (tab[i])
 	{
-		printf("%s\n", tab[i]);
+		dprintf(2, "%s\n", tab[i]);
 		i++;
 	}
 }
