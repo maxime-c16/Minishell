@@ -6,36 +6,48 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/21 14:07:48 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/27 12:14:04 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	ft_exec_cmd(t_list *lst, int j, int fd[2])
+void	ft_dup2(int in, int out)
 {
-	int		i;
-	char	*path;
+	if (dup2(in, 0) == -1)
+		hasta_la_vista();
+	if (dup2(out, 1) == -1)
+		hasta_la_vista();
+}
+
+static void	ft_link_fd(int fd[2], int i)
+{
+	t_data	*temp;
+
+	temp = _data();
+	if (i == 0)
+		ft_dup2(0, fd[1]);
+	else if (i == temp->nb_cmd - 1)
+		ft_dup2(fd[0], 1);
+	else
+		ft_dup2(fd[0], fd[1]);
+	close(fd[0]);
+	close(fd[1]);
+}
+
+static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
+{
+	char				*path;
+	t_data				*temp;
+
 	//il faut aussi malloc un tableau de pipe du nombre de fork, qui va contenir le pid de chaque fork
 	//ensuite il faut faire un waitpid pour chaque fork
-	i = fork();
-	if (i == 0)
+	temp = _data();
+	temp->pid[i] = fork();
+	if (temp->pid[i] == 0)
 	{
-		if (j == 0 && lst->next)
-		{
-			dup2(fd[1], FD_STDIN);
-			close(fd[1]);
-		}
-		else if (!lst->next && j > 0)
-		{
-			dup2(fd[0], FD_STDOUT);
-			close(fd[0]);
-		}
-		else
-		{
-			dup2(fd[0], FD_STDIN);
-			dup2(fd[1], FD_STDOUT);
-		}
+		if (ft_lstsize(lst) > 1)
+			ft_link_fd(fd, i);
 		path = ft_path(lst->help->env, lst->token->cmd[0]);
 		if (!path || execve(path, lst->token->cmd, lst->help->env) == -1)
 		{
@@ -45,7 +57,7 @@ static void	ft_exec_cmd(t_list *lst, int j, int fd[2])
 		}
 	}
 	else
-		wait(NULL);
+		waitpid(temp->pid[i], NULL, 0);
 }
 
 static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
@@ -61,11 +73,6 @@ static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
 	{
 		if (token[i][0] == '|')
 			i++;
-		if (pipe(fd) == -1)
-		{
-			printf("pipe error\n");
-			return ;
-		}
 		ft_exec_cmd(lst, k, fd);
 		i++;
 	}
@@ -81,6 +88,8 @@ void	ft_exec(void)
 	data = _lst();
 	tmp = data;
 	i = 0;
+	init_pid();
+	pipe(fd);
 	while (tmp)
 	{
 		if (ft_lstsize(tmp) > 1)
