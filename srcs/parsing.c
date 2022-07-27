@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/21 14:15:26 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/07/27 12:03:47 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	*parsing(char *cmd, char **env)
 	data->help = malloc(sizeof(t_help));
 	while (token[i - 1])
 	{
-		ft_redirections(token, &i, &data, env);
+		ft_insertion(token, &i, &data, env);
 		i++;
 	}
 	return (data);
