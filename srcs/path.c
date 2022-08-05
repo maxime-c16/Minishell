@@ -6,13 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/21 13:31:57 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/03 17:40:35 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_tablen(char **tab)
+static int	ft_tablen(char **tab)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int	ft_tablen(char **tab)
 }
 
 
-char	**ft_cat_path_with_cmd(char **path, char *cmd)
+static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 {
 	char	**tab;
 	int		i;

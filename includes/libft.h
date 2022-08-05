@@ -71,13 +71,6 @@ typedef struct	s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct	s_history
-{
-	char			*cmd;
-	struct s_history	*next;
-	struct s_history	*prev;
-}					t_history;
-
 void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));

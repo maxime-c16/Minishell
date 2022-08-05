@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/27 12:03:39 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/05 15:33:36 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# define CMD 2
 # define PIPE 1
 # define REDIR_SIMPLE 2
 # define REDIR_DOUBLE 3
@@ -54,11 +55,17 @@ t_data	*_data(void);
 
 //parsing.c
 
-t_list	*parsing(char *cmd, char **env);
+void	parsing(char *cmd, char **env);
 
 //insertion.c
 
 void	ft_insertion(char **token, int *i, t_list **lst, char **env);
+void	init_new_token(char **env);
+
+//data_struct.c
+
+void	ft_parse_and_insert(char **token, char **env);
+int		ft_count_cmd(char **token, int i);
 
 //exec.c
 
@@ -67,10 +74,6 @@ void	ft_exec(void);
 //paths.c
 
 char	*ft_path(char **full_path, char *cmd);
-
-// hsitory.c
-
-void   ft_add_history(t_history *history, char *cmd);
 
 // init.c
 

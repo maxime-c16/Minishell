@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/07/27 12:14:04 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/05 14:22:08 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 	char				*path;
 	t_data				*temp;
 
-	//il faut aussi malloc un tableau de pipe du nombre de fork, qui va contenir le pid de chaque fork
-	//ensuite il faut faire un waitpid pour chaque fork
 	temp = _data();
 	temp->pid[i] = fork();
 	if (temp->pid[i] == 0)
@@ -56,8 +54,7 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
-		waitpid(temp->pid[i], NULL, 0);
+	waitpid(temp->pid[i], NULL, 0);
 }
 
 static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
@@ -72,7 +69,7 @@ static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
 	while (token[i])
 	{
 		if (token[i][0] == '|')
-			i++;
+			return ;
 		ft_exec_cmd(lst, k, fd);
 		i++;
 	}
