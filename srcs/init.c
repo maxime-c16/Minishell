@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:50 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/03 18:02:15 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/06 08:45:09 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,13 @@ void	init_pid(void)
 	temp->pid = malloc(sizeof(int) * (temp->nb_cmd));
 	if (temp->pid == NULL)
 		hasta_la_vista();
+}
+
+void	init_new_token(char **env)
+{
+	t_list	*data;
+
+	data = _lst();
+	ft_lstadd_back(&data, ft_lstnew(env));
+	return ;
 }
