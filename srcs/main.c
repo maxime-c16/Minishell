@@ -6,11 +6,31 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/06 08:38:06 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:15:53 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char	**ft_dup_tab(char **str)
+{
+	char	**tab;
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	tab = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (str[i])
+	{
+		tab[i] = ft_strdup(str[i]);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
 
 int ft_strlen_tab(char **tab)
 {
@@ -26,20 +46,29 @@ void	ft_print_tab(char **tab)
 {
 	int	i;
 
-	i = ft_strlen_tab(tab);
+	i = 0;
 	if (!tab)
 		return ;
-	while (i--)
-		dprintf(2, "%s\n", tab[i]);
+	while (tab[i])
+	{
+		dprintf(2, "%d %s\n", i, tab[i]);
+		i++;
+	}
 }
 
-void	ft_print_lst(t_list *lst)
+void	ft_print_lst(void)
 {
+	t_list	*lst;
+	int		i;
+
+	lst = _lst();
+	i = 0;
 	while (lst)
 	{
-		printf("------------nouveau maillon------------\n");
+		dprintf(2, "------------nouveau maillon %d ----------\n", i);
 		ft_print_tab(lst->token->cmd);
 		lst = lst->next;
+		i++;
 	}
 }
 

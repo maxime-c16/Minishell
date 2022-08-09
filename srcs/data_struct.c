@@ -6,14 +6,9 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/06 08:43:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:16:24 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//this file is used to create the data structure used in the program
-//the data structure is a list of tokens
-//each token is a list of commands
-//the pipe cmd is in its own element of the list
 
 #include "../includes/minishell.h"
 
@@ -30,11 +25,27 @@ int	ft_count_cmd(char **token, int i)
 	return (count);
 }
 
+//Liste creer lors de l'appel du singleton
+
+//cmd = ls -la | echo
+
+//creer une node
+
+//data = &node;
+//data->next;
+//i++;
+//retour au debut de boucle;
+
+//data-->data-->data-->NULL
+
+
+
 void	ft_parse_and_insert(char **token, char **env)
 {
 	int		i;
 	int		j;
 	int		k;
+	int		save_k;
 	t_list	*data;
 
 	i = 0;
@@ -46,7 +57,7 @@ void	ft_parse_and_insert(char **token, char **env)
 		data = ft_lstlast(data);
 		data->token = malloc(sizeof(t_token));
 		data->help = malloc(sizeof(t_help));
-		data->help->env = env;
+		data->help->env = ft_dup_tab(env);
 		data->next = NULL;
 		if (token[i][0] == '|')
 		{
@@ -64,11 +75,10 @@ void	ft_parse_and_insert(char **token, char **env)
 			i += j;
 			data->token->cmd = malloc(sizeof(char *) * (j + 1));
 			data->token->cmd[j] = NULL;
+			save_k = k + j;
 			while (j--)
-			{
-				data->token->cmd[j] = ft_strdup(token[k]);
-				k++;
-			}
+				data->token->cmd[j] = ft_strdup(token[k + j]);
+			k = save_k;
 			data->token->type = CMD;
 		}
 		if (token[i])

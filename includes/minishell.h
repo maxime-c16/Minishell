@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/05 15:33:36 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:14:00 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ char	**ft_split(char const *s, char c);
 //main.c
 
 void	ft_print_tab(char **tab);
-void	ft_print_lst(t_list *lst);
+char	**ft_dup_tab(char **str);
 
 //free.c
 
 void	hasta_la_vista(void);
 void	ft_free_tab(char **tab);
-void	ft_free_lst(t_list *lst);
+void	ft_print_lst(void);
 
 //singleton.c
 

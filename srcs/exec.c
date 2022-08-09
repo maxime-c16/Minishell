@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/05 14:22:08 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:18:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 	t_data				*temp;
 
 	temp = _data();
+	dprintf(2, "i=%d\n", i);
 	temp->pid[i] = fork();
 	if (temp->pid[i] == 0)
 	{
