@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/06 08:46:26 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/09 17:53:10 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,17 @@ OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS 			=	-Wall -Wextra -Werror -g3
 
 NAME 			=	minishell
 
 HEADER  		=	includes/minishell.h
 
-all				: 	$(NAME)
+all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
 					clear
 					@echo "Linking $(NAME)..."
-					@make -C $(LIBFT_DIR)
-					@make -C $(LIBFT_DIR) bonus
 					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
 					@clear
 					@echo "Compilation done."
@@ -54,12 +52,16 @@ $(NAME) 		: 	$(OBJS)
 					@echo "|_      _ _  _ _     _|_     ()      _ _|_  _  _ _ _ ";
 					@echo "|_)\/  | | |(_(_||_|(_| |\/  (_X  \/_\(_| |(/_(_| (_)";
 					@echo "   /                     /        /                  ";
-					@./$(NAME)
+					@valgrind ./$(NAME)
 
 $(DIR_OBJ)/%.o	:	$(SRC_DIR)/%.c $(HEADER)
 					@mkdir -p $(@D)
 					@echo "Compiling $(notdir $<)..."
 					@$(CC) $(CFLAGS) -o $@ -c $<
+
+MK_LIBFT		:
+					@make -C $(LIBFT_DIR)
+					@make -C $(LIBFT_DIR) bonus
 
 clean			:
 					@/bin/rm -f $(OBJS)
@@ -71,7 +73,7 @@ clean			:
 fclean			:	clean
 					@clear
 					@/bin/rm -f $(NAME)
-					@make -C $(LIBFT_DIR) fclean
+					make -C $(LIBFT_DIR) fclean
 					@clear
 					@echo "Fully cleaned."
 

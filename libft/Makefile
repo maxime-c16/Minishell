@@ -1,41 +1,59 @@
-SRCS		=	ft_atoi.c ft_isascii.c ft_memccpy.c ft_memset.c ft_split_parsing.c ft_strlcpy.c ft_strrchr.c \
-				ft_bzero.c ft_isdigit.c ft_memchr.c ft_putchar_fd.c ft_strchr.c ft_strlen.c ft_strtrim.c \
-				ft_calloc.c ft_isprint.c ft_memcmp.c  ft_putendl_fd.c ft_strdup.c  ft_strmapi.c ft_substr.c \
-				ft_isalnum.c ft_itoa.c ft_memcpy.c ft_putnbr_fd.c ft_strjoin.c ft_strncmp.c ft_tolower.c \
-				ft_isalpha.c ft_memmove.c ft_putstr_fd.c ft_strlcat.c ft_strnstr.c ft_toupper.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/08/09 17:39:45 by mcauchy           #+#    #+#              #
+#    Updated: 2022/08/09 17:49:03 by mcauchy          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-BONUS		=	ft_lstnew.c ft_lstadd_back.c ft_lstlast.c ft_lstsize.c
+DIR_OBJ			=	../.objs
 
-BONUS_OBJS	=	$(BONUS:.c=.o)
+SRCS			=	ft_atoi.c ft_isascii.c ft_memccpy.c ft_memset.c ft_split_parsing.c ft_strlcpy.c ft_strrchr.c \
+					ft_bzero.c ft_isdigit.c ft_memchr.c ft_putchar_fd.c ft_strchr.c ft_strlen.c ft_strtrim.c \
+					ft_calloc.c ft_isprint.c ft_memcmp.c  ft_putendl_fd.c ft_strdup.c  ft_strmapi.c ft_substr.c \
+					ft_isalnum.c ft_itoa.c ft_memcpy.c ft_putnbr_fd.c ft_strjoin.c ft_strncmp.c ft_tolower.c \
+					ft_isalpha.c ft_memmove.c ft_putstr_fd.c ft_strlcat.c ft_strnstr.c ft_toupper.c
 
-NAME		=	libft.a
+BONUS			=	ft_lstnew.c ft_lstadd_back.c ft_lstlast.c ft_lstsize.c
 
-OBJ			=	$(SRCS:.c=.o)
+BONUS_OBJS		=	$(addprefix $(DIR_OBJ)/, $(notdir $(BONUS:.c=.o)))
 
-CC			=	gcc
+NAME			=	libft.a
 
-CFLAGS		=	-Wall -Wextra -Werror
+OBJ				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-all			:	$(NAME)
+CC				=	gcc
 
-$(NAME)		:	$(OBJ)
-				@ar rc $(NAME) $(OBJ)
-				@ranlib $(NAME)
+CFLAGS			=	-Wall -Wextra -Werror
 
-%.o			:	%.c
-				@echo "Compiling $(notdir $<)..."
-				@$(CC) $(CFLAGS) -o $@ -c $<
+HEADER			=	../includes/libft.h
 
-clean		:
-				/bin/rm -f $(OBJ)
-				/bin/rm -f $(BONUS_OBJS)
+all				:	$(NAME)
 
-fclean		:	clean
-				/bin/rm -f $(NAME)
+$(NAME)			:	$(OBJ)
+					@ar rc $(NAME) $(OBJ)
+					@ranlib $(NAME)
 
-re			:	fclean all
+$(DIR_OBJ)/%.o	:	%.c $(HEADER)
+					@mkdir -p $(@D)
+					@echo "Compiling $(notdir $<)..."
+					@$(CC) $(CFLAGS) -o $@ -c $<
 
-bonus		:	$(OBJS) $(BONUS_OBJS)
-				@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+clean			:
+					@/bin/rm -f $(OBJ)
+					@/bin/rm -rf $(DIR_OBJ)
+					@/bin/rm -f $(BONUS_OBJS)
 
-.PHONY		:	all clean norme fclean re
+fclean			:	clean
+					@/bin/rm -f $(NAME)
+
+re				:	fclean all
+
+bonus			:	$(OBJS) $(BONUS_OBJS)
+					@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+
+.PHONY			:	all clean norme fclean re
