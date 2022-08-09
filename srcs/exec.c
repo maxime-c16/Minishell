@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:24:38 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:53:19 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,33 @@ static void	ft_link_fd(int fd[2], int i)
 
 	temp = _data();
 	if (i == 0)
+	{
 		ft_dup2(0, fd[1]);
+		close(fd[1]);
+	}
 	else if (i == temp->nb_cmd - 1)
+	{
 		ft_dup2(fd[0], 1);
+		close(fd[0]);
+	}
 	else
+	{
 		ft_dup2(fd[0], fd[1]);
-	close(fd[0]);
-	close(fd[1]);
+		close(fd[0]);
+		close(fd[1]);
+	}
 }
 
 static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 {
-	char				*path;
-	t_data				*temp;
+	char	*path;
+	t_data	*temp;
 
 	temp = _data();
-	//dprintf(2, "i=%d\n", i);
 	temp->pid[i] = fork();
 	if (temp->pid[i] == 0)
 	{
-		if (ft_lstsize(lst) > 1)
+		if (temp->nb_cmd > 1)
 			ft_link_fd(fd, i);
 		path = ft_path(lst->help->env, lst->token->cmd[0]);
 		if (!path || execve(path, lst->token->cmd, lst->help->env) == -1)
@@ -55,7 +62,8 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 			exit(EXIT_FAILURE);
 		}
 	}
-	waitpid(temp->pid[i], NULL, 0);
+	else
+		waitpid(temp->pid[i], NULL, 0);
 }
 
 static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
@@ -67,13 +75,9 @@ static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
 	i = 0;
 	j = 0;
 	token = lst->token->cmd;
-	while (token[i])
-	{
-		if (token[i][0] == '|')
-			return ;
-		ft_exec_cmd(lst, k, fd);
-		i++;
-	}
+	if (token[i][0] == '|')
+		return ;
+	ft_exec_cmd(lst, k, fd);
 }
 
 void	ft_exec(void)
@@ -90,11 +94,12 @@ void	ft_exec(void)
 	pipe(fd);
 	while (tmp)
 	{
-		if (ft_lstsize(tmp) > 1)
-			ft_exec_pipe(tmp, i, fd);
-		else
-			ft_exec_cmd(tmp, i, fd);
-		i++;
+		// if (ft_lstsize(tmp) > 1)
+		ft_exec_pipe(tmp, i, fd);
+		// else
+		// 	ft_exec_cmd(tmp, i, fd);
+		if (tmp->token->type != PIPE)
+			i++;
 		tmp = tmp->next;
 	}
 }
