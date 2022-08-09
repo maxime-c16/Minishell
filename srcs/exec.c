@@ -6,13 +6,20 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:53:19 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 14:21:07 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_dup2(int in, int out)
+// static void	ft_close_fd(int *fd)
+// {
+// 	close(fd[0]);
+// 	close(fd[1]);
+// 	return ;
+// }
+
+static void	ft_dup2(int in, int out)
 {
 	if (dup2(in, 0) == -1)
 		hasta_la_vista();
@@ -63,19 +70,19 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 		}
 	}
 	else
+	{
 		waitpid(temp->pid[i], NULL, 0);
+	}
 }
 
 static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
 {
 	char	**token;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	token = lst->token->cmd;
-	if (token[i][0] == '|')
+	if (!token[0][0])
+		return ;
+	if (token[0][0] == '|')
 		return ;
 	ft_exec_cmd(lst, k, fd);
 }
@@ -94,10 +101,7 @@ void	ft_exec(void)
 	pipe(fd);
 	while (tmp)
 	{
-		// if (ft_lstsize(tmp) > 1)
 		ft_exec_pipe(tmp, i, fd);
-		// else
-		// 	ft_exec_cmd(tmp, i, fd);
 		if (tmp->token->type != PIPE)
 			i++;
 		tmp = tmp->next;
