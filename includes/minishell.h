@@ -55,7 +55,10 @@ t_data	*_data(void);
 
 //parsing.c
 
-void	parsing(char *cmd, char **env);
+int		test_env(char **env);
+char	*ft_strndup(char *str, int n);
+int		parsing(char *cmd, char **env);
+int		split_env(char **ev);
 
 //insertion.c
 

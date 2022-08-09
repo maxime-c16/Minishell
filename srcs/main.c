@@ -77,9 +77,9 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	char	*line;
-	t_list	*lst;
+//	t_list	*lst;
 
-	lst = _lst();
+//	lst = _lst();
 	line = readline("Minishell$> ");
 	while (line && ft_strncmp(line, "exit", 4) != 0)
 	{
@@ -90,4 +90,3 @@ int	main(int ac, char **av, char **env)
 	}
 	return (0);
 }
-

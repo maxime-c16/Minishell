@@ -25,7 +25,7 @@ OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS 			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 NAME 			=	minishell
 

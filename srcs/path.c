@@ -27,10 +27,10 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 {
 	char	**tab;
 	int		i;
-	int		j;
+//	int		j;
 
 	i = 0;
-	j = 0;
+//	j = 0;
 	tab = malloc(sizeof(char *) * (ft_tablen(path) + 1));
 	if (!tab)
 		hasta_la_vista();
