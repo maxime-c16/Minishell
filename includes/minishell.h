@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/10 12:48:05 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ char	*ft_path(char **full_path, char *cmd);
 // init.c
 
 void	init_pid(void);
+int		**init_fd();
 
 #endif

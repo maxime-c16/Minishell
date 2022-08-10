@@ -6,28 +6,21 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 14:21:07 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/10 12:56:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// static void	ft_close_fd(int *fd)
-// {
-// 	close(fd[0]);
-// 	close(fd[1]);
-// 	return ;
-// }
-
 static void	ft_dup2(int in, int out)
 {
-	if (dup2(in, 0) == -1)
+	if (dup2(in, FD_STDIN) == -1)
 		hasta_la_vista();
-	if (dup2(out, 1) == -1)
+	if (dup2(out, FD_STDOUT) == -1)
 		hasta_la_vista();
 }
 
-static void	ft_link_fd(int fd[2], int i)
+static void	ft_link_fd(int *fd, int i)
 {
 	t_data	*temp;
 
@@ -36,11 +29,13 @@ static void	ft_link_fd(int fd[2], int i)
 	{
 		ft_dup2(0, fd[1]);
 		close(fd[1]);
+		close(fd[0]);
 	}
 	else if (i == temp->nb_cmd - 1)
 	{
 		ft_dup2(fd[0], 1);
 		close(fd[0]);
+		close(fd[1]);
 	}
 	else
 	{
@@ -50,7 +45,7 @@ static void	ft_link_fd(int fd[2], int i)
 	}
 }
 
-static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
+static void	ft_exec_cmd(t_list *lst, int i, int *fd)
 {
 	char	*path;
 	t_data	*temp;
@@ -71,11 +66,13 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 	}
 	else
 	{
+		// close(fd[1]);
+		// close(fd[0]);
 		waitpid(temp->pid[i], NULL, 0);
 	}
 }
 
-static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
+static void	ft_exec_pipe(t_list *lst, int k, int *fd)
 {
 	char	**token;
 
@@ -92,16 +89,16 @@ void	ft_exec(void)
 	t_list	*data;
 	t_list	*tmp;
 	int		i;
-	int		fd[2];
+	int		**fd;
 
+	i = 0;
 	data = _lst();
 	tmp = data;
-	i = 0;
+	fd = init_fd();
 	init_pid();
-	pipe(fd);
 	while (tmp)
 	{
-		ft_exec_pipe(tmp, i, fd);
+		ft_exec_pipe(tmp, i, fd[i]);
 		if (tmp->token->type != PIPE)
 			i++;
 		tmp = tmp->next;
