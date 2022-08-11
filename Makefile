@@ -6,9 +6,11 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/11 12:27:00 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/11 13:05:02 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#!/bin/bash
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c utils.c \
