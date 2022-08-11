@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 17:35:32 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/11 21:07:55 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	char	*line;
 
-	line = readline("Minishell$> ");
+	line = readline(C_RED"Minishell"C_RESET"$> ");
 	while (line && ft_strncmp(line, "exit", 4) != 0)
 	{
 		parsing(line, env);

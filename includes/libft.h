@@ -8,6 +8,11 @@
 # include <string.h>
 # include <strings.h>
 
+# define C_RESET "\e[0m"
+# define C_PURPLE "\e[34m"
+# define C_RED "\e[31m"
+# define C_GREEN "\e[32m"
+
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, int n);
 int		ft_strlen(const char *str);
