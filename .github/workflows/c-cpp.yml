@@ -17,5 +17,3 @@ jobs:
       run: make
     - name: make re
       run: make re
-    - name: valgrind
-      run: make re && valgrind --leaks-check=full ./minishell
