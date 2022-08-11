@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/11 16:02:53 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,22 @@ void	ft_print_lst(void);
 t_list	*_lst(void);
 t_data	*_data(void);
 
-//parsing.c
+
+//env_manipulating.c
+
+char *lcd_strcmp(char *s1, char *s2);
+char	*get_value(char *key);
+
+//env_parsing.c
 
 int		test_env(char **env);
 char	*ft_strndup(char *str, int n);
-int		parsing(char *cmd, char **env);
 int		split_env(char **ev);
+int		len_env(char **env);
+
+//parsing.c
+
+int		parsing(char *cmd, char **env);
 
 //insertion.c
 

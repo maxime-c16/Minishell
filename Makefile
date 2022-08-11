@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
-					path.c ft_split.c init.c data_struct.c
+					path.c ft_split.c init.c data_struct.c env_parsing.c \
+					env_manipulating.c
 
 SRC_DIR 		=	srcs
 
