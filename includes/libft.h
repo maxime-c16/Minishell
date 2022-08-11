@@ -48,6 +48,8 @@ typedef struct	s_data
 {
 	int			*pid;
 	int			nb_cmd;
+	int			nb_pipe;
+	int			*fd;
 }			t_data;
 
 typedef struct	s_help
