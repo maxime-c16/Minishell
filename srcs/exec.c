@@ -6,11 +6,26 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/10 12:56:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/11 11:57:30 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void	ft_close_fd(void)
+{
+	int		i;
+	t_data	*data;
+
+	i = 0;
+	data = _data();
+	while (i < data->nb_cmd - 1)
+	{
+		close(data->fd[i * 2]);
+		close(data->fd[i * 2 + 1]);
+		i++;
+	}
+}
 
 static void	ft_dup2(int in, int out)
 {
@@ -20,32 +35,21 @@ static void	ft_dup2(int in, int out)
 		hasta_la_vista();
 }
 
-static void	ft_link_fd(int *fd, int i)
+static void	ft_link_fd(int i)
 {
 	t_data	*temp;
 
 	temp = _data();
 	if (i == 0)
-	{
-		ft_dup2(0, fd[1]);
-		close(fd[1]);
-		close(fd[0]);
-	}
+		dup2(temp->fd[1], FD_STDOUT);
 	else if (i == temp->nb_cmd - 1)
-	{
-		ft_dup2(fd[0], 1);
-		close(fd[0]);
-		close(fd[1]);
-	}
+		dup2(temp->fd[2 * i - 2], FD_STDIN);
 	else
-	{
-		ft_dup2(fd[0], fd[1]);
-		close(fd[0]);
-		close(fd[1]);
-	}
+		ft_dup2(temp->fd[2 * i - 2], temp->fd[2 * i - 1]);
+	ft_close_fd();
 }
 
-static void	ft_exec_cmd(t_list *lst, int i, int *fd)
+static void	ft_exec_cmd(t_list *lst, int i)
 {
 	char	*path;
 	t_data	*temp;
@@ -55,7 +59,7 @@ static void	ft_exec_cmd(t_list *lst, int i, int *fd)
 	if (temp->pid[i] == 0)
 	{
 		if (temp->nb_cmd > 1)
-			ft_link_fd(fd, i);
+			ft_link_fd(i);
 		path = ft_path(lst->help->env, lst->token->cmd[0]);
 		if (!path || execve(path, lst->token->cmd, lst->help->env) == -1)
 		{
@@ -64,15 +68,9 @@ static void	ft_exec_cmd(t_list *lst, int i, int *fd)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
-	{
-		// close(fd[1]);
-		// close(fd[0]);
-		waitpid(temp->pid[i], NULL, 0);
-	}
 }
 
-static void	ft_exec_pipe(t_list *lst, int k, int *fd)
+static void	ft_exec_pipe(t_list *lst, int k)
 {
 	char	**token;
 
@@ -81,7 +79,7 @@ static void	ft_exec_pipe(t_list *lst, int k, int *fd)
 		return ;
 	if (token[0][0] == '|')
 		return ;
-	ft_exec_cmd(lst, k, fd);
+	ft_exec_cmd(lst, k);
 }
 
 void	ft_exec(void)
@@ -89,18 +87,19 @@ void	ft_exec(void)
 	t_list	*data;
 	t_list	*tmp;
 	int		i;
-	int		**fd;
 
 	i = 0;
 	data = _lst();
 	tmp = data;
-	fd = init_fd();
+	init_fd();
 	init_pid();
 	while (tmp)
 	{
-		ft_exec_pipe(tmp, i, fd[i]);
+		ft_exec_pipe(tmp, i);
 		if (tmp->token->type != PIPE)
 			i++;
 		tmp = tmp->next;
 	}
+	ft_close_fd();
+	ft_waitpid();
 }

@@ -6,12 +6,12 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/10 12:50:56 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/11 10:27:21 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
-					path.c ft_split.c init.c data_struct.c
+					path.c ft_split.c init.c data_struct.c utils.c \
 
 SRC_DIR 		=	srcs
 
@@ -25,7 +25,7 @@ OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	clang
 
-CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS 			=	-Wall -Wextra -Werror  -fsanitize=address -g3
 
 NAME 			=	minishell
 
