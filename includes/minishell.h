@@ -53,12 +53,16 @@ void	ft_print_lst(void);
 t_list	*_lst(void);
 t_data	*_data(void);
 
-//parsing.c
+//env_parsing.c
 
 int		test_env(char **env);
 char	*ft_strndup(char *str, int n);
-int		parsing(char *cmd, char **env);
 int		split_env(char **ev);
+int		len_env(char **env);
+
+//parsing.c
+
+int		parsing(char *cmd, char **env);
 
 //insertion.c
 
