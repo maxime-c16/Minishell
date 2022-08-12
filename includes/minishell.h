@@ -91,5 +91,11 @@ char	*ft_path(char **full_path, char *cmd);
 // init.c
 
 void	init_pid(void);
+void	init_fd(void);
+
+//utils.c
+
+int		ft_lst_size_without_pipe(void);
+void	ft_waitpid(void);
 
 #endif

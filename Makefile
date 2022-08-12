@@ -6,13 +6,16 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/06 08:46:26 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/11 13:09:50 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#!/bin/bash
+
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c env_parsing.c \
-					env_manipulating.c
+					env_manipulating.c path.c ft_split.c init.c data_struct.c \
+          utils.c
 
 SRC_DIR 		=	srcs
 
@@ -24,7 +27,7 @@ SRCS 			=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-CC 				=	gcc
+CC 				=	clang
 
 CFLAGS 			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
@@ -32,18 +35,16 @@ NAME 			=	minishell
 
 HEADER  		=	includes/minishell.h
 
-all				: 	$(NAME)
+all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
-					clear
+					# @clear
 					@echo "Linking $(NAME)..."
-					@make -C $(LIBFT_DIR)
-					@make -C $(LIBFT_DIR) bonus
 					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
-					@clear
+					# @clear
 					@echo "Compilation done."
 					@sleep 1
-					@clear
+					# @clear
 					@echo "        :::   :::   ::::::::::: ::::    ::: ::::::::::: ::::::::  :::    ::: :::::::::: :::        :::  ";
 					@echo "      :+:+: :+:+:      :+:     :+:+:   :+:     :+:    :+:    :+: :+:    :+: :+:        :+:        :+:   ";
 					@echo "    +:+ +:+:+ +:+     +:+     :+:+:+  +:+     +:+    +:+        +:+    +:+ +:+        +:+        +:+    ";
@@ -55,25 +56,28 @@ $(NAME) 		: 	$(OBJS)
 					@echo "|_      _ _  _ _     _|_     ()      _ _|_  _  _ _ _ ";
 					@echo "|_)\/  | | |(_(_||_|(_| |\/  (_X  \/_\(_| |(/_(_| (_)";
 					@echo "   /                     /        /                  ";
-					@./$(NAME)
 
 $(DIR_OBJ)/%.o	:	$(SRC_DIR)/%.c $(HEADER)
 					@mkdir -p $(@D)
 					@echo "Compiling $(notdir $<)..."
 					@$(CC) $(CFLAGS) -o $@ -c $<
 
+MK_LIBFT		:
+					@make -C $(LIBFT_DIR)
+					@make -C $(LIBFT_DIR) bonus
+
 clean			:
 					@/bin/rm -f $(OBJS)
 					@/bin/rm -rf $(DIR_OBJ)
 					@make -C $(LIBFT_DIR) clean
-					@clear
+					# @clear
 					@echo "Cleaned."
 
 fclean			:	clean
-					@clear
+					# @clear
 					@/bin/rm -f $(NAME)
-					@make -C $(LIBFT_DIR) fclean
-					@clear
+					make -C $(LIBFT_DIR) fclean
+					# @clear
 					@echo "Fully cleaned."
 
 re				:	fclean  all

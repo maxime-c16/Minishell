@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 19:59:53 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/09 19:25:59 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/11 11:56:33 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_lst_size_without_pipe(void)
 {
-	char	*output;
-	int		i;
-	int		j;
+	t_list	*lst;
+	int		size;
 
-	if (!s1 || !s2)
-		return (NULL);
-	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!output)
-		return (NULL);
+	lst = _lst();
+	size = 0;
+	while (lst)
+	{
+		if (lst->token->type != PIPE)
+			size++;
+		lst = lst->next;
+	}
+	return (size);
+}
+
+void	ft_waitpid(void)
+{
+	t_data	*data;
+	int		i;
+
+	data = _data();
 	i = 0;
-	j = 0;
-	while (s1[i])
-		output[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		output[j++] = s2[i++];
-	output[j] = '\0';
-	return (output);
+	while (i < data->nb_cmd)
+	{
+		waitpid(data->pid[i], NULL, 0);
+		i++;
+	}
 }

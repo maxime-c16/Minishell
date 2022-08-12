@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 11:24:42 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 18:57:51 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 {
 	char	**tab;
 	int		i;
-//	int		j;
 
 	i = 0;
-//	j = 0;
 	tab = malloc(sizeof(char *) * (ft_tablen(path) + 1));
 	if (!tab)
 		hasta_la_vista();
@@ -41,6 +39,7 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 		i++;
 	}
 	tab[i] = NULL;
+	ft_free_tab(path);
 	return (tab);
 }
 

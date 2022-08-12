@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 19:41:07 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/09 11:35:24 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/09 20:19:59 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,16 @@ char	**ft_split_parsing(char const *s, char c)
 	int		ind;
 	char	**tab;
 
-	i = -1;
+	i = 0;
 	ind = 0;
 	tab = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!s || !tab)
 		return (NULL);
-	while (s[++i])
+	while (s[i])
 	{
 		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			tab = check_cmd(s, &i, tab, &ind);
+		i++;
 	}
 	return (tab);
 }
