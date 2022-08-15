@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:05:36 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/15 15:29:13 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ static void	ft_redirection_right(char **cmd, int i)
 			ft_error("minishell: error while opening file\n");
 		else
 		{
-			dup2(fd2, 1);
+			dup2(fd2, fd[i * 2]);
 			close(fd2);
+			close(fd[i * 2 + 1]);
 		}
 	}
 }
