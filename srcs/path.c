@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 18:57:51 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/14 12:41:18 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 static int	ft_tablen(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
 		i++;
 	return (i);
 }
-
 
 static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/11 12:02:49 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/14 14:07:36 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ static void	ft_close_fd(void)
 	}
 }
 
-static void	ft_dup2(int in, int out)
-{
-	if (dup2(in, FD_STDIN) == -1)
-		hasta_la_vista();
-	if (dup2(out, FD_STDOUT) == -1)
-		hasta_la_vista();
-}
-
 static void	ft_link_fd(int i)
 {
 	t_data	*temp;
@@ -49,7 +41,7 @@ static void	ft_link_fd(int i)
 	ft_close_fd();
 }
 
-static void	ft_exec_cmd(t_list *lst, int i)
+void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
 	char	*path;
 	t_data	*temp;
@@ -60,11 +52,11 @@ static void	ft_exec_cmd(t_list *lst, int i)
 	{
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
-		path = ft_path(lst->help->env, lst->token->cmd[0]);
-		if (!path || execve(path, lst->token->cmd, lst->help->env) == -1)
+		path = ft_path(lst->help->env, cmd[0]);
+		if (!path || execve(path, cmd, lst->help->env) == -1)
 		{
 			ft_putstr_fd("minishell: command not found: ", 2);
-			ft_putendl_fd(lst->token->cmd[0], 2);
+			ft_putendl_fd(cmd[0], 2);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -79,7 +71,7 @@ static void	ft_exec_pipe(t_list *lst, int k)
 		return ;
 	if (token[0][0] == '|')
 		return ;
-	ft_exec_cmd(lst, k);
+	ft_exec_cmd(lst, token, k);
 }
 
 void	ft_exec(void)
@@ -95,7 +87,10 @@ void	ft_exec(void)
 	init_pid();
 	while (tmp)
 	{
-		ft_exec_pipe(tmp, i);
+		if (ft_check_redir(tmp->token->cmd))
+			ft_exec_redir(tmp, i);
+		else
+			ft_exec_pipe(tmp, i);
 		if (tmp->token->type != PIPE)
 			i++;
 		tmp = tmp->next;

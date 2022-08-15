@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 17:35:32 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/14 14:46:27 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ char	**ft_dup_tab(char **str)
 	return (tab);
 }
 
-
-int ft_strlen_tab(char **tab)
+int	ft_strlen_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -74,18 +73,20 @@ void	ft_print_lst(void)
 
 int	main(int ac, char **av, char **env)
 {
-	(void)ac;
-	(void)av;
 	char	*line;
 
+	(void)ac;
+	(void)av;
+	using_history();
 	line = readline("Minishell$> ");
+	add_history(line);
 	while (line && ft_strncmp(line, "exit", 4) != 0)
 	{
 		parsing(line, env);
 		ft_exec();
 		hasta_la_vista();
 		line = readline("Minishell$> ");
+		add_history(line);
 	}
 	return (0);
 }
-

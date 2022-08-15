@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/14 12:47:39 by mcauchy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 
 # define LIBFT_H
@@ -7,6 +19,35 @@
 # include <stdlib.h>
 # include <string.h>
 # include <strings.h>
+
+typedef struct s_data
+{
+	int			*pid;
+	int			nb_cmd;
+	int			nb_pipe;
+	int			*fd;
+}			t_data;
+
+typedef struct s_help
+{
+	char	**token;
+	char	**env;
+	int		*l;
+	int		*m;
+}	t_help;
+
+typedef struct s_token
+{
+	char	**cmd;
+	int		type;
+}	t_token;
+
+typedef struct s_list
+{
+	t_token			*token;
+	struct s_help	*help;
+	struct s_list	*next;
+}					t_list;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, int n);
@@ -44,34 +85,7 @@ char	**ft_split_parsing(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
-typedef struct	s_data
-{
-	int			*pid;
-	int			nb_cmd;
-	int			nb_pipe;
-	int			*fd;
-}			t_data;
-
-typedef struct	s_help
-{
-	char	**token;
-	char	**env;
-	int		*l;
-	int		*m;
-}	t_help;
-
-typedef struct	s_token
-{
-	char	**cmd;
-	int		type;
-}	t_token;
-
-typedef struct	s_list
-{
-	t_token			*token;
-	struct s_help	*help;
-	struct s_list	*next;
-}					t_list;
+// liste chainee
 
 void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
