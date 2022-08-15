@@ -6,11 +6,25 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 13:17:40 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/15 15:13:27 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	ft_print_int_tab(int **tab, int size)
+{
+	int i;
+
+	i = 0;
+	dprintf(2, "tab :\n");
+	while (i < size)
+	{
+		dprintf(2, "tab[i][0] = %d, ", tab[i][0]);
+		dprintf(2, "tab[i][1] = %d\n", tab[i][1]);
+		i++;
+	}
+}
 
 int	ft_lst_size_without_pipe(void)
 {

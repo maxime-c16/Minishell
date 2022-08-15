@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 12:47:39 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/15 15:19:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <stdlib.h>
 # include <string.h>
 # include <strings.h>
+
+# define C_RESET "\e[0m"
+# define C_PURPLE "\e[34m"
+# define C_RED "\e[31m"
+# define C_GREEN "\e[32m"
 
 typedef struct s_data
 {

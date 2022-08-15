@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:46:27 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/15 15:20:37 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	using_history();
-	line = readline("Minishell$> ");
+	line = readline(C_RED"Minishell"C_RESET"$> ");
 	add_history(line);
 	while (line && ft_strncmp(line, "exit", 4) != 0)
 	{
 		parsing(line, env);
 		ft_exec();
 		hasta_la_vista();
-		line = readline("Minishell$> ");
+		line = readline(C_PURPLE"Minishell"C_RESET"$> ");
 		add_history(line);
 	}
 	return (0);
