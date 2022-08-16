@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/15 17:56:49 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 23:08:40 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static char	**ft_fill_cmd(char **cmd, char **new_cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (ft_strncmp(cmd[i], ">", 2) && ft_strncmp(cmd[i], "<", 2))
+		if (ft_strncmp(cmd[i], ">", 2) && ft_strncmp(cmd[i], "<", 2)
+			&& ft_strncmp(cmd[i], ">>", 3) && ft_strncmp(cmd[i], "<<", 3))
 		{
 			new_cmd[i] = ft_strdup(cmd[i]);
 			if (!new_cmd[i])
@@ -61,7 +62,8 @@ char	**ft_clean_redir_cmd(char **cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!ft_strncmp(cmd[i], ">", 2) && !ft_strncmp(cmd[i], "<", 2))
+		if (!ft_strncmp(cmd[i], ">", 2) && !ft_strncmp(cmd[i], "<", 2) && \
+				!ft_strncmp(cmd[i], ">>", 3) && !ft_strncmp(cmd[i], "<<", 3))
 			break ;
 		i++;
 	}
