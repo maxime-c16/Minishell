@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:02:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:01:28 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	ft_dup2(int in, int out);
 
 //redirections.c
 
-void	ft_redirections(char **cmd, int i);
+void	ft_redirections(char **cmd);
 char	**ft_clean_redir_cmd(char **cmd);
 
 //redirections_utils.c
 
 char	**ft_clean_redir_cmd(char **cmd);
 int		ft_check_redir(char **cmd);
-void	ft_exec_redir(t_list *lst, int i);
+void	ft_exec_redir(t_list **lst, char ***ad_cmd);
 
 #endif

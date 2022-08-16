@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/15 15:13:27 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:05:01 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_int_tab(int **tab, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	dprintf(2, "tab :\n");

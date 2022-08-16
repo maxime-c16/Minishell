@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/15 15:29:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:02:07 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static void	ft_redirection_right(char **cmd, int i)
 {
 	int	fd2;
-	int	*fd;
 
-	fd = _data()->fd;
-	dprintf(2, "redirection right\n");
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\
 			\n");
@@ -35,9 +32,8 @@ static void	ft_redirection_right(char **cmd, int i)
 			ft_error("minishell: error while opening file\n");
 		else
 		{
-			dup2(fd2, fd[i * 2]);
+			dup2(fd2, FD_STDOUT);
 			close(fd2);
-			close(fd[i * 2 + 1]);
 		}
 	}
 }
@@ -45,9 +41,7 @@ static void	ft_redirection_right(char **cmd, int i)
 static void	ft_redirection_left(char **cmd, int i)
 {
 	int	fd2;
-	int	*fd;
 
-	fd = _data()->fd;
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n");
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
@@ -61,7 +55,7 @@ static void	ft_redirection_left(char **cmd, int i)
 			ft_error("minishell: error while opening file\n");
 		else
 		{
-			dup2(fd2, fd[0]);
+			dup2(fd2, FD_STDIN);
 			close(fd2);
 		}
 	}
@@ -70,9 +64,7 @@ static void	ft_redirection_left(char **cmd, int i)
 static void	ft_redirection_right_right(char **cmd, int i)
 {
 	int	fd2;
-	int	*fd;
 
-	fd = _data()->fd;
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n");
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
@@ -86,23 +78,17 @@ static void	ft_redirection_right_right(char **cmd, int i)
 			ft_error("minishell: error while opening file\n");
 		else
 		{
-			dup2(fd2, fd[i]);
+			dup2(fd2, FD_STDOUT);
 			close(fd2);
 		}
 	}
 }
 
-void	ft_redirections(char **cmd, int i)
+void	ft_redirections(char **cmd)
 {
 	int	j;
 
 	j = 0;
-	if (cmd[i + 1] == NULL)
-	{
-		ft_putstr_fd("minishell: syntax error near unexpected token `newline' \
-			 \n", 2);
-		return ;
-	}
 	while (cmd[j])
 	{
 		if (cmd[j][0] == '>')
@@ -118,11 +104,11 @@ void	ft_redirections(char **cmd, int i)
 	}
 }
 
-void	ft_exec_redir(t_list *lst, int i)
+void	ft_exec_redir(t_list **lst, char ***ad_cmd)
 {
-	char	**cmd;
+	t_list	*tmp;
 
-	cmd = ft_clean_redir_cmd(lst->token->cmd);
-	ft_redirections(lst->token->cmd, i);
-	ft_exec_cmd(lst, cmd, i);
+	tmp = *lst;
+	*ad_cmd = ft_clean_redir_cmd(tmp->token->cmd);
+	ft_redirections(tmp->token->cmd);
 }

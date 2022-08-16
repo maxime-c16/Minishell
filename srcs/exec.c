@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:07:36 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:04:54 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 	{
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
+		ft_exec_redir(&lst, &cmd);
 		path = ft_path(lst->help->env, cmd[0]);
 		if (!path || execve(path, cmd, lst->help->env) == -1)
 		{
@@ -87,10 +88,7 @@ void	ft_exec(void)
 	init_pid();
 	while (tmp)
 	{
-		if (ft_check_redir(tmp->token->cmd))
-			ft_exec_redir(tmp, i);
-		else
-			ft_exec_pipe(tmp, i);
+		ft_exec_pipe(tmp, i);
 		if (tmp->token->type != PIPE)
 			i++;
 		tmp = tmp->next;
