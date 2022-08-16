@@ -6,13 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/11 11:56:51 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:01:28 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 
-#define MINISHELL_H
+# define MINISHELL_H
 
 # include "libft.h"
 # include <stdlib.h>
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -70,12 +71,13 @@ int		ft_count_cmd(char **token, int i);
 //exec.c
 
 void	ft_exec(void);
+void	ft_exec_cmd(t_list *lst, char **cmd, int i);
 
 //paths.c
 
 char	*ft_path(char **full_path, char *cmd);
 
-// init.c
+//init.c
 
 void	init_pid(void);
 void	init_fd(void);
@@ -84,5 +86,18 @@ void	init_fd(void);
 
 int		ft_lst_size_without_pipe(void);
 void	ft_waitpid(void);
+void	ft_error(char *str);
+void	ft_dup2(int in, int out);
+
+//redirections.c
+
+void	ft_redirections(char **cmd);
+char	**ft_clean_redir_cmd(char **cmd);
+
+//redirections_utils.c
+
+char	**ft_clean_redir_cmd(char **cmd);
+int		ft_check_redir(char **cmd);
+void	ft_exec_redir(t_list **lst, char ***ad_cmd);
 
 #endif
