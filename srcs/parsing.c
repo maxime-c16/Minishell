@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/11 10:29:46 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/14 14:54:23 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	parsing(char *cmd, char **env)
 	if (!cmd)
 		hasta_la_vista();
 	token = ft_split_parsing(cmd, ' ');
+	if (!token)
+		hasta_la_vista();
 	ft_parse_and_insert(token, env);
 	free(cmd);
   return (1);
