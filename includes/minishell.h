@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/18 19:49:25 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/18 19:50:10 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,5 @@ char	**ft_clean_redir_cmd(char **cmd);
 char	**ft_clean_redir_cmd(char **cmd);
 int		ft_check_redir(char **cmd);
 void	ft_exec_redir(t_list **lst, char ***ad_cmd);
-
-//heredocs.c
 
 #endif
