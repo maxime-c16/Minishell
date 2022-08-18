@@ -6,7 +6,11 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/18 17:32:06 by yschecro         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/14 14:54:23 by mcauchy          ###   ########.fr       */
+>>>>>>> da4dae3ca68b978de457d94dc95c0fc8b1d89d5f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +33,13 @@ int	parsing(char *cmd, char **env)
 	if (!cmd)
 		hasta_la_vista();
 	token = ft_split_parsing(cmd, ' ');
+<<<<<<< HEAD
 //	if (!insert_env_var(token))
 //		return (0);
+=======
+	if (!token)
+		hasta_la_vista();
+>>>>>>> da4dae3ca68b978de457d94dc95c0fc8b1d89d5f
 	ft_parse_and_insert(token, env);
 	free(cmd);
  	return (1);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/15 15:19:41 by mcauchy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 
 # define LIBFT_H
@@ -8,35 +20,41 @@
 # include <string.h>
 # include <strings.h>
 
+# define C_RESET "\e[0m"
+# define C_PURPLE "\e[34m"
+# define C_RED "\e[31m"
+# define C_GREEN "\e[32m"
+
+typedef struct s_data
+{
+	int			*pid;
+	int			*fd;
+	int			nb_cmd;
+	int			nb_pipe;
+	int			*fd;
+}			t_data;
+
 typedef struct	s_dic
 {
 	char	*key;
 	char	*value;
 }			t_dic;
 
-typedef struct	s_data
-{
-	int			*pid;
-	int			*fd;
-	int			nb_cmd;
-	t_dic		*env;
-}			t_data;
-
-typedef struct	s_help
+typedef struct s_help
 {
 	char	**token;
 	char	**env;
 	int		*l;
 	int		*m;
-}	t_help;
+}			t_help;
 
-typedef struct	s_token
+typedef struct s_token
 {
 	char	**cmd;
 	int		type;
 }	t_token;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	t_token			*token;
 	struct s_help	*help;
@@ -78,6 +96,8 @@ char	*ft_itoa(int n);
 char	**ft_split_parsing(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+
+// liste chainee
 
 void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
