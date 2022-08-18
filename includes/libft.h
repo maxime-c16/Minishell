@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/15 15:19:41 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/18 17:53:28 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@
 # define C_RED "\e[31m"
 # define C_GREEN "\e[32m"
 
+typedef struct	s_dic
+{
+	char	*key;
+	char	*value;
+}			t_dic;
+
 typedef struct s_data
 {
 	int			*pid;
 	int			*fd;
 	int			nb_cmd;
 	int			nb_pipe;
-	int			*fd;
+	t_dic		*env;
 }			t_data;
-
-typedef struct	s_dic
-{
-	char	*key;
-	char	*value;
-}			t_dic;
 
 typedef struct s_help
 {
