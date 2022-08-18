@@ -31,6 +31,7 @@ typedef struct s_data
 	int			nb_cmd;
 	int			nb_pipe;
 	int			*fd;
+	struct s_dic		*env;
 }			t_data;
 
 typedef struct	s_dic
