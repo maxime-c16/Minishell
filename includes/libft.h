@@ -31,7 +31,14 @@ typedef struct s_data
 	int			nb_cmd;
 	int			nb_pipe;
 	int			*fd;
+	struct s_dic		*env;
 }			t_data;
+
+typedef struct	s_dic
+{
+	char	*key;
+	char	*value;
+}			t_dic;
 
 typedef struct s_help
 {
@@ -39,7 +46,7 @@ typedef struct s_help
 	char	**env;
 	int		*l;
 	int		*m;
-}	t_help;
+}			t_help;
 
 typedef struct s_token
 {

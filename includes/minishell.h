@@ -54,9 +54,22 @@ void	ft_print_lst(void);
 t_list	*_lst(void);
 t_data	*_data(void);
 
+
+//env_manipulating.c
+
+char *lcd_strcmp(char *s1, char *s2);
+char	*get_value(char *key);
+
+//env_parsing.c
+
+int		test_env(char **env);
+char	*ft_strndup(char *str, int n);
+int		split_env(char **ev);
+int		len_env(char **env);
+
 //parsing.c
 
-void	parsing(char *cmd, char **env);
+int		parsing(char *cmd, char **env);
 
 //insertion.c
 

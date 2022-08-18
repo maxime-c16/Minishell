@@ -12,19 +12,22 @@
 
 #include "../includes/minishell.h"
 
-void	parsing(char *cmd, char **env)
+
+
+int	parsing(char *cmd, char **env)
 {
 	char	**token;
-	t_data	*data;
 
-	data = _data();
+	if (!test_env(env))
+		return (0);
+	if (!split_env(env))
+		return (0);
 	if (!cmd)
 		hasta_la_vista();
 	token = ft_split_parsing(cmd, ' ');
 	if (!token)
 		hasta_la_vista();
 	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
 	free(cmd);
-	return ;
+  return (1);
 }
