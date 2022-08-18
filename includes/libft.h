@@ -17,6 +17,7 @@ typedef struct	s_dic
 typedef struct	s_data
 {
 	int			*pid;
+	int			*fd;
 	int			nb_cmd;
 	t_dic		*env;
 }			t_data;

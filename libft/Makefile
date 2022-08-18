@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/09 17:39:45 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/10 11:40:43 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/17 13:24:37 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME			=	libft.a
 
 OBJ				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-CC				=	clang
+CC				=	gcc
 
 CFLAGS			=	-Wall -Wextra -Werror
 

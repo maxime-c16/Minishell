@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/11 13:09:50 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/17 13:25:06 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS 			=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-CC 				=	clang
+CC 				=	gcc
 
 CFLAGS 			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 
