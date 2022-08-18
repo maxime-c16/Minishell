@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/18 22:43:29 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/18 22:44:26 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct	s_dic
 typedef struct s_data
 {
 	int			*pid;
-	int			*fd;
 	int			nb_cmd;
 	int			nb_pipe;
 	t_dic		*env;
