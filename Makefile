@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/25 15:42:50 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/25 21:58:24 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,12 @@ HEADER  		=	includes/minishell.h
 all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
-					@clear
+					# @clear
 					@echo "Linking $(NAME)..."
 					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
-					@clear
+					# @clear
 					@echo "Compilation done."
-					@sleep 1
-					@clear
+					# @clear
 					@echo "        :::   :::   ::::::::::: ::::    ::: ::::::::::: ::::::::  :::    ::: :::::::::: :::        :::  ";
 					@echo "      :+:+: :+:+:      :+:     :+:+:   :+:     :+:    :+:    :+: :+:    :+: :+:        :+:        :+:   ";
 					@echo "    +:+ +:+:+ +:+     +:+     :+:+:+  +:+     +:+    +:+        +:+    +:+ +:+        +:+        +:+    ";
@@ -68,14 +67,14 @@ clean			:
 					@/bin/rm -f $(OBJS)
 					@/bin/rm -rf $(DIR_OBJ)
 					@make -C $(LIBFT_DIR) clean
-					@clear
+					# @clear
 					@echo "Cleaned."
 
 fclean			:	clean
-					@clear
+					# @clear
 					@/bin/rm -f $(NAME)
 					make -C $(LIBFT_DIR) fclean
-					@clear
+					# @clear
 					@echo "Fully cleaned."
 
 re				:	fclean  all
