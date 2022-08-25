@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 15:38:30 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/25 11:53:25 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/25 11:53:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/libft.h"
 
-void	parsing(char *cmd, char **env)
+int	ft_strcmp(char *s1, char *s2)
 {
-	char	**token;
-	t_data	*data;
+	int i;
 
-	data = _data();
-	if (!cmd)
-		hasta_la_vista();
-	token = ft_split_parsing(cmd, ' ');
-	if (!token)
-		hasta_la_vista();
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
-	return ;
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }

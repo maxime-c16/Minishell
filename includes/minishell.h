@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 13:01:28 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/25 19:10:28 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ int		ft_lst_size_without_pipe(void);
 void	ft_waitpid(void);
 void	ft_error(char *str);
 void	ft_dup2(int in, int out);
+void	init_heredocs(t_list **lst);
 
 //redirections.c
 
-void	ft_redirections(char **cmd);
+void	ft_redirections(t_list *lst);
 char	**ft_clean_redir_cmd(char **cmd);
 
 //redirections_utils.c
@@ -99,5 +100,18 @@ char	**ft_clean_redir_cmd(char **cmd);
 char	**ft_clean_redir_cmd(char **cmd);
 int		ft_check_redir(char **cmd);
 void	ft_exec_redir(t_list **lst, char ***ad_cmd);
+
+//utils2.c
+
+int		ft_lst_heredocs(void);
+
+//heredocs.c
+
+void	limit_heredocs(void);
+
+//heredocs_utils.c
+
+void	write_hd(void);
+void	ft_dup_heredocs(t_list *tmp);
 
 #endif

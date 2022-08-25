@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 15:38:30 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/25 11:57:45 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/25 18:59:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	parsing(char *cmd, char **env)
+static int	ft_lst_heredocs_len(t_list *lst)
 {
-	char	**token;
-	t_data	*data;
+	int	i;
+	int	j;
 
-	data = _data();
-	if (!cmd)
-		hasta_la_vista();
-	token = ft_split_parsing(cmd, ' ');
-	if (!token)
-		hasta_la_vista();
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
-	return ;
+	i = 0;
+	j = 0;
+	while (lst->token->cmd[i])
+	{
+		if (!ft_strcmp(lst->token->cmd[i], "<<"))
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+int	ft_lst_heredocs(void)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = _lst();
+	while (tmp)
+	{
+		tmp->hd_node = ft_lst_heredocs_len(tmp);
+		i += tmp->hd_node;
+		tmp = tmp->next;
+	}
+	return (i);
 }
