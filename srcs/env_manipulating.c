@@ -22,10 +22,10 @@ char	*get_value(char *key)
 
 	i = 0;
 	data = _data();
-	dprintf(2, "searching value of %s\n", key);
+//	dprintf(2, "searching value of %s\n", key);
 	while (data->env[i].key)
 	{
-		dprintf(2, "checking for %s\n", data->env[i].key);
+//		dprintf(2, "checking for %s\n", data->env[i].key);
 		if (!ft_strncmp(key, data->env[i].key, ft_strlen(key)))
 			return (data->env[i].value);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/26 14:35:23 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:53:21 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ char **expand(char **token)
 	i = 0;
 	while (token[i])
 	{
-		printf("old token: _%s_\n", token[i]);
+//		printf("old token: _%s_\n", token[i]);
 		if (token[i][0] == '$')
 		{
-			dprintf(2, "in condition\n");
+//			dprintf(2, "in condition\n");
 			new_word = get_value(get_next_word(token[i]));
-			dprintf(2, "new woird = :%s\n", new_word);
+//			dprintf(2, "new word = :%s\n", new_word);
 			free(token[i]);
 			token[i] = new_word;
-			printf("new token: %s\n", token[i]);
+//			printf("new token: %s\n", token[i]);
 		}
 		i++;
 	}
