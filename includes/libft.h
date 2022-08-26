@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/18 22:44:26 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:11:35 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define C_RED "\e[31m"
 # define C_GREEN "\e[32m"
 
+typedef struct s_heredocs
+{
+	char		**limit_herdocs;
+	int			*fd;
+	char		**file_n;
+}				t_heredocs;
+
 typedef struct	s_dic
 {
 	char	*key;
@@ -33,11 +40,12 @@ typedef struct	s_dic
 
 typedef struct s_data
 {
-	int			*pid;
-	int			nb_cmd;
-	int			nb_pipe;
+	int					*pid;
+	int					nb_cmd;
+	int					nb_pipe;
 	t_dic		*env;
-	int			*fd;
+	int					*fd;
+	int					nb_hd;
 }			t_data;
 
 typedef struct s_help
@@ -56,12 +64,15 @@ typedef struct s_token
 
 typedef struct s_list
 {
-	t_token			*token;
-	struct s_help	*help;
-	struct s_list	*next;
-}					t_list;
+	t_token				*token;
+	int					hd_node;
+	struct s_heredocs	*h_docs;
+	struct s_help		*help;
+	struct s_list		*next;
+}						t_list;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_memcmp(const void *s1, const void *s2, int n);
 int		ft_strlen(const char *str);
 int		ft_atoi(const char *str);

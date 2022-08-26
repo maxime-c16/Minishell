@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 19:59:53 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/25 15:42:18 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/25 11:57:45 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/25 18:59:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static int	ft_lst_heredocs_len(t_list *lst)
 {
-	char	*output;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!output)
-		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
-		output[j++] = s1[i++];
+	while (lst->token->cmd[i])
+	{
+		if (!ft_strcmp(lst->token->cmd[i], "<<"))
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+int	ft_lst_heredocs(void)
+{
+	t_list	*tmp;
+	int		i;
+
 	i = 0;
-	while (s2[i])
-		output[j++] = s2[i++];
-	output[j] = '\0';
-	return (output);
+	tmp = _lst();
+	while (tmp)
+	{
+		tmp->hd_node = ft_lst_heredocs_len(tmp);
+		i += tmp->hd_node;
+		tmp = tmp->next;
+	}
+	return (i);
 }

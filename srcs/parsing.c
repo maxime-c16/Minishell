@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 14:32:23 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:16:28 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-
 int	parsing(char *cmd, char **env)
 {
 	char	**token;
+	t_data	*data;
 
+	data = _data();
 	if (!test_env(env))
 		return (0);
 	if (!split_env(env))
@@ -29,6 +29,8 @@ int	parsing(char *cmd, char **env)
 		hasta_la_vista();
 	token = expand(token);
 	ft_parse_and_insert(token, env);
+	data->nb_cmd = ft_lst_size_without_pipe();
+	limit_heredocs();
 	free(cmd);
   return (1);
 }
