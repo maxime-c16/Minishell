@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoseph <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/08/26 15:13:15 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:27:55 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ int	split_env(char **ev)
 //		dprintf(2, "key = %s		value = %s\n", data->env[i].key, data->env[i].value);
 		i++;
 	}
-	data->env[i].key = NULL;
 	return (1);
 }
