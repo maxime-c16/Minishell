@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 18:59:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/26 09:54:01 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_heredocs
 {
 	char		**limit_herdocs;
 	int			*fd;
+	char		**file_n;
 }				t_heredocs;
 
 typedef struct s_data

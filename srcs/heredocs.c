@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 19:49:29 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/26 09:56:35 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static void	open_heredocs(t_list *tmp)
 {
 	int		nb_file;
 	int		i;
-	char	*h_doc_file;
 
 	i = 0;
 	nb_file = 0;
 	while (tmp->h_docs->limit_herdocs[i])
 	{
-		h_doc_file = ft_strjoin(".hdoc", ft_itoa(nb_file));
-		tmp->h_docs->fd[i] = open(h_doc_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		tmp->h_docs->file_n[i] = ft_strjoin(".hdoc", ft_itoa(nb_file));
+		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i],
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (tmp->h_docs->fd[i] == -1)
 			hasta_la_vista();
 		nb_file++;
@@ -65,15 +65,34 @@ void	limit_heredocs(void)
 	}
 }
 
+static void	clode_hd(void)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = _lst();
+	while (tmp)
+	{
+		i = 0;
+		while (i < tmp->hd_node)
+		{
+			close(tmp->h_docs->fd[i]);
+			i++;
+		}
+		tmp = tmp->next;
+	}
+}
+
 void	ft_dup_heredocs(t_list *tmp)
 {
 	int	i;
 
 	i = 0;
+	clode_hd();
 	while (i < tmp->hd_node)
 	{
-		close(tmp->h_docs->fd[i]);
-		tmp->h_docs->fd[i] = open(".hdoc0", O_RDONLY);
+		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i], O_RDONLY);
 		dup2(tmp->h_docs->fd[i], FD_STDIN);
 		close(tmp->h_docs->fd[i]);
 		i++;
