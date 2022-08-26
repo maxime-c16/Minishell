@@ -6,7 +6,7 @@
 /*   By: yoseph <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/08/11 16:02:37 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:13:15 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	split_env(char **ev)
 
 	i = 0;
 	data = _data();
-	data->env = malloc(sizeof(t_dic) * len_env(ev) + 1);
+	data->env = malloc(sizeof(t_dic) * len_env(ev) + 2);
 	if (!data->env)
 		return (0);
 	while (ev[i])
