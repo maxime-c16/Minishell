@@ -18,16 +18,17 @@ char	*lcd_strcmp(char *s1, char *s2)
 char	*get_value(char *key)
 {
 	int		i;
-	char	*str;
 	t_data	*data;
 
-	i = -1;
+	i = 0;
 	data = _data();
-	str = 0;
-	while (str)
+	dprintf(2, "searching value of %s\n", key);
+	while (data->env[i].key)
 	{
+		dprintf(2, "checking for %s\n", data->env[i].key);
+		if (!ft_strncmp(key, data->env[i].key, ft_strlen(key)))
+			return (data->env[i].value);
 		i++;
-		str = lcd_strcmp(data->env[i].key, key);
 	}
-	return (data->env[i].value);
+	return (NULL);
 }

@@ -5,21 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 13:19:20 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/17 13:27:59 by yschecro         ###   ########.fr       */
+/*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
+/*   Updated: 2022/08/26 14:35:23 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_variable(char *cmd)
+char	*get_next_word(char *str)
 {
-	t_data	*data;
-	int		i;
+	if (ft_strlen(str) > 1)
+		return (str + 1);
+	return (NULL);
+}
 
-	data = _data();
-	while (cmd[i])
+char **expand(char **token)
+{
+	int	i;
+	char	*new_word;
+
+	i = 0;
+	while (token[i])
 	{
-		if (cmd[i] == '$')
-			
-
+		printf("old token: _%s_\n", token[i]);
+		if (token[i][0] == '$')
+		{
+			dprintf(2, "in condition\n");
+			new_word = get_value(get_next_word(token[i]));
+			dprintf(2, "new woird = :%s\n", new_word);
+			free(token[i]);
+			token[i] = new_word;
+			printf("new token: %s\n", token[i]);
+		}
+		i++;
+	}
+	return (token);
+}

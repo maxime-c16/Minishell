@@ -6,14 +6,14 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/18 17:48:02 by yschecro         ###   ########.fr        #
+#    Updated: 2022/08/26 14:24:13 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 							path.c ft_split.c init.c data_struct.c utils.c \
 							env_parsing.c env_manipulating.c redirections.c \
-							redir_utils.c 
+							redir_utils.c env_var.c 
 
 SRC_DIR 		=	srcs
 

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 13:01:28 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/26 14:32:39 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	ft_print_lst(void);
 t_list	*_lst(void);
 t_data	*_data(void);
 
+
+//env_var.c
+
+char **expand(char **token);
 
 //env_manipulating.c
 
