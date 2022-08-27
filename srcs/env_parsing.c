@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/08/26 15:27:55 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:04:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	split_env(char **ev)
 		data->env[i].value = ft_strndup(ev[i] + k, j);
 		if (!data->env[i].value || !data->env[i].key)
 			return (0);
-//		dprintf(2, "key = %s		value = %s\n", data->env[i].key, data->env[i].value);
 		i++;
 	}
 	return (1);
