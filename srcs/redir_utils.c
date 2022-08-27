@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 23:08:40 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/26 15:52:01 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	**ft_clean_redir_cmd(char **cmd)
 	if (!new_cmd)
 		hasta_la_vista();
 	new_cmd = ft_fill_cmd(cmd, new_cmd);
+	//printf("new_cmd = %s\n", new_cmd[0]);
 	return (new_cmd);
 }

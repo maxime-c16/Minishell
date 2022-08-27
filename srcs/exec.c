@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 13:04:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/27 10:26:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_exec(void)
 	i = 0;
 	data = _lst();
 	tmp = data;
+	write_hd();
+	close_hd();
 	init_fd();
 	init_pid();
 	while (tmp)
