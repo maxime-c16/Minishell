@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 09:56:35 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/27 10:30:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	limit_heredocs(void)
 	}
 }
 
-static void	clode_hd(void)
+void	close_hd(void)
 {
 	t_list	*tmp;
 	int		i;
@@ -89,10 +89,10 @@ void	ft_dup_heredocs(t_list *tmp)
 	int	i;
 
 	i = 0;
-	clode_hd();
 	while (i < tmp->hd_node)
 	{
-		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i], O_RDONLY);
+		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i], O_RDONLY,
+				0644);
 		dup2(tmp->h_docs->fd[i], FD_STDIN);
 		close(tmp->h_docs->fd[i]);
 		i++;

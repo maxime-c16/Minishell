@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 21:58:03 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/26 15:46:31 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int		ft_lst_heredocs(void);
 //heredocs.c
 
 void	limit_heredocs(void);
+void	close_hd(void);
 
 //heredocs_utils.c
 
