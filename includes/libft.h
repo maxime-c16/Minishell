@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 09:54:01 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/27 16:21:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_data
 	int					nb_pipe;
 	int					*fd;
 	int					nb_hd;
+	int					save_in;
+	int					save_out;
 }			t_data;
 
 typedef struct s_help

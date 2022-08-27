@@ -6,14 +6,15 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/25 21:58:24 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/27 15:30:59 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c utils.c \
 					redirections.c redir_utils.c utils2.c heredocs.c \
-					heredocs_utils.c \
+					heredocs_utils.c builtins.c builtins_exec.c \
+					exec_utils.c \
 
 SRC_DIR 		=	srcs
 

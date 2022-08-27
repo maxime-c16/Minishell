@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   built-in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 16:12:06 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/27 14:31:36 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/27 14:42:58 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	parsing(char *cmd, char **env)
+int	is_builtin(char *cmd)
 {
-	char	**token;
-	t_data	*data;
-
-	data = _data();
-	if (!cmd)
-		hasta_la_vista();
-	token = ft_split_parsing(cmd, ' ');
-	if (!token)
-		hasta_la_vista();
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
-	return ;
+	if (!ft_strcmp(cmd, "exit"))
+		return (1);
+	if (!ft_strcmp(cmd, "env"))
+		return (1);
+	if (!ft_strcmp(cmd, "export"))
+		return (1);
+	if (!ft_strcmp(cmd, "unset"))
+		return (1);
+	if (!ft_strcmp(cmd, "cd"))
+		return (1);
+	if (!ft_strcmp(cmd, "echo"))
+		return (1);
+	if (!ft_strcmp(cmd, "pwd"))
+		return (1);
+	return (0);
 }
