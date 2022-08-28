@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:03 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:01:39 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_data
 	int					*pid;
 	int					nb_cmd;
 	int					nb_pipe;
-	t_dic		*env;
 	int					*fd;
 	int					nb_hd;
 	int					save_in;
