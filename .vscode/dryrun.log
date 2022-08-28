@@ -1,0 +1,26 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/hugorecolet/Desktop/Minishell'
+make -C libft
+make -C libft bonus
+mkdir -p .objs
+echo "Compiling ft_unquoting.c..."
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/ft_unquoting.o -c srcs/ft_unquoting.c
+# @clear
+echo "Linking minishell..."
+gcc -Wall -Wextra -Werror -fsanitize=address -g3 .objs/main.o .objs/singleton.o .objs/free.o .objs/parsing.o .objs/exec.o .objs/path.o .objs/ft_split.o .objs/init.o .objs/data_struct.o .objs/utils.o .objs/redirections.o .objs/redir_utils.o .objs/utils2.o .objs/heredocs.o .objs/heredocs_utils.o .objs/env_var.o .objs/env_manipulating.o .objs/env_parsing.o .objs/builtins.o .objs/builtins_exec.o .objs/exec_utils.o .objs/ft_unquoting.o libft/libft.a -o minishell -lreadline
+# @clear
+echo "Compilation done."
+# @clear
+echo "        :::   :::   ::::::::::: ::::    ::: ::::::::::: ::::::::  :::    ::: :::::::::: :::        :::  ";
+echo "      :+:+: :+:+:      :+:     :+:+:   :+:     :+:    :+:    :+: :+:    :+: :+:        :+:        :+:   ";
+echo "    +:+ +:+:+ +:+     +:+     :+:+:+  +:+     +:+    +:+        +:+    +:+ +:+        +:+        +:+    ";
+echo "   +#+  +:+  +#+     +#+     +#+ +:+ +#+     +#+    +#++:++#++ +#++:++#++ +#++:++#   +#+        +#+     ";
+echo "  +#+       +#+     +#+     +#+  +#+#+#     +#+           +#+ +#+    +#+ +#+        +#+        +#+      ";
+echo " #+#       #+#     #+#     #+#   #+#+#     #+#    #+#    #+# #+#    #+# #+#        #+#        #+#       ";
+echo "###       ### ########### ###    #### ########### ########  ###    ### ########## ########## ########## ";
+echo "                                                                                                      ";
+echo "|_      _ _  _ _     _|_     ()      _ _|_  _  _ _ _ ";
+echo "|_)\/  | | |(_(_||_|(_| |\/  (_X  \/_\(_| |(/_(_| (_)";
+echo "   /                     /        /                  ";
+make: Leaving directory `/Users/hugorecolet/Desktop/Minishell'
+ 

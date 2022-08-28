@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:08:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_heredocs
 {
 	char		**limit_herdocs;
 	int			*fd;
-	struct s_dic		*env;
 	char		**file_n;
 }				t_heredocs;
 
@@ -41,10 +40,10 @@ typedef struct	s_dic
 
 typedef struct s_data
 {
-	t_dic				*env;
 	int					*pid;
 	int					nb_cmd;
 	int					nb_pipe;
+	t_dic		*env;
 	int					*fd;
 	int					nb_hd;
 	int					save_in;
