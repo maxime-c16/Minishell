@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/27 15:30:59 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/28 11:30:08 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ all				: 	MK_LIBFT $(NAME)
 $(NAME) 		: 	$(OBJS)
 					# @clear
 					@echo "Linking $(NAME)..."
-					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
+					@$(CC) $(CFLAGS) $^ $(LIBFT_DIR)/libft.a -o $@ -lreadline
 					# @clear
 					@echo "Compilation done."
 					# @clear

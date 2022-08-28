@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:57:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 14:26:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ void	unlink_hd(void)
 	while (tmp)
 	{
 		i = 0;
-		while (tmp->h_docs->file_n[i])
+		if (tmp->hd_node > 0)
 		{
-			if (unlink(tmp->h_docs->file_n[i]) == -1)
-				hasta_la_vista();
-			i++;
+			while (tmp->h_docs->file_n[i])
+			{
+				if (unlink(tmp->h_docs->file_n[i]) == -1)
+					hasta_la_vista(0);
+				i++;
+			}
 		}
 		tmp = tmp->next;
 	}

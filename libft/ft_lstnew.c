@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/06/22 12:49:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*ft_lstnew(char **env)
 	new->token = malloc(sizeof(t_token));
 	new->help = malloc(sizeof(t_help));
 	if (!new->token || !new->help)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	new->help->env = env;
 	new->next = NULL;
 	return (new);

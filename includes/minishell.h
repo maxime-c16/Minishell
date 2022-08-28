@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 15:48:59 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:46:27 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**ft_dup_tab(char **str);
 
 //free.c
 
-void	hasta_la_vista(void);
+void	hasta_la_vista(int flag);
 void	ft_free_tab(char **tab);
 void	ft_print_lst(void);
 
@@ -130,5 +130,9 @@ int	is_builtin(char *cmd);
 void	echo_cmd(char **cmd);
 void	exit_cmd(void);
 void	pwd_cmd(void);
+
+//signals.c
+
+void	sig_choice(int sig);
 
 #endif

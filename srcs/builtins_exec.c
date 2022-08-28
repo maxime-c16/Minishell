@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:06:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 15:54:57 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:32:09 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	echo_cmd(char **cmd)
 
 void	exit_cmd(void)
 {
-	hasta_la_vista();
+	hasta_la_vista(0);
 }
 
 void	pwd_cmd(void)
@@ -68,7 +68,7 @@ void	pwd_cmd(void)
 
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	printf("%s\n", pwd);
 	free(pwd);
 }
