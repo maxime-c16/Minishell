@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 12:36:56 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 12:40:16 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include "../includes/minishell.h"
 
-t_list	*ft_lstnew(char **env)
+char	*ft_strjoin_char(char *str, char c)
 {
-	t_list	*new;
+	char	*new_str;
 
-	new = (t_list *)malloc(sizeof(*new));
-	if (!new)
+	new_str = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (!new_str)
 		return (NULL);
-	new->token = malloc(sizeof(t_token));
-	new->help = malloc(sizeof(t_help));
-	if (!new->token || !new->help)
-		hasta_la_vista(0);
-	new->help->env = env;
-	new->next = NULL;
-	return (new);
+	new_str = ft_strcpy(new_str, str);
+	new_str[ft_strlen(str)] = c;
+	new_str[ft_strlen(str) + 1] = '\0';
+	return (new_str);
 }

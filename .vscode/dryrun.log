@@ -1,7 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/hugorecolet/Desktop/Minishell'
-make -C libft
-make -C libft bonus
- 
-make: Leaving directory `/Users/hugorecolet/Desktop/Minishell'
- 

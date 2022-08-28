@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 12:40:39 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 12:41:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include "../includes/minishell.h"
 
-t_list	*ft_lstnew(char **env)
+char	*ft_strcpy(char *str, char *old_str)
 {
-	t_list	*new;
+	int	i;
 
-	new = (t_list *)malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->token = malloc(sizeof(t_token));
-	new->help = malloc(sizeof(t_help));
-	if (!new->token || !new->help)
-		hasta_la_vista(0);
-	new->help->env = env;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	while (old_str[i])
+	{
+		str[i] = old_str[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

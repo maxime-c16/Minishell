@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:57:06 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:12:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void debug_token(char **token)
-{
-	int i = 0;
-	while (token[i])
-	{
-		printf("debug: _%s_\n", token[i]);
-		i++;
-	}
-}
 
 void	parsing(char *cmd, char **env)
 {
@@ -30,9 +20,9 @@ void	parsing(char *cmd, char **env)
 	data = _data();
 	token = ft_split_parsing(cmd, ' ');
 	if (!test_env(env) || !split_env(env) || !cmd || !token)
-		hasta_la_vista();
-	token = expand(token);
+		hasta_la_vista(1);
 	ft_parse_and_insert(token, env);
+	ft_unquoting();
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();
 	free(cmd);

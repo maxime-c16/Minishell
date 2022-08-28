@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 10:39:21 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 10:46:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
 #include "../includes/minishell.h"
 
-t_list	*ft_lstnew(char **env)
+void	sig_handler(int sig)
 {
-	t_list	*new;
+	if (sig == SIGINT)
+	{
+		rl_on_new_line();
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
-	new = (t_list *)malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->token = malloc(sizeof(t_token));
-	new->help = malloc(sizeof(t_help));
-	if (!new->token || !new->help)
-		hasta_la_vista(0);
-	new->help->env = env;
-	new->next = NULL;
-	return (new);
+void	sig_choice(int sig)
+{
+	if (sig == 0)
+	{
+		signal(SIGINT, sig_handler);
+		signal(SIGQUIT, SIG_IGN);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 14:25:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	open_heredocs(t_list *tmp)
 		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i],
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (tmp->h_docs->fd[i] == -1)
-			hasta_la_vista();
+			hasta_la_vista(0);
 		nb_file++;
 		i++;
 	}

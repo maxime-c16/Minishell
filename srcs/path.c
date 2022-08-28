@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 12:41:18 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:11:28 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 	i = 0;
 	tab = malloc(sizeof(char *) * (ft_tablen(path) + 1));
 	if (!tab)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	while (path[i])
 	{
 		tab[i] = ft_strjoin(path[i], "/");
@@ -51,6 +51,8 @@ char	*ft_path(char **full_path, char *cmd)
 
 	i = 0;
 	j = 0;
+	if (cmd[0] == '.' || cmd[0] == '/')
+		return (cmd);
 	while (full_path[i])
 	{
 		j = 0;
