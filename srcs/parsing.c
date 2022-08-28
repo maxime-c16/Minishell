@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 15:16:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:42:45 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ int	parsing(char *cmd, char **env)
 	if (!split_env(env))
 		return (0);
 	if (!cmd)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	token = ft_split_parsing(cmd, ' ');
 	if (!token)
-		hasta_la_vista();
-	token = expand(token);
+		hasta_la_vista(0);
 	ft_parse_and_insert(token, env);
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();

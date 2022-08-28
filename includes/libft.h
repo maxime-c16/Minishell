@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 15:11:35 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:42:25 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_data
 	t_dic		*env;
 	int					*fd;
 	int					nb_hd;
+	int					save_in;
+	int					save_out;
 }			t_data;
 
 typedef struct s_help

@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/26 15:17:22 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/08/28 11:43:05 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c utils.c \
 					redirections.c redir_utils.c utils2.c heredocs.c \
 					heredocs_utils.c env_var.c env_manipulating.c env_parsing.c\
+					builtins.c builtins_exec.c \
+					exec_utils.c \
 
 SRC_DIR 		=	srcs
 
@@ -38,7 +40,7 @@ all					: 	MK_LIBFT $(NAME)
 $(NAME) 		: 	$(OBJS)
 					# @clear
 					@echo "Linking $(NAME)..."
-					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
+					@$(CC) $(CFLAGS) $^ $(LIBFT_DIR)/libft.a -o $@ -lreadline
 					# @clear
 					@echo "Compilation done."
 					# @clear

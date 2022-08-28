@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 13:05:01 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	ft_waitpid(void)
 void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	hasta_la_vista();
+	hasta_la_vista(0);
 	return ;
 }
 
 void	ft_dup2(int in, int out)
 {
 	if (dup2(in, FD_STDIN) == -1)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	if (dup2(out, FD_STDOUT) == -1)
-		hasta_la_vista();
+		hasta_la_vista(0);
 }

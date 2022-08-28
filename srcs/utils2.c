@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:57:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 18:59:57 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,27 @@ int	ft_lst_heredocs(void)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+void	unlink_hd(void)
+{
+	t_list	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = _lst();
+	while (tmp)
+	{
+		i = 0;
+		if (tmp->hd_node > 0)
+		{
+			while (tmp->h_docs->file_n[i])
+			{
+				if (unlink(tmp->h_docs->file_n[i]) == -1)
+					hasta_la_vista(0);
+				i++;
+			}
+		}
+		tmp = tmp->next;
+	}
 }
