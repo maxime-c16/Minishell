@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 12:41:18 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:14:05 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*ft_path(char **full_path, char *cmd)
 
 	i = 0;
 	j = 0;
+	if (cmd[0] == '.' || cmd[0] == '/')
+		return (cmd);
 	while (full_path[i])
 	{
 		j = 0;
