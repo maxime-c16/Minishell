@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/08/28 15:52:32 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:25:09 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	split_env(char **ev)
 
 	i = 0;
 	data = _data();
-	data->env = malloc(sizeof(t_dic) * len_env(ev) + 1);
+	data->env = malloc(sizeof(t_dic) * len_env(ev) + 2);
 	if (!data->env)
 		return (0);
 	while (ev[i])
@@ -79,7 +79,6 @@ int	split_env(char **ev)
 		data->env[i].value = ft_strndup(ev[i] + k, j);
 		if (!data->env[i].value || !data->env[i].key)
 			return (0);
-//		dprintf(2, "key = %s		value = %s\n", data->env[i].key, data->env[i].value);
 		i++;
 	}
 	return (1);

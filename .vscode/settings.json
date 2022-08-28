@@ -1,10 +1,20 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	"makefile.extensionOutputFolder": "./.vscode"
+}
+=======
+>>>>>>> yoyo
 	"files.associations": {
 		"minishell.h": "c"
 	}
 }
+<<<<<<< HEAD
 =======
 	"makefile.extensionOutputFolder": "./.vscode"
 }
 >>>>>>> dev
+=======
+>>>>>>> master
+>>>>>>> yoyo
