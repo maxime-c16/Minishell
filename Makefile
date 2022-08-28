@@ -3,19 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
+#    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/27 16:49:38 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/28 15:55:16 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c utils.c \
-					env_parsing.c env_manipulating.c redirections.c \
-					redir_utils.c utils2.c heredocs.c \
-					heredocs_utils.c builtins.c builtins_exec.c \
-					exec_utils.c \
+					env_parsing.c env_manipulating.c \
+					redirections.c redir_utils.c utils2.c heredocs.c \
+					heredocs_utils.c env_var.c env_parsing.c\
+					builtins.c builtins_exec.c \
+					exec_utils.c ft_unquoting.c \
 
 SRC_DIR 		=	srcs
 
@@ -27,7 +28,7 @@ SRCS 				=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-CC 					=	clang
+CC 				=	gcc
 
 CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
 
@@ -40,7 +41,7 @@ all					: 	MK_LIBFT $(NAME)
 $(NAME) 		: 	$(OBJS)
 					# @clear
 					@echo "Linking $(NAME)..."
-					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
+					@$(CC) $(CFLAGS) $^ $(LIBFT_DIR)/libft.a -o $@ -lreadline
 					# @clear
 					@echo "Compilation done."
 					# @clear

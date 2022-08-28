@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:14:05 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 15:53:49 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 	i = 0;
 	tab = malloc(sizeof(char *) * (ft_tablen(path) + 1));
 	if (!tab)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	while (path[i])
 	{
 		tab[i] = ft_strjoin(path[i], "/");

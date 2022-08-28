@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 16:47:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 15:52:29 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**ft_dup_tab(char **str);
 
 //free.c
 
-void	hasta_la_vista(void);
+void	hasta_la_vista(int flag);
 void	ft_free_tab(char **tab);
 void	ft_print_lst(void);
 
@@ -54,6 +54,10 @@ void	ft_print_lst(void);
 t_list	*_lst(void);
 t_data	*_data(void);
 
+
+//env_var.c
+
+char **expand(char **token);
 
 //env_manipulating.c
 
@@ -143,5 +147,12 @@ int	is_builtin(char *cmd);
 void	echo_cmd(char **cmd);
 void	exit_cmd(void);
 void	pwd_cmd(void);
+
+//signals.c
+
+void	sig_choice(int sig);
+
+//ft_unquoting.c
+void	ft_unquoting(void);
 
 #endif

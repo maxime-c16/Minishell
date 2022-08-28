@@ -1,5 +1,10 @@
 {
+<<<<<<< HEAD
 	"files.associations": {
 		"minishell.h": "c"
 	}
 }
+=======
+	"makefile.extensionOutputFolder": "./.vscode"
+}
+>>>>>>> dev
