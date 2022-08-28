@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:06:35 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 10:39:21 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 10:46:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-
-void	parsing(char *cmd, char **env)
+void	sig_handler(int sig)
 {
-	char	**token;
-	t_data	*data;
+	if (sig == SIGINT)
+	{
+		rl_on_new_line();
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
-	data = _data();
-	token = ft_split_parsing(cmd, ' ');
-	if (!test_env(env) || !split_env(env) || !cmd || !token)
-		hasta_la_vista(1);
-	cmd = refacto_token_space(cmd);
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
+void	sig_choice(int sig)
+{
+	if (sig == 0)
+	{
+		signal(SIGINT, sig_handler);
+		signal(SIGQUIT, SIG_IGN);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:50 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/27 16:20:30 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_pid(void)
 	temp = _data();
 	temp->pid = malloc(sizeof(int) * (temp->nb_cmd));
 	if (temp->pid == NULL)
-		hasta_la_vista();
+		hasta_la_vista(0);
 }
 
 void	init_fd(void)
@@ -31,11 +31,11 @@ void	init_fd(void)
 	data = _data();
 	data->fd = malloc(sizeof(int) * ((data->nb_cmd - 1) * 2));
 	if (data->fd == NULL)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	while (i < data->nb_cmd - 1)
 	{
 		if (pipe(data->fd + i * 2) == -1)
-			hasta_la_vista();
+			hasta_la_vista(0);
 		i++;
 	}
 	return ;
@@ -62,7 +62,7 @@ void	init_heredocs(t_list **lst)
 	tmp->h_docs->file_n = malloc(sizeof(char *) * (tmp->hd_node + 1));
 	if (!tmp->h_docs->limit_herdocs || !tmp->h_docs->fd
 		|| !tmp->h_docs->file_n)
-		hasta_la_vista();
+		hasta_la_vista(0);
 	tmp->h_docs->limit_herdocs[tmp->hd_node] = NULL;
 	tmp->h_docs->file_n[tmp->hd_node] = NULL;
 }

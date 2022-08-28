@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:06:35 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 12:40:39 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 12:41:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/libft.h"
 
-
-
-void	parsing(char *cmd, char **env)
+char	*ft_strcpy(char *str, char *old_str)
 {
-	char	**token;
-	t_data	*data;
+	int	i;
 
-	data = _data();
-	token = ft_split_parsing(cmd, ' ');
-	if (!test_env(env) || !split_env(env) || !cmd || !token)
-		hasta_la_vista(1);
-	cmd = refacto_token_space(cmd);
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
+	i = 0;
+	while (old_str[i])
+	{
+		str[i] = old_str[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

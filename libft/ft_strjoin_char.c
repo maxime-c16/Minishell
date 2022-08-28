@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:06:35 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/08/28 12:36:56 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/08/28 12:40:16 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/libft.h"
 
-
-
-void	parsing(char *cmd, char **env)
+char	*ft_strjoin_char(char *str, char c)
 {
-	char	**token;
-	t_data	*data;
+	char	*new_str;
 
-	data = _data();
-	token = ft_split_parsing(cmd, ' ');
-	if (!test_env(env) || !split_env(env) || !cmd || !token)
-		hasta_la_vista(1);
-	cmd = refacto_token_space(cmd);
-	ft_parse_and_insert(token, env);
-	data->nb_cmd = ft_lst_size_without_pipe();
-	limit_heredocs();
-	free(cmd);
+	new_str = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (!new_str)
+		return (NULL);
+	new_str = ft_strcpy(new_str, str);
+	new_str[ft_strlen(str)] = c;
+	new_str[ft_strlen(str) + 1] = '\0';
+	return (new_str);
 }
