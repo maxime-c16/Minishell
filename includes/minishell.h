@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/26 15:11:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:58:19 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		len_env(char **env);
 
 //parsing.c
 
-int		parsing(char *cmd, char **env);
+void		parsing(char *cmd, char **env);
 
 //insertion.c
 
@@ -89,6 +89,11 @@ int		ft_count_cmd(char **token, int i);
 
 void	ft_exec(void);
 void	ft_exec_cmd(t_list *lst, char **cmd, int i);
+
+//exec_utils.c
+
+void	multi_cmd_exec(void);
+void	one_builtin_exec(void);
 
 //paths.c
 
@@ -110,7 +115,7 @@ void	init_heredocs(t_list **lst);
 //redirections.c
 
 void	ft_redirections(t_list *lst);
-char	**ft_clean_redir_cmd(char **cmd);
+char	**ft_clean_redirection(char **cmd);
 
 //redirections_utils.c
 
@@ -121,14 +126,26 @@ void	ft_exec_redir(t_list **lst, char ***ad_cmd);
 //utils2.c
 
 int		ft_lst_heredocs(void);
+void	unlink_hd(void);
 
 //heredocs.c
 
 void	limit_heredocs(void);
+void	close_hd(void);
 
 //heredocs_utils.c
 
 void	write_hd(void);
 void	ft_dup_heredocs(t_list *tmp);
+
+//builtins.c
+
+int	is_builtin(char *cmd);
+
+//builtins_exec.c
+
+void	echo_cmd(char **cmd);
+void	exit_cmd(void);
+void	pwd_cmd(void);
 
 #endif

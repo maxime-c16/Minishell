@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/25 15:15:36 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:53:36 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,37 +63,28 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 	}
 }
 
-static void	ft_exec_pipe(t_list *lst, int k)
-{
-	char	**token;
-
-	token = lst->token->cmd;
-	if (!token[0][0])
-		return ;
-	if (token[0][0] == '|')
-		return ;
-	ft_exec_cmd(lst, token, k);
-}
-
 void	ft_exec(void)
 {
-	t_list	*data;
-	t_list	*tmp;
-	int		i;
+	t_data	*data;
+	char	**cmd;
 
-	i = 0;
-	data = _lst();
-	tmp = data;
+	data = _data();
+	write_hd();
+	close_hd();
 	init_fd();
 	init_pid();
-	write_hd();
-	while (tmp)
+	cmd = ft_clean_redirection(_lst()->token->cmd);
+	if (data->nb_cmd ==  1 && is_builtin(cmd[0]))
 	{
-		ft_exec_pipe(tmp, i);
-		if (tmp->token->type != PIPE)
-			i++;
-		tmp = tmp->next;
+		ft_free_tab(cmd);
+		one_builtin_exec();
+	}
+	else
+	{
+		ft_free_tab(cmd);
+		multi_cmd_exec();
 	}
 	ft_close_fd();
 	ft_waitpid();
+	unlink_hd();
 }

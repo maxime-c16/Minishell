@@ -6,70 +6,60 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/16 23:08:40 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:29:20 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_check_redir(char **cmd)
+static int	is_redirect(char *cmd)
 {
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (ft_strncmp(cmd[i], ">", 1) == 0)
-			return (1);
-		if (ft_strncmp(cmd[i], "<", 1) == 0)
-			return (1);
-		if (ft_strncmp(cmd[i], ">>", 2) == 0)
-			return (1);
-		if (ft_strncmp(cmd[i], "<<", 2) == 0)
-			return (1);
-		i++;
-	}
+	if (ft_strncmp(cmd, ">", 1) == 0 || ft_strncmp(cmd, "<", 1) == 0 || \
+			ft_strncmp(cmd, ">>", 2) == 0 || ft_strncmp(cmd, "<<", 2) == 0)
+		return (1);
 	return (0);
 }
 
-static char	**ft_fill_cmd(char **cmd, char **new_cmd)
+static int	len_wo_redir(char **cmd)
 {
 	int	i;
+	int	ret;
 
 	i = 0;
+	ret = 0;
 	while (cmd[i])
 	{
-		if (ft_strncmp(cmd[i], ">", 2) && ft_strncmp(cmd[i], "<", 2)
-			&& ft_strncmp(cmd[i], ">>", 3) && ft_strncmp(cmd[i], "<<", 3))
-		{
-			new_cmd[i] = ft_strdup(cmd[i]);
-			if (!new_cmd[i])
-				hasta_la_vista();
-			i++;
-		}
-		else
-			break ;
+		if (is_redirect(cmd[i]) == 1)
+			ret += 2;
+		i++;
 	}
-	new_cmd[i] = NULL;
-	return (new_cmd);
+	return (i - ret);
 }
 
-char	**ft_clean_redir_cmd(char **cmd)
+char	**ft_clean_redirection(char **cmd)
 {
 	int		i;
+	int		j;
 	char	**new_cmd;
 
 	i = 0;
+	j = 0;
+	new_cmd = malloc(sizeof(char *) * (len_wo_redir(cmd) + 1));
 	while (cmd[i])
 	{
-		if (!ft_strncmp(cmd[i], ">", 2) && !ft_strncmp(cmd[i], "<", 2) && \
-				!ft_strncmp(cmd[i], ">>", 3) && !ft_strncmp(cmd[i], "<<", 3))
-			break ;
+		if (is_redirect(cmd[i]) == 1)
+		{
+			i += 2;
+			if (cmd[i] == NULL)
+				break ;
+			continue ;
+		}
+		new_cmd[j] = ft_strdup(cmd[i]);
+		if (!new_cmd[j])
+			hasta_la_vista();
 		i++;
+		j++;
 	}
-	new_cmd = malloc(sizeof(char *) * (i + 1));
-	if (!new_cmd)
-		hasta_la_vista();
-	new_cmd = ft_fill_cmd(cmd, new_cmd);
+	new_cmd[j] = NULL;
 	return (new_cmd);
 }
