@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:08:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 18:26:37 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef struct	s_dic
 
 typedef struct s_data
 {
+	t_dic				*env;
 	int					*pid;
 	int					nb_cmd;
 	int					nb_pipe;
-	t_dic		*env;
 	int					*fd;
 	int					nb_hd;
 	int					save_in;

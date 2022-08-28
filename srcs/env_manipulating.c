@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_manipulating.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
+/*   Updated: 2022/08/27 17:07:54 by yschecro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char	*lcd_strcmp(char *s1, char *s2)
@@ -9,7 +21,7 @@ char	*lcd_strcmp(char *s1, char *s2)
 		return (NULL);
 	while (s1[i] == s2[i])
 		i++;
-	if (i == ft_strlen(s1) && i ==ft_strlen(s2))
+	if (i == ft_strlen(s1) && i == ft_strlen(s2))
 		return (s1);
 	else
 		return (NULL);
@@ -22,11 +34,9 @@ char	*get_value(char *key)
 
 	i = 0;
 	data = _data();
-//	dprintf(2, "searching value of %s\n", key);
 	while (data->env[i].key)
 	{
-//		dprintf(2, "checking for %s\n", data->env[i].key);
-		if (!ft_strncmp(key, data->env[i].key, ft_strlen(key)))
+		if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))
 			return (data->env[i].value);
 		i++;
 	}
