@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 18:26:37 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:35:03 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	int					nb_hd;
 	int					save_in;
 	int					save_out;
+	int					env_len;
 }			t_data;
 
 typedef struct s_help
