@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 11:29:56 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:06:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int ac, char **av, char **env)
 	{
 		//sig_choice(0);
 		line = readline(C_RED"Minishell"C_RESET"$> ");
+		refacto_token_space(line);
 		if (!line)
 			hasta_la_vista(0);
 		add_history(line);

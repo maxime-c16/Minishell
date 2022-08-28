@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:46:27 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:03:51 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,14 @@ void	pwd_cmd(void);
 //signals.c
 
 void	sig_choice(int sig);
+
+//refacto_token.c
+
+char	*refacto_token_space(char *cmd);
+void	refacto_help(char **ad_cmd, char *cmd, int *j);
+int		ft_refacto_len(char *cmd);
+int		ft_first_quote(char *cmd, int index, char c);
+int		is_token(char cmd);
+int		is_in_quote(char *cmd, int index);
 
 #endif
