@@ -6,7 +6,7 @@
 #    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/28 11:43:05 by hrecolet         ###   ########.fr        #
+#    Updated: 2022/08/28 15:34:31 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					redirections.c redir_utils.c utils2.c heredocs.c \
 					heredocs_utils.c env_var.c env_manipulating.c env_parsing.c\
 					builtins.c builtins_exec.c \
-					exec_utils.c \
+					exec_utils.c ft_unquoting.c \
 
 SRC_DIR 		=	srcs
 

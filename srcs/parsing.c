@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 11:42:45 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:34:13 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	parsing(char *cmd, char **env)
 	if (!token)
 		hasta_la_vista(0);
 	ft_parse_and_insert(token, env);
+	ft_unquoting();
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();
 	free(cmd);

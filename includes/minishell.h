@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 11:42:28 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:29:06 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,8 @@ void	pwd_cmd(void);
 //signals.c
 
 void	sig_choice(int sig);
+
+//ft_unquoting.c
+void	ft_unquoting(void);
 
 #endif
