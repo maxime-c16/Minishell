@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/28 17:09:41 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/28 18:27:53 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ NAME 				=	minishell
 
 HEADER  		=	includes/minishell.h
 
-all					: 	MK_LIBFT $(NAME)
+all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
 					# @clear
