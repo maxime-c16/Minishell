@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/27 18:10:54 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:44:51 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*get_next_word(char *str)
 char **expand(char **token)
 {
 	int	i;
-	char	*new_word;
 
 	i = 0;
 	while (token[i])
@@ -31,15 +30,8 @@ char **expand(char **token)
 		{
 			if (ft_strlen(token[i]) <= 1)
 				return (token);
-			new_word = get_value(get_next_word(token[i]));
 			free(token[i]);
-			if (!new_word)
-			{
-//				dprintf(2, "\n\nnull found\n");
-				token[i][0] = 0;
-			}
-			else
-				token[i] = new_word;
+			token[i] = get_value(get_next_word(token[i]));
 		}
 		i++;
 	}
