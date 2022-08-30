@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/30 14:13:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/30 17:46:33 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	*lcd_strcmp(char *s1, char *s2)
 
 char	*get_value(char *key)
 {
-	int		i;
 	t_data	*data;
+	int		i;
 
 	i = 0;
 	data = _data();
