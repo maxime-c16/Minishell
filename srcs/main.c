@@ -6,11 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 12:06:41 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/30 14:30:00 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	g_value = 0;
 
 char	**ft_dup_tab(char **str)
 {
@@ -71,6 +73,14 @@ void	ft_print_lst(void)
 	}
 }
 
+static char	*ft_prompt_color(void)
+{
+	if (g_value == 0)
+		return (C_GREEN"Minishell"C_RESET"$> ");
+	else
+		return (C_RED"Minishell"C_RESET"$> ");
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
@@ -81,7 +91,7 @@ int	main(int ac, char **av, char **env)
 	while (42)
 	{
 		//sig_choice(0);
-		line = readline(C_RED"Minishell"C_RESET"$> ");
+		line = readline(ft_prompt_color());
 		refacto_token_space(line);
 		if (!line)
 			hasta_la_vista(0);

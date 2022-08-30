@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_manipulating.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/28 18:40:01 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:13:54 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*get_value(char *key)
 
 	i = 0;
 	data = _data();
-	dprintf(2, "len env: %d\n", data->env_len);
 	while (i < data->env_len)
 	{
 		if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))

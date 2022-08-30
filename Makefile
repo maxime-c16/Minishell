@@ -6,11 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/08/28 18:37:23 by mcauchy          ###   ########.fr        #
-=======
-#    Updated: 2022/08/28 18:50:09 by yschecro         ###   ########.fr        #
->>>>>>> aa9e494843985de8aadf7431f554a307b02bfa35
+#    Updated: 2022/08/29 21:02:42 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +33,7 @@ CC 				=	clang
 
 CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
 
-NAME 				=	minishell
+NAME 			=	minishell
 
 HEADER  		=	includes/minishell.h
 
