@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/31 21:38:47 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:52:22 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,8 @@ void	ft_unquoting(void);
 
 void	print_env(void);
 void	add_to_env(char *str);
+
+//unset_env.c
+void	unset_var(char *str);
 
 #endif
