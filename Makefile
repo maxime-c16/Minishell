@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
+#    By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/29 21:02:42 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/08/31 21:22:44 by hrecolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					heredocs_utils.c builtins.c builtins_exec.c \
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
-					env_var.c\
+					env_var.c display_env.c\
 
 SRC_DIR 		=	srcs
 

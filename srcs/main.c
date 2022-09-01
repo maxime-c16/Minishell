@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:22:46 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:54:24 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	using_history();
+	if (!test_env(env) || !split_env(env))
+		hasta_la_vista(1);
 	while (42)
 	{
 		line = readline(ft_prompt_color());
