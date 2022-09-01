@@ -8,12 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Wed Aug 31 21:22:45 2022
+# Make data base, printed on Thu Sep  1 10:53:07 2022
 
 # Variables
 
 # environment
- 
 VSCODE_GIT_ASKPASS_MAIN = /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -31,6 +30,7 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 CURDIR := /Users/hugorecolet/Desktop/Minishell
 # makefile
 SHELL = /bin/sh
+ 
 # environment
 VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{},"_languagePackSupport":true}
 # environment
@@ -146,7 +146,6 @@ TMPDIR = /var/folders/np/3n81l2wd7gv0vjgd1vccsr8w0000gn/T/
 # environment
 VSCODE_IPC_HOOK = /Users/hugorecolet/Library/Application Support/Code/1.70.2-main.sock
 # environment
- 
 VSCODE_GIT_ASKPASS_NODE = /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper
 # environment
 MallocNanoZone = 0
@@ -205,7 +204,7 @@ TERM = xterm-256color
 # environment
 VSCODE_PID = 706
 # makefile (from `Makefile', line 13)
-FILES = main.c singleton.c free.c parsing.c exec.c path.c ft_split.c init.c data_struct.c utils.c env_parsing.c env_manipulating.c redirections.c redir_utils.c utils2.c heredocs.c heredocs_utils.c builtins.c builtins_exec.c exec_utils.c refacto_token.c refacto_utils.c env_parsing.c env_manipulating.c  ft_unquoting.c env_var.c display_env.c 
+FILES = main.c singleton.c free.c parsing.c exec.c path.c ft_split.c init.c data_struct.c utils.c env_parsing.c env_manipulating.c redirections.c redir_utils.c utils2.c heredocs.c heredocs_utils.c builtins.c builtins_exec.c exec_utils.c refacto_token.c refacto_utils.c env_parsing.c env_manipulating.c  ft_unquoting.c env_var.c display_env.c unset_env.c 
 # variable set hash-table stats:
 # Load=96/1024=9%, Rehash=0, Collisions=7/134=5%
 
@@ -304,7 +303,7 @@ all: MK_LIBFT minishell
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-31 21:22:44
+#  Last modified 2022-09-01 10:52:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -312,6 +311,7 @@ Makefile:
 
 # Not a target:
 .objs/utils.o:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -328,14 +328,13 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 # Not a target:
 .objs/free.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: .objs/main.o .objs/singleton.o .objs/free.o .objs/parsing.o .objs/exec.o .objs/path.o .objs/ft_split.o .objs/init.o .objs/data_struct.o .objs/utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/redirections.o .objs/redir_utils.o .objs/utils2.o .objs/heredocs.o .objs/heredocs_utils.o .objs/builtins.o .objs/builtins_exec.o .objs/exec_utils.o .objs/refacto_token.o .objs/refacto_utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/ft_unquoting.o .objs/env_var.o .objs/display_env.o
+minishell: .objs/main.o .objs/singleton.o .objs/free.o .objs/parsing.o .objs/exec.o .objs/path.o .objs/ft_split.o .objs/init.o .objs/data_struct.o .objs/utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/redirections.o .objs/redir_utils.o .objs/utils2.o .objs/heredocs.o .objs/heredocs_utils.o .objs/builtins.o .objs/builtins_exec.o .objs/exec_utils.o .objs/refacto_token.o .objs/refacto_utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/ft_unquoting.o .objs/env_var.o .objs/display_env.o .objs/unset_env.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -469,6 +468,12 @@ clean:
 	
 
 # Not a target:
+.objs/unset_env.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 .objs/redir_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -505,7 +510,7 @@ clean:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=35/1024=3%, Rehash=0, Collisions=4/86=5%
+# Load=36/1024=4%, Rehash=0, Collisions=4/88=5%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -517,6 +522,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 31 21:22:45 2022
+# Finished Make data base on Thu Sep  1 10:53:07 2022
 
  

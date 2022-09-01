@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:54:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:50:26 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,11 @@ int		ft_lst_heredocs(void);
 void	unlink_hd(void);
 void	search_and_replace_pwd(char *old_pwd, char *pwd);
 
+//utils3.c
+
+char	**ft_convert_dict_tab(void);
+int		skip_spaces(char *line);
+
 //heredocs.c
 
 void	limit_heredocs(void);
@@ -174,5 +179,9 @@ void	ft_unquoting(void);
 
 void	print_env(void);
 void	add_to_env(char *str);
+
+//unset_env.c
+
+void	unset_var(char *str);
 
 #endif

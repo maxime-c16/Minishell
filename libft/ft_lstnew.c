@@ -6,14 +6,14 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:41:42 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include "../includes/minishell.h"
 
-t_list	*ft_lstnew(char **env)
+t_list	*ft_lstnew(void)
 {
 	t_list	*new;
 
@@ -24,7 +24,6 @@ t_list	*ft_lstnew(char **env)
 	new->help = malloc(sizeof(t_help));
 	if (!new->token || !new->help)
 		hasta_la_vista(0);
-	new->help->env = env;
 	new->next = NULL;
 	return (new);
 }

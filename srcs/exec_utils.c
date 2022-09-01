@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:55:03 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:13:25 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void	ft_exec_builtin(char **cmd)
 		print_env();
 	if (!ft_strcmp(cmd[0], "export"))
 		add_to_env(cmd[1]);
+	if (!ft_strcmp(cmd[0], "unset"))
+		unset_var(cmd[1]);
 }
 
 void	ft_exec_one_builtin(void)

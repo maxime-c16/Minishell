@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:51:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:40:56 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_parse_and_insert(char **token, char **env)
 		data = ft_lstlast(data);
 		data->token = malloc(sizeof(t_token));
 		data->help = malloc(sizeof(t_help));
-		data->help->env = ft_dup_tab(env);
 		data->next = NULL;
 		if (token[i][0] == '|')
 		{

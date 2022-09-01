@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:54:24 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:51:20 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,14 @@ int	main(int ac, char **av, char **env)
 	while (42)
 	{
 		line = readline(ft_prompt_color());
-		refacto_token_space(line);
 		if (!line)
 			hasta_la_vista(0);
+		if (!line[0] || skip_spaces(line) == -1)
+		{
+			free(line);
+			continue ;
+		}
+		refacto_token_space(line);
 		add_history(line);
 		parsing(line, env);
 		ft_exec();
