@@ -6,21 +6,11 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 17:11:28 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:08:35 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static int	ft_tablen(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
 
 static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 {

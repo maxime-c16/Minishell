@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/30 14:15:32 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 09:51:29 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		ft_tolower(int c);
 int		ft_isdigit(int c);
 int		ft_isascii(int c);
 int		ft_toupper(int c);
+int		ft_str_is_numeric(char *str);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

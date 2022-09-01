@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/30 14:26:23 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:50:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i);
 //exec_utils.c
 
 void	multi_cmd_exec(void);
-void	one_builtin_exec(void);
+void	ft_exec_one_builtin(void);
 
 //paths.c
 
@@ -113,6 +113,7 @@ void	ft_waitpid(void);
 void	ft_error(char *str);
 void	ft_dup2(int in, int out);
 void	init_heredocs(t_list **lst);
+int		ft_tablen(char **cmd);
 
 //redirections.c
 
@@ -129,6 +130,7 @@ void	ft_exec_redir(t_list **lst, char ***ad_cmd);
 
 int		ft_lst_heredocs(void);
 void	unlink_hd(void);
+void	search_and_replace_pwd(char *old_pwd, char *pwd);
 
 //heredocs.c
 
@@ -147,8 +149,9 @@ int	is_builtin(char *cmd);
 //builtins_exec.c
 
 void	echo_cmd(char **cmd);
-void	exit_cmd(void);
+void	exit_cmd(char **cmd);
 void	pwd_cmd(void);
+void	cd_cmd(char **cmd);
 
 //signals.c
 

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:27:50 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:06:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_exec(void)
 	if (data->nb_cmd ==  1 && is_builtin(cmd[0]))
 	{
 		ft_free_tab(cmd);
-		one_builtin_exec();
+		ft_exec_one_builtin();
 	}
 	else
 	{

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 11:58:51 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/30 18:01:17 by hrecolet         ###   ########.fr       */
+/*   Created: 2022/09/01 09:50:43 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/09/01 09:51:11 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_str_is_numeric(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (!s1)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[i] || s2[i]) && (s1[i] == s2[i]) && (i < n - 1))
+	while (str[i])
 	{
+		if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (1);
 }

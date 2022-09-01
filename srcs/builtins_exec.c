@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:06:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/30 18:00:59 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:50:25 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,26 @@ void	echo_cmd(char **cmd)
 		printf("\n");
 }
 
-void	exit_cmd()
+void	exit_cmd(char **cmd)
 {
-	hasta_la_vista(0);
+	if (ft_tablen(cmd) > 2)
+	{
+		g_value = 1;
+		printf("Minishell: exit: too many arguments\n");
+	}
+	else if (!cmd[1])
+		hasta_la_vista(0);
+	else if (ft_str_is_numeric(cmd[1]))
+	{
+		g_value = ft_atoi(cmd[1]);
+		hasta_la_vista(0);
+	}
+	else
+	{
+		g_value = 255;
+		printf("Minishell: %s: numeric argument required\n", cmd[1]);
+		hasta_la_vista(0);
+	}
 }
 
 void	pwd_cmd(void)
@@ -70,8 +87,23 @@ void	pwd_cmd(void)
 	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
-	if (pwd == NULL)
+	if (!pwd)
 		hasta_la_vista(0);
 	printf("%s\n", pwd);
 	free(pwd);
+}
+
+void	cd_cmd(char **cmd)
+{
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		hasta_la_vista(0);
+	if (chdir(cmd[1]) == -1)
+	{
+		printf("Minishell: cd: %s: No such file or directory\n", cmd[1]);
+		return ;
+	}
+	search_and_replace_pwd(getcwd(NULL, 0), pwd);
 }
