@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/30 14:26:23 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/31 21:38:47 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,10 @@ int		is_in_quote(char *cmd, int index);
 //ft_unquoting.c
 
 void	ft_unquoting(void);
+
+//display_env.c
+
+void	print_env(void);
+void	add_to_env(char *str);
 
 #endif

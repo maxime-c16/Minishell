@@ -1,82 +1,14 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/hugorecolet/Desktop/Minishell'
 make -C libft
 make -C libft bonus
+ 
 mkdir -p .objs
-echo "Compiling main.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/main.o -c srcs/main.c
-mkdir -p .objs
-echo "Compiling singleton.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/singleton.o -c srcs/singleton.c
-mkdir -p .objs
-echo "Compiling free.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/free.o -c srcs/free.c
-mkdir -p .objs
-echo "Compiling parsing.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/parsing.o -c srcs/parsing.c
-mkdir -p .objs
-echo "Compiling exec.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/exec.o -c srcs/exec.c
-mkdir -p .objs
-echo "Compiling path.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/path.o -c srcs/path.c
-mkdir -p .objs
-echo "Compiling ft_split.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/ft_split.o -c srcs/ft_split.c
-mkdir -p .objs
-echo "Compiling init.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/init.o -c srcs/init.c
-mkdir -p .objs
-echo "Compiling data_struct.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/data_struct.o -c srcs/data_struct.c
-mkdir -p .objs
-echo "Compiling utils.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/utils.o -c srcs/utils.c
-mkdir -p .objs
-echo "Compiling env_parsing.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/env_parsing.o -c srcs/env_parsing.c
-mkdir -p .objs
-echo "Compiling env_manipulating.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/env_manipulating.o -c srcs/env_manipulating.c
-mkdir -p .objs
-echo "Compiling redirections.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/redirections.o -c srcs/redirections.c
-mkdir -p .objs
-echo "Compiling redir_utils.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/redir_utils.o -c srcs/redir_utils.c
-mkdir -p .objs
-echo "Compiling utils2.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/utils2.o -c srcs/utils2.c
-mkdir -p .objs
-echo "Compiling heredocs.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/heredocs.o -c srcs/heredocs.c
-mkdir -p .objs
-echo "Compiling heredocs_utils.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/heredocs_utils.o -c srcs/heredocs_utils.c
-mkdir -p .objs
-echo "Compiling builtins.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/builtins.o -c srcs/builtins.c
-mkdir -p .objs
-echo "Compiling builtins_exec.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/builtins_exec.o -c srcs/builtins_exec.c
-mkdir -p .objs
-echo "Compiling exec_utils.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/exec_utils.o -c srcs/exec_utils.c
-mkdir -p .objs
-echo "Compiling refacto_token.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/refacto_token.o -c srcs/refacto_token.c
-mkdir -p .objs
-echo "Compiling refacto_utils.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/refacto_utils.o -c srcs/refacto_utils.c
-mkdir -p .objs
-echo "Compiling ft_unquoting.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/ft_unquoting.o -c srcs/ft_unquoting.c
-mkdir -p .objs
-echo "Compiling env_var.c..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/env_var.o -c srcs/env_var.c
+echo "Compiling display_env.c..."
+clang -Wall -Wextra -Werror -fsanitize=address -g3 -o .objs/display_env.o -c srcs/display_env.c
 # @clear
 echo "Linking minishell..."
-clang -Wall -Wextra -Werror -fsanitize=address -g3 .objs/main.o .objs/singleton.o .objs/free.o .objs/parsing.o .objs/exec.o .objs/path.o .objs/ft_split.o .objs/init.o .objs/data_struct.o .objs/utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/redirections.o .objs/redir_utils.o .objs/utils2.o .objs/heredocs.o .objs/heredocs_utils.o .objs/builtins.o .objs/builtins_exec.o .objs/exec_utils.o .objs/refacto_token.o .objs/refacto_utils.o .objs/ft_unquoting.o .objs/env_var.o libft/libft.a -o minishell -lreadline
+clang -Wall -Wextra -Werror -fsanitize=address -g3 .objs/main.o .objs/singleton.o .objs/free.o .objs/parsing.o .objs/exec.o .objs/path.o .objs/ft_split.o .objs/init.o .objs/data_struct.o .objs/utils.o .objs/env_parsing.o .objs/env_manipulating.o .objs/redirections.o .objs/redir_utils.o .objs/utils2.o .objs/heredocs.o .objs/heredocs_utils.o .objs/builtins.o .objs/builtins_exec.o .objs/exec_utils.o .objs/refacto_token.o .objs/refacto_utils.o .objs/ft_unquoting.o .objs/env_var.o .objs/display_env.o libft/libft.a -o minishell -lreadline
 # @clear
 echo "Compilation done."
 # @clear

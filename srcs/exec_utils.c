@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:28:25 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/31 21:39:14 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ static void	ft_exec_builtin(char **cmd)
 		echo_cmd(cmd);
 	if (!ft_strcmp(cmd[0], "pwd"))
 		pwd_cmd();
+	if (!ft_strcmp(cmd[0], "env"))
+		print_env();
+	if (!ft_strcmp(cmd[0], "export"))
+		add_to_env(cmd[1]);
 }
 
 static void	ft_exec_one_builtin(t_list *tmp)
