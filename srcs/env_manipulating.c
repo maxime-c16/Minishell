@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/08/27 17:07:54 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:07:17 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ char	*get_value(char *key)
 
 	i = 0;
 	data = _data();
-	while (data->env[i].key)
+	dprintf(2, "len env: %d\n", data->env_len);
+	while (i < data->env_len)
 	{
-		if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))
-			return (data->env[i].value);
+		if (ft_strlen(key) == ft_strlen(data->env[i].key))
+		{
+			if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))
+				return (data->env[i].value);
+		}
 		i++;
 	}
 	return (NULL);

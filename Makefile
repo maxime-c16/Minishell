@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/28 18:14:37 by yschecro         ###   ########.fr        #
+#    Updated: 2022/09/01 12:58:35 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,9 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					env_parsing.c env_manipulating.c redirections.c \
 					redir_utils.c utils2.c heredocs.c \
 					heredocs_utils.c builtins.c builtins_exec.c \
-					exec_utils.c env_var.c\
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
-					env_var.c
+					env_var.c\
 
 SRC_DIR 		=	srcs
 
@@ -32,13 +31,13 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	 -fsanitize=address -g3
+CFLAGS 			=	 -g3
 
 NAME 				=	minishell
 
 HEADER  		=	includes/minishell.h
 
-all					: 	MK_LIBFT $(NAME)
+all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
 					# @clear
