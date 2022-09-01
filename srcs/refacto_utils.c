@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 16:20:55 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:22:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:55:13 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_first_quote(char *cmd, int index, char c)
 
 void	refacto_help(char **ad_cmd, char *cmd, int *j)
 {
-	int	i;
+	int		i;
 	char	*new_cmd;
 
 	i = *j;
