@@ -6,51 +6,42 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 14:21:07 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/28 10:27:50 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// static void	ft_close_fd(int *fd)
-// {
-// 	close(fd[0]);
-// 	close(fd[1]);
-// 	return ;
-// }
-
-static void	ft_dup2(int in, int out)
+static void	ft_close_fd(void)
 {
-	if (dup2(in, 0) == -1)
-		hasta_la_vista();
-	if (dup2(out, 1) == -1)
-		hasta_la_vista();
+	int		i;
+	t_data	*data;
+
+	i = 0;
+	data = _data();
+	while (i < data->nb_cmd - 1)
+	{
+		close(data->fd[i * 2]);
+		close(data->fd[i * 2 + 1]);
+		i++;
+	}
 }
 
-static void	ft_link_fd(int fd[2], int i)
+static void	ft_link_fd(int i)
 {
 	t_data	*temp;
 
 	temp = _data();
 	if (i == 0)
-	{
-		ft_dup2(0, fd[1]);
-		close(fd[1]);
-	}
+		dup2(temp->fd[1], FD_STDOUT);
 	else if (i == temp->nb_cmd - 1)
-	{
-		ft_dup2(fd[0], 1);
-		close(fd[0]);
-	}
+		dup2(temp->fd[2 * i - 2], FD_STDIN);
 	else
-	{
-		ft_dup2(fd[0], fd[1]);
-		close(fd[0]);
-		close(fd[1]);
-	}
+		ft_dup2(temp->fd[2 * i - 2], temp->fd[2 * i + 1]);
+	ft_close_fd();
 }
 
-static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
+void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
 	char	*path;
 	t_data	*temp;
@@ -60,50 +51,40 @@ static void	ft_exec_cmd(t_list *lst, int i, int fd[2])
 	if (temp->pid[i] == 0)
 	{
 		if (temp->nb_cmd > 1)
-			ft_link_fd(fd, i);
-		path = ft_path(lst->help->env, lst->token->cmd[0]);
-		if (!path || execve(path, lst->token->cmd, lst->help->env) == -1)
+			ft_link_fd(i);
+		ft_exec_redir(&lst, &cmd);
+		path = ft_path(lst->help->env, cmd[0]);
+		if (!path || execve(path, cmd, lst->help->env) == -1)
 		{
 			ft_putstr_fd("minishell: command not found: ", 2);
-			ft_putendl_fd(lst->token->cmd[0], 2);
+			ft_putendl_fd(cmd[0], 2);
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
-	{
-		waitpid(temp->pid[i], NULL, 0);
-	}
-}
-
-static void	ft_exec_pipe(t_list *lst, int k, int fd[2])
-{
-	char	**token;
-
-	token = lst->token->cmd;
-	if (!token[0][0])
-		return ;
-	if (token[0][0] == '|')
-		return ;
-	ft_exec_cmd(lst, k, fd);
 }
 
 void	ft_exec(void)
 {
-	t_list	*data;
-	t_list	*tmp;
-	int		i;
-	int		fd[2];
+	t_data	*data;
+	char	**cmd;
 
-	data = _lst();
-	tmp = data;
-	i = 0;
+	data = _data();
+	write_hd();
+	close_hd();
+	init_fd();
 	init_pid();
-	pipe(fd);
-	while (tmp)
+	cmd = ft_clean_redirection(_lst()->token->cmd);
+	if (data->nb_cmd ==  1 && is_builtin(cmd[0]))
 	{
-		ft_exec_pipe(tmp, i, fd);
-		if (tmp->token->type != PIPE)
-			i++;
-		tmp = tmp->next;
+		ft_free_tab(cmd);
+		one_builtin_exec();
 	}
+	else
+	{
+		ft_free_tab(cmd);
+		multi_cmd_exec();
+	}
+	ft_close_fd();
+	ft_waitpid();
+	unlink_hd();
 }

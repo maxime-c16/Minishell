@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/09/01 13:01:32 by yschecro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 
 # define LIBFT_H
@@ -8,41 +20,62 @@
 # include <string.h>
 # include <strings.h>
 
+# define C_RESET "\e[0m"
+# define C_PURPLE "\e[34m"
+# define C_RED "\e[31m"
+# define C_GREEN "\e[32m"
+
+typedef struct s_heredocs
+{
+	char		**limit_herdocs;
+	int			*fd;
+	char		**file_n;
+}				t_heredocs;
+
 typedef struct	s_dic
 {
 	char	*key;
 	char	*value;
 }			t_dic;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	int			*pid;
-	int			nb_cmd;
-	t_dic		*env;
+	t_dic				*env;
+	int					*pid;
+	int					nb_cmd;
+	int					nb_pipe;
+	int					*fd;
+	int					nb_hd;
+	int					save_in;
+	int					save_out;
+	int					env_len;
 }			t_data;
 
-typedef struct	s_help
+typedef struct s_help
 {
 	char	**token;
 	char	**env;
 	int		*l;
 	int		*m;
-}	t_help;
+}			t_help;
 
-typedef struct	s_token
+typedef struct s_token
 {
 	char	**cmd;
 	int		type;
 }	t_token;
 
-typedef struct	s_list
+typedef struct s_list
 {
-	t_token			*token;
-	struct s_help	*help;
-	struct s_list	*next;
-}					t_list;
+	t_token				*token;
+	int					hd_node;
+	struct s_heredocs	*h_docs;
+	struct s_help		*help;
+	struct s_list		*next;
+}						t_list;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_memcmp(const void *s1, const void *s2, int n);
 int		ft_strlen(const char *str);
 int		ft_atoi(const char *str);
@@ -70,14 +103,17 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_char(char *str, char c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_itoa(int n);
 char	**ft_split_parsing(char const *s, char c);
+char	*ft_strcpy(char *str, char *old_str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
+// liste chainee
 
 void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));

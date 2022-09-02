@@ -6,44 +6,46 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/08/06 08:46:26 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/09/02 19:00:32 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
-					path.c ft_split.c init.c data_struct.c env_parsing.c \
-					env_manipulating.c
+					path.c ft_split.c init.c data_struct.c utils.c \
+					env_parsing.c env_manipulating.c redirections.c \
+					redir_utils.c utils2.c heredocs.c \
+					heredocs_utils.c builtins.c builtins_exec.c \
+					exec_utils.c refacto_token.c refacto_utils.c \
+					env_parsing.c env_manipulating.c  ft_unquoting.c \
+					env_var.c\
 
 SRC_DIR 		=	srcs
 
 DIR_OBJ 		=	.objs
 
-LIBFT_DIR 		=	libft
+LIBFT_DIR 	=	libft
 
-SRCS 			=	$(addprefix $(SRC_DIR)/, $(FILES))
+SRCS 				=	$(addprefix $(SRC_DIR)/, $(FILES))
 
-OBJS 			=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
+OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS 			=	 -g3
 
-NAME 			=	minishell
+NAME 				=	minishell
 
 HEADER  		=	includes/minishell.h
 
-all				: 	$(NAME)
+all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
-					clear
+					# @clear
 					@echo "Linking $(NAME)..."
-					@make -C $(LIBFT_DIR)
-					@make -C $(LIBFT_DIR) bonus
-					@$(CC) $(CFLAGS) $^ -lreadline $(LIBFT_DIR)/libft.a -o $@
-					@clear
+					@$(CC) $(CFLAGS) $^ $(LIBFT_DIR)/libft.a -o $@ -lreadline
+					# @clear
 					@echo "Compilation done."
-					@sleep 1
-					@clear
+					# @clear
 					@echo "        :::   :::   ::::::::::: ::::    ::: ::::::::::: ::::::::  :::    ::: :::::::::: :::        :::  ";
 					@echo "      :+:+: :+:+:      :+:     :+:+:   :+:     :+:    :+:    :+: :+:    :+: :+:        :+:        :+:   ";
 					@echo "    +:+ +:+:+ +:+     +:+     :+:+:+  +:+     +:+    +:+        +:+    +:+ +:+        +:+        +:+    ";
@@ -55,27 +57,30 @@ $(NAME) 		: 	$(OBJS)
 					@echo "|_      _ _  _ _     _|_     ()      _ _|_  _  _ _ _ ";
 					@echo "|_)\/  | | |(_(_||_|(_| |\/  (_X  \/_\(_| |(/_(_| (_)";
 					@echo "   /                     /        /                  ";
-					@./$(NAME)
 
 $(DIR_OBJ)/%.o	:	$(SRC_DIR)/%.c $(HEADER)
-					@mkdir -p $(@D)
-					@echo "Compiling $(notdir $<)..."
-					@$(CC) $(CFLAGS) -o $@ -c $<
+									@mkdir -p $(@D)
+									@echo "Compiling $(notdir $<)..."
+									@$(CC) $(CFLAGS) -o $@ -c $<
 
-clean			:
-					@/bin/rm -f $(OBJS)
-					@/bin/rm -rf $(DIR_OBJ)
-					@make -C $(LIBFT_DIR) clean
-					@clear
-					@echo "Cleaned."
+MK_LIBFT				:
+									@make -C $(LIBFT_DIR)
+									@make -C $(LIBFT_DIR) bonus
 
-fclean			:	clean
-					@clear
-					@/bin/rm -f $(NAME)
-					@make -C $(LIBFT_DIR) fclean
-					@clear
-					@echo "Fully cleaned."
+clean						:
+									@/bin/rm -f $(OBJS)
+									@/bin/rm -rf $(DIR_OBJ)
+									@make -C $(LIBFT_DIR) clean
+									# @clear
+									@echo "Cleaned."
 
-re				:	fclean  all
+fclean					:	clean
+									# @clear
+									@/bin/rm -f $(NAME)
+									make -C $(LIBFT_DIR) fclean
+									# @clear
+									@echo "Fully cleaned."
 
-.PHONY  		: 	all clean fclean fclean re
+re							:	fclean  all
+
+.PHONY  				: 	all clean fclean fclean re

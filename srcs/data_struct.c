@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:16:24 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/14 14:51:20 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@ int	ft_count_cmd(char **token, int i)
 	}
 	return (count);
 }
-
-//Liste creer lors de l'appel du singleton
-
-//cmd = ls -la | echo
-
-//creer une node
-
-//data = &node;
-//data->next;
-//i++;
-//retour au debut de boucle;
-
-//data-->data-->data-->NULL
-
-
 
 void	ft_parse_and_insert(char **token, char **env)
 {

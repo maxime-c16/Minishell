@@ -6,13 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 19:02:18 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 
-#define MINISHELL_H
+# define MINISHELL_H
 
 # include "libft.h"
 # include <stdlib.h>
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -44,7 +45,7 @@ char	**ft_dup_tab(char **str);
 
 //free.c
 
-void	hasta_la_vista(void);
+void	hasta_la_vista(int flag);
 void	ft_free_tab(char **tab);
 void	ft_print_lst(void);
 
@@ -52,6 +53,15 @@ void	ft_print_lst(void);
 
 t_list	*_lst(void);
 t_data	*_data(void);
+
+//env_var.c
+
+char **expand(char **token);
+
+//env_manipulating.c
+
+char *lcd_strcmp(char *s1, char *s2);
+char	*get_value(char *key);
 
 //env_parsing.c
 
@@ -62,7 +72,7 @@ int		len_env(char **env);
 
 //parsing.c
 
-int		parsing(char *cmd, char **env);
+void		parsing(char *cmd, char **env);
 
 //insertion.c
 
@@ -77,13 +87,81 @@ int		ft_count_cmd(char **token, int i);
 //exec.c
 
 void	ft_exec(void);
+void	ft_exec_cmd(t_list *lst, char **cmd, int i);
+
+//exec_utils.c
+
+void	multi_cmd_exec(void);
+void	one_builtin_exec(void);
 
 //paths.c
 
 char	*ft_path(char **full_path, char *cmd);
 
-// init.c
+//init.c
 
 void	init_pid(void);
+void	init_fd(void);
+
+//utils.c
+
+int		ft_lst_size_without_pipe(void);
+void	ft_waitpid(void);
+void	ft_error(char *str);
+void	ft_dup2(int in, int out);
+void	init_heredocs(t_list **lst);
+
+//redirections.c
+
+void	ft_redirections(t_list *lst);
+char	**ft_clean_redirection(char **cmd);
+
+//redirections_utils.c
+
+char	**ft_clean_redir_cmd(char **cmd);
+int		ft_check_redir(char **cmd);
+void	ft_exec_redir(t_list **lst, char ***ad_cmd);
+
+//utils2.c
+
+int		ft_lst_heredocs(void);
+void	unlink_hd(void);
+
+//heredocs.c
+
+void	limit_heredocs(void);
+void	close_hd(void);
+
+//heredocs_utils.c
+
+void	write_hd(void);
+void	ft_dup_heredocs(t_list *tmp);
+
+//builtins.c
+
+int	is_builtin(char *cmd);
+
+//builtins_exec.c
+
+void	echo_cmd(char **cmd);
+void	exit_cmd(void);
+void	pwd_cmd(void);
+
+//signals.c
+
+void	sig_choice(int sig);
+
+//refacto_token.c
+
+char	*refacto_token_space(char *cmd);
+void	refacto_help(char **ad_cmd, char *cmd, int *j);
+int		ft_refacto_len(char *cmd);
+int		ft_first_quote(char *cmd, int index, char c);
+int		is_token(char cmd);
+int		is_in_quote(char *cmd, int index);
+
+//ft_unquoting.c
+
+void	ft_unquoting(void);
 
 #endif

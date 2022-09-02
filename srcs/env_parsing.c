@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
+/*   Updated: 2022/09/02 19:01:39 by mcauchy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-int test_env(char **env)
+int	test_env(char **env)
 {
 	t_data	*data;
 
@@ -51,9 +63,10 @@ int	split_env(char **ev)
 
 	i = 0;
 	data = _data();
-	data->env = malloc(sizeof(t_dic) * len_env(ev) + 1);
+	data->env = malloc(sizeof(t_dic) * len_env(ev) + 2);
 	if (!data->env)
 		return (0);
+	data->env_len = len_env(ev);
 	while (ev[i])
 	{
 		j = 0;
@@ -67,9 +80,7 @@ int	split_env(char **ev)
 		data->env[i].value = ft_strndup(ev[i] + k, j);
 		if (!data->env[i].value || !data->env[i].key)
 			return (0);
-//		dprintf(2, "key = %s		value = %s\n", data->env[i].key, data->env[i].value);
 		i++;
 	}
-	data->env[i] = NULL;
 	return (1);
 }
