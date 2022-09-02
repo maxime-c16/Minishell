@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 12:04:08 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:51:27 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ int		len_env(char **env);
 
 //parsing.c
 
-void		parsing(char *cmd, char **env);
+void		parsing(char *cmd);
 
 //insertion.c
 
 void	ft_insertion(char **token, int *i, t_list **lst, char **env);
-void	init_new_token(char **env);
+void	init_new_token(void);
 
 //data_struct.c
 
-void	ft_parse_and_insert(char **token, char **env);
+void	ft_parse_and_insert(char **token);
 int		ft_count_cmd(char **token, int i);
 
 //exec.c

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:40:56 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:50:29 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_count_cmd(char **token, int i)
 	return (count);
 }
 
-void	ft_parse_and_insert(char **token, char **env)
+void	ft_parse_and_insert(char **token)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ void	ft_parse_and_insert(char **token, char **env)
 			data->token->type = CMD;
 		}
 		if (token[i])
-			init_new_token(env);
+			init_new_token();
 	}
 	ft_free_tab(token);
 }

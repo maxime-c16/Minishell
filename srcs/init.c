@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:50 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:42:26 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:45:29 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_fd(void)
 	return ;
 }
 
-void	init_new_token()
+void	init_new_token(void)
 {
 	t_list	*data;
 

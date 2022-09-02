@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:19:10 by hrecolet          #+#    #+#             */
-/*   Updated: 2022/09/01 10:30:54 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:46:15 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_dic	*dup_env(void)
 	return (new_dic);
 }
 
-static int no_equal(char *str)
+static int	no_equal(char *str)
 {
 	int	i;
 	int	ret;

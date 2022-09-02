@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:51:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:51:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **env)
 		}
 		refacto_token_space(line);
 		add_history(line);
-		parsing(line, env);
+		parsing(line);
 		ft_exec();
 		hasta_la_vista(1);
 	}

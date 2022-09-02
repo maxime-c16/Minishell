@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:41:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:45:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_exec(void)
 	init_fd();
 	init_pid();
 	cmd = ft_clean_redirection(_lst()->token->cmd);
-	if (data->nb_cmd ==  1 && is_builtin(cmd[0]))
+	if (data->nb_cmd == 1 && is_builtin(cmd[0]))
 	{
 		ft_free_tab(cmd);
 		ft_exec_one_builtin();
