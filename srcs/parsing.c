@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 10:19:02 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/09/03 10:30:15 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	parsing(char *cmd, char **env)
 
 	data = _data();
 	cmd = refacto_token_space(cmd);
+	printf("%s\n", cmd);
 	token = ft_split_parsing(cmd, ' ');
 	if (!cmd || !token)
 		hasta_la_vista(0);

@@ -74,6 +74,7 @@ static char	*ft_unquote_line(char *cmd)
 	char	first_quotes;
 
 	init_unquote(&i, &j, &ret, cmd);
+	printf("%s\n", cmd);
 	while (cmd[i])
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
@@ -86,7 +87,7 @@ static char	*ft_unquote_line(char *cmd)
 			}
 			i++;
 			if (cmd[i] == '\0')
-				break ;
+				break;
 		}
 		ret[j++] = cmd[i++];
 	}
