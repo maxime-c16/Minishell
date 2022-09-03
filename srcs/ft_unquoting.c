@@ -6,7 +6,7 @@
 /*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/03 10:09:50 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/09/03 10:42:04 by hrecolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static char	*ft_unquote_line(char *cmd)
 				ft_unquote_error(cmd, i);
 			}
 			i++;
+			if (cmd[i] == '\0')
+				break;
 		}
 		ret[j++] = cmd[i++];
 	}
