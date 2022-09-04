@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 16:20:55 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:55:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/03 11:47:50 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	nb_quote_before_token(char *cmd, int index, char c)
 			nb++;
 		i++;
 	}
+	printf("nb cotes %d %c\n", nb, cmd[index]);
 	return (nb % 2);
 }
 
@@ -95,12 +96,12 @@ void	refacto_help(char **ad_cmd, char *cmd, int *j)
 	else if (is_token(cmd[i]) && ft_isalnum(cmd[i + 1]))
 		new_cmd = ft_strjoin(new_cmd, " ");
 	else if (is_token(cmd[i]) && (cmd[i + 1] == '\"' || cmd[i + 1] == '\'')
-		&& !nb_quote_before_token(cmd, i, cmd[i]))
-		new_cmd = ft_strjoin(new_cmd, " ");
-	else if ((cmd[i] == '\"' || cmd[i] == '\"') && is_token(cmd[i + 1])
 		&& !nb_quote_before_token(cmd, i + 1, cmd[i]))
 	{
 		new_cmd = ft_strjoin(new_cmd, " ");
 	}
+	else if ((cmd[i] == '\"' || cmd[i] == '\"') && is_token(cmd[i + 1])
+		&& !nb_quote_before_token(cmd, i, cmd[i]))
+		new_cmd = ft_strjoin(new_cmd, " ");
 	*ad_cmd = new_cmd;
 }
