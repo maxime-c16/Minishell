@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:34:17 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/03 10:57:48 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/08 19:13:30 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ char	*refacto_token_space(char *cmd)
 	}
 	if (cmd[i])
 		new_cmd = ft_strjoin_char(new_cmd, cmd[i]);
-	printf("%s\n", new_cmd);
 	return (new_cmd);
 }

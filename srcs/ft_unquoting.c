@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unquoting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/03 10:42:04 by hrecolet         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:31:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*ft_unquote_line(char *cmd)
 		if (cmd[i] == '\'' || cmd[i] == '"')
 		{
 			first_quotes = cmd[i++];
-			while (cmd[i] != first_quotes)
+			while (cmd[i] != first_quotes && ret[j])
 			{
 				ret[j++] = cmd[i++];
 				ft_unquote_error(cmd, i);
