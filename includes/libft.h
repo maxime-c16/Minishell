@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:41:58 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/13 10:50:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ typedef struct s_data
 	int					env_len;
 }			t_data;
 
-typedef struct s_help
-{
-	char	**token;
-	char	**env;
-	int		*l;
-	int		*m;
-}			t_help;
-
 typedef struct s_token
 {
 	char	**cmd;
@@ -70,7 +62,6 @@ typedef struct s_list
 	t_token				*token;
 	int					hd_node;
 	struct s_heredocs	*h_docs;
-	struct s_help		*help;
 	struct s_list		*next;
 }						t_list;
 

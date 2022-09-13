@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 12:36:56 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 12:40:16 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/13 11:43:35 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char	*ft_strjoin_char(char *str, char c)
 	new_str = ft_strcpy(new_str, str);
 	new_str[ft_strlen(str)] = c;
 	new_str[ft_strlen(str) + 1] = '\0';
+	free(str);
 	return (new_str);
 }

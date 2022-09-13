@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:50:04 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/13 11:59:15 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	**ft_convert_dict_tab(void)
 {
 	t_data	*data;
+	char	*temp;
 	char	**env;
 	int		i;
 
@@ -27,9 +28,15 @@ char	**ft_convert_dict_tab(void)
 	env[data->env_len] = NULL;
 	while (i < data->env_len)
 	{
-		env[i] = ft_strjoin(env[i], data->env[i].key);
-		env[i] = ft_strjoin(env[i], "=");
-		env[i] = ft_strjoin(env[i], data->env[i].value);
+		temp = ft_strjoin(env[i], data->env[i].key);
+		free(env[i]);
+		env[i] = temp;
+		temp = ft_strjoin(env[i], "=");
+		free(env[i]);
+		env[i] = temp;
+		temp = ft_strjoin(env[i], data->env[i].value);
+		free(env[i]);
+		env[i] = temp;
 		i++;
 	}
 	return (env);

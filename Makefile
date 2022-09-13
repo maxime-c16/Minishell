@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/09/03 10:29:57 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/09/13 12:50:35 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
 					env_var.c display_env.c unset_env.c ft_unquoting2.c \
+					signals.c \
 
 SRC_DIR 		=	srcs
 
@@ -31,7 +32,7 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	clang
 
-CFLAGS 			=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS 			=	-Wall -Wextra -Werror -g3
 
 NAME 			=	minishell
 

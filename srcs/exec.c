@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/02 18:45:41 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/13 10:56:54 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,26 @@ static void	ft_link_fd(int i)
 void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
 	char	*path;
+	char	**env;
 	t_data	*temp;
 
 	temp = _data();
 	temp->pid[i] = fork();
+	env = ft_convert_dict_tab();
 	if (temp->pid[i] == 0)
 	{
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
 		ft_exec_redir(&lst, &cmd);
-		path = ft_path(ft_convert_dict_tab(), cmd[0]);
-		if (!path || execve(path, cmd, ft_convert_dict_tab()) == -1)
+		path = ft_path(env, cmd[0]);
+		if (!path || execve(path, cmd, env) == -1)
 		{
 			ft_putstr_fd("minishell: command not found: ", 2);
 			ft_putendl_fd(cmd[0], 2);
 			exit(EXIT_FAILURE);
 		}
+		ft_free_tab(env);
+		free(path);
 	}
 }
 
