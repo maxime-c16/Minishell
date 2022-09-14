@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unquoting.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/09/08 19:31:41 by mcauchy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
-
-static int	ft_tab_len(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
 
 static int	ft_count_quote(char *cmd)
 {
@@ -35,28 +37,6 @@ static int	ft_count_quote(char *cmd)
 	return (ret);
 }
 
-char	find_next_quote(char *cmd, int i)
-{
-	while (cmd[i])
-	{
-		if (cmd[i] == '"')
-			return (cmd[i]);
-		else if (cmd[i] == '\'')
-			return (cmd[i]);
-		i++;
-	}
-	return ('\0');
-}
-
-void	ft_unquote_error(char *cmd, int i)
-{
-	if (cmd[i] == '\0')
-	{
-		printf("minishell: error: quote not closed\n");
-		hasta_la_vista(1);
-	}
-}
-
 static void	init_unquote(int *i, int *j, char **ret, char *cmd)
 {
 	(*i) = 0;
@@ -79,14 +59,14 @@ static char	*ft_unquote_line(char *cmd)
 		if (cmd[i] == '\'' || cmd[i] == '"')
 		{
 			first_quotes = cmd[i++];
-			while (cmd[i] != first_quotes)
+			while (cmd[i] != first_quotes && ret[j])
 			{
 				ret[j++] = cmd[i++];
 				ft_unquote_error(cmd, i);
 			}
 			i++;
 			if (cmd[i] == '\0')
-				break ;
+				break;
 		}
 		ret[j++] = cmd[i++];
 	}
@@ -100,7 +80,7 @@ static char	**ft_unquote_node(char **cmd)
 	int		i;
 
 	i = 0;
-	ret = malloc(sizeof(char *) * (ft_tab_len(cmd) + 1));
+	ret = malloc(sizeof(char *) * (ft_tablen(cmd) + 1));
 	if (!ret)
 		hasta_la_vista(0);
 	while (cmd[i])

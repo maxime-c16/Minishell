@@ -6,11 +6,21 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:57:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/01 11:03:40 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	ft_tablen(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+		i++;
+	return (i);
+}
 
 static int	ft_lst_heredocs_len(t_list *lst)
 {
@@ -64,5 +74,30 @@ void	unlink_hd(void)
 			}
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	search_and_replace_pwd(char *pwd, char *old_pwd)
+{
+	t_data	*data;
+	int		i;
+
+	i = 0;
+	data = _data();
+	while (i < data->env_len)
+	{
+		if (!ft_strcmp(data->env[i].key, "PWD"))
+		{
+			free(data->env[i].value);
+			data->env[i].value = ft_strdup(pwd);
+			printf("%s\n", data->env[i].value);
+		}
+		else if (!ft_strcmp(data->env[i].key, "OLDPWD"))
+		{
+			free(data->env[i].value);
+			data->env[i].value = ft_strdup(old_pwd);
+			printf("%s\n", data->env[i].value);
+		}
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/14 14:51:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/13 10:49:23 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_count_cmd(char **token, int i)
 	return (count);
 }
 
-void	ft_parse_and_insert(char **token, char **env)
+void	ft_parse_and_insert(char **token)
 {
 	int		i;
 	int		j;
@@ -41,8 +41,6 @@ void	ft_parse_and_insert(char **token, char **env)
 	{
 		data = ft_lstlast(data);
 		data->token = malloc(sizeof(t_token));
-		data->help = malloc(sizeof(t_help));
-		data->help->env = ft_dup_tab(env);
 		data->next = NULL;
 		if (token[i][0] == '|')
 		{
@@ -67,7 +65,7 @@ void	ft_parse_and_insert(char **token, char **env)
 			data->token->type = CMD;
 		}
 		if (token[i])
-			init_new_token(env);
+			init_new_token();
 	}
 	ft_free_tab(token);
 }
