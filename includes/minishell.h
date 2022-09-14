@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/02 18:53:19 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/14 12:28:20 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define FD_STDOUT 1
 # define FD_STDIN 0
 # define FD_STDERR 2
+# define EXPAND_CHAR "' \"[]$=,:.*!?-#@%="
 
 extern int	g_value;
 
