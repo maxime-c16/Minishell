@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/14 13:29:51 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:56:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ char	*get_value(char *key)
 	while (i < data->env_len)
 	{
 		if (!ft_strncmp(key, data->env[i].key, len))
+		{
+			dprintf(2, "\nvalue found = %s\n", data->env[i].value);
 			return (data->env[i].value);
+		}
 		i++;
 	}
 	return (NULL);

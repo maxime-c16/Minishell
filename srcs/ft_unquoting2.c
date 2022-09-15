@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:00:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 12:03:53 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/15 19:47:39 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_unquote_error(char *cmd, int i)
 {
+	printf("error: _%c_\n", cmd[i]);
 	if (cmd[i] == '\0')
 	{
 		printf("minishell: error: quote not closed\n");

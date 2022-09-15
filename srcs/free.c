@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/13 12:25:35 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/14 14:30:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ void	ft_free_lst(t_list *lst)
 	}
 }
 
+void	free_env(t_dic *env)
+{
+	int	i;
+
+	i = 0;
+	while (i < _data()->env_len)
+	{
+		free(env[i].key);
+		free(env[i].value);
+		i++;
+	}
+	free(env);
+}
+
+void	free_data()
+{
+	t_data	*data;
+
+	data = _data();
+	free(data->fd);
+	free(data->pid);	
+}
+
 void	hasta_la_vista(int flag)
 {
 	t_list	*lst;
@@ -41,8 +64,12 @@ void	hasta_la_vista(int flag)
 	{
 		ft_free_lst(lst);
 	}
+	free_data();
 	if (flag == 0)
+	{
+		free_env(_data()->env);
 		exit(g_value); //free data
+	}
 }
 
 void	ft_free_tab(char **tab)
