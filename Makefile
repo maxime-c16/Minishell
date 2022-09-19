@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/09/01 12:58:35 by yschecro         ###   ########.fr        #
+#    Updated: 2022/09/04 01:26:22 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	 -g3
+CFLAGS 			=	 -g3 -fsanitize=address
 
 NAME 				=	minishell
 
