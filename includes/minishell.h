@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 12:28:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:52:22 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ char	*ft_path(char **full_path, char *cmd);
 
 void	init_pid(void);
 void	init_fd(void);
+
+//srcs lcd_better_split.c
+
+char	**lcd_split(char *cmd);
 
 //utils.c
 
