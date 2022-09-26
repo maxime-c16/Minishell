@@ -6,11 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 12:06:41 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:24:54 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	g_value = 0;
 
 char	**ft_dup_tab(char **str)
 {
@@ -31,16 +33,6 @@ char	**ft_dup_tab(char **str)
 	return (tab);
 }
 
-int	ft_strlen_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
-
 void	ft_print_tab(char **tab)
 {
 	int	i;
@@ -50,7 +42,7 @@ void	ft_print_tab(char **tab)
 		return ;
 	while (tab[i])
 	{
-		dprintf(2, "%d %s\n", i, tab[i]);
+		dprintf(2, "%d _%s_\n", i, tab[i]);
 		i++;
 	}
 }
@@ -71,6 +63,14 @@ void	ft_print_lst(void)
 	}
 }
 
+static char	*ft_prompt_color(void)
+{
+	if (g_value == 0)
+		return (C_GREEN"Minishell"C_RESET"$> ");
+	else
+		return (C_RED"Minishell"C_RESET"$> ");
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
@@ -78,15 +78,20 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	using_history();
+	if (!test_env(env) || !split_env(env))
+		hasta_la_vista(1);
 	while (42)
 	{
-		//sig_choice(0);
-		line = readline(C_RED"Minishell"C_RESET"$> ");
-		refacto_token_space(line);
+		line = readline(ft_prompt_color());
 		if (!line)
 			hasta_la_vista(0);
+		if (!line[0] || skip_spaces(line) == -1)
+		{
+			free(line);
+			continue ;
+		}
 		add_history(line);
-		parsing(line, env);
+		parsing(line);
 		ft_exec();
 		hasta_la_vista(1);
 	}

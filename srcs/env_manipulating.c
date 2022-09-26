@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_manipulating.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/04 01:39:29 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:33:29 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,22 @@ char	*lcd_strcmp(char *s1, char *s2)
 
 char	*get_value(char *key)
 {
-	int		i;
 	t_data	*data;
+	int		i;
+	int		len;
 
-	i = 0;
 	data = _data();
-	dprintf(2, "len env: %d\n", data->env_len);
+	i = 0;
+	if (ft_strlen(key) < ft_strlen(data->env[i].key))
+		len = ft_strlen(data->env[i].key);
+	else
+		len = ft_strlen(key);
 	while (i < data->env_len)
 	{
-		dprintf(2, "key in get_value() %s\n", key);
-		dprintf(2, "len key = %d   len env>key = %d\n", ft_strlen(key), ft_strlen(data->env[i].key));
-		if (ft_strlen(key) == ft_strlen(data->env[i].key))
+		if (!ft_strncmp(key, data->env[i].key, len))
 		{
-			dprintf(2, "variable trouvée\n");
-			if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))
-				return (data->env[i].value);
+			dprintf(2, "\nvalue found = %s\n", data->env[i].value);
+			return (data->env[i].value);
 		}
 		i++;
 	}

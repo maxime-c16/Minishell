@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrecolet <hrecolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 13:01:32 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:29:21 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ typedef struct s_data
 	int					env_len;
 }			t_data;
 
-typedef struct s_help
-{
-	char	**token;
-	char	**env;
-	int		*l;
-	int		*m;
-}			t_help;
-
 typedef struct s_token
 {
 	char	**cmd;
@@ -70,7 +62,6 @@ typedef struct s_list
 	t_token				*token;
 	int					hd_node;
 	struct s_heredocs	*h_docs;
-	struct s_help		*help;
 	struct s_list		*next;
 }						t_list;
 
@@ -86,6 +77,7 @@ int		ft_tolower(int c);
 int		ft_isdigit(int c);
 int		ft_isascii(int c);
 int		ft_toupper(int c);
+int		ft_str_is_numeric(char *str);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -122,7 +114,7 @@ void	ft_lstadd_front(t_list **alst, t_list *new);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstnew(char **env);
+t_list	*ft_lstnew(void);
 t_list	*ft_lstlast(t_list *lst);
 
 #endif

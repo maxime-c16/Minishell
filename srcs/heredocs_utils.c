@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:17:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:36:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/02 18:48:39 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,38 @@ static void	write_forked_hd(t_list *lst, int i)
 	i++;
 }
 
+static void	hd_help(int *j)
+{
+	t_list	*lst;
+	int		i;
+
+	i = *j;
+	lst = _lst();
+	while (lst)
+	{
+		i = 0;
+		while (i < lst->hd_node)
+		{
+			write_forked_hd(lst, i);
+			i++;
+		}
+		lst = lst->next;
+	}
+}
+
 void	write_hd(void)
 {
 	t_data	*data;
-	t_list	*lst;
 	int		i;
 	int		pid;
 
 	i = 0;
 	data = _data();
-	lst = _lst();
 	if (data->nb_hd == 0)
 		return ;
 	pid = fork();
 	if (pid == 0)
-	{
-		while (lst)
-		{
-			i = 0;
-			while (i < lst->hd_node)
-			{
-				write_forked_hd(lst, i);
-				i++;
-			}
-			lst = lst->next;
-		}
-	}
+		hd_help(&i);
 	else
 		waitpid(pid, NULL, 0);
 }
