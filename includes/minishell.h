@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 12:28:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/27 02:42:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ char	**ft_split(char const *s, char c);
 
 void	ft_print_tab(char **tab);
 char	**ft_dup_tab(char **str);
+
+//split_utils.c
+
+int	count_word(char *cmd);
 
 //free.c
 
@@ -106,6 +110,11 @@ char	*ft_path(char **full_path, char *cmd);
 
 void	init_pid(void);
 void	init_fd(void);
+
+//srcs lcd_better_split.c
+
+char	**lcd_split(char *cmd);
+int		is_space(char c);
 
 //utils.c
 

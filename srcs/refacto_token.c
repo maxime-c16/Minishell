@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:34:17 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/08 19:13:30 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/26 16:31:53 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_refacto_len(char *cmd)
 
 	i = 0;
 	size = 0;
+	dprintf(2, ">>>>>>cmd = %s\n", cmd);
 	while (cmd[i] && cmd[i + 1])
 	{
 		if (ft_isalnum(cmd[i]) && is_token(cmd[i + 1]))
@@ -54,6 +55,7 @@ char	*refacto_token_space(char *cmd)
 		refacto_help(&new_cmd, cmd, &i);
 		i++;
 	}
+	dprintf(2, ">>>>>>cmd = %s\n", cmd);
 	if (cmd[i])
 		new_cmd = ft_strjoin_char(new_cmd, cmd[i]);
 	return (new_cmd);

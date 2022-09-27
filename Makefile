@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/09/19 23:32:43 by yschecro         ###   ########.fr        #
+#    Updated: 2022/09/27 02:39:49 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
 					env_var.c display_env.c unset_env.c ft_unquoting2.c \
-					signals.c \
+					signals.c split_utils.c lcd_better_split.c\
 
 SRC_DIR 		=	srcs
 
