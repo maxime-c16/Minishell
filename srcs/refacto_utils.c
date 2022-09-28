@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 16:20:55 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/26 16:29:32 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:06:30 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,4 @@ void	refacto_help(char **ad_cmd, char *cmd, int *j)
 		&& !nb_quote_before_token(cmd, i + 1, cmd[i]))
 		new_cmd = ft_strjoin(new_cmd, " ");
 	*ad_cmd = new_cmd;
-	dprintf(2, ">>>>>>>>new cmd = %s\n", new_cmd);
 }

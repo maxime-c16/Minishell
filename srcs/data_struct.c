@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/27 04:36:26 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:25:24 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,24 @@ void	insert_if(t_list **data, int *i, int *k, char *token)
 	(*k)++;
 }
 
-void	insert_else(t_list **data, int *i, int *k, char ***token)
+void	insert_else1(t_list **data, int *i, int *j, char ***token)
 {
-	int	j;
-	int	save_k;
 
-	j = ft_count_cmd(*token, *i);
-	(*i) += j;
-	(*data)->token->cmd = malloc(sizeof(char *) * (j + 1));
+	(*j) = ft_count_cmd(*token, *i);
+	(*i) += (*j);
+	(*data)->token->cmd = malloc(sizeof(char *) * ((*j) + 1));
 	if (!(*data)->token->cmd)
 		hasta_la_vista(1);
-	(*data)->token->cmd[j] = NULL;
-	save_k = (*k) + j;
-	while (j--)
-		(*data)->token->cmd[j] = ft_strdup(*token[(*k) + j]);
+	(*data)->token->cmd[*j] = NULL;
+}
+
+void	insert_else2(t_list **data, int *k, int *j, char ***token)
+{
+	int	save_k;
+
+	save_k = (*k) + (*j);
+	while ((*j)--)
+		(*data)->token->cmd[*j] = ft_strdup((*token)[(*k) + (*j)]);
 	(*k) = save_k;
 	(*data)->token->type = CMD;
 }
@@ -62,6 +66,7 @@ void	ft_parse_and_insert(char **token)
 {
 	int		i;
 	int		k;
+	int		j;
 	t_list	*data;
 
 	i = 0;
@@ -75,7 +80,10 @@ void	ft_parse_and_insert(char **token)
 		if (token[i][0] == '|')
 			insert_if(&data, &i, &k, token[i]);
 		else
-			insert_else(&data, &i, &k, &token);	
+		{
+			insert_else1(&data, &i, &j, &token);	
+			insert_else2(&data, &k, &j, &token);	
+		}
 		if (token[i])
 			init_new_token();
 		ft_free_tab(token);

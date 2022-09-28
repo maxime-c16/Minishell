@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/15 19:45:53 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:19:27 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,15 @@ static char	*ft_unquote_line(char *cmd)
 	init_unquote(&i, &j, &ret, cmd);
 	while (cmd[i])
 	{
-		printf("main loop : %c\n", cmd[i]);
 		if (cmd[i] == '\'' || cmd[i] == '"')
 		{
 			first_quotes = cmd[i++];
 			while (cmd[i] != first_quotes && cmd[i])
 			{
-				printf("sub loop : %c\n", cmd[i]);
 				ret[j++] = cmd[i++];
 				ft_unquote_error(cmd, i);
 			}
-			printf("fin token : %c\n", cmd[i]);
 			i++;
-			printf("fin token : %c\n", cmd[i]);
 			if (cmd[i] == '\0')
 				break;
 		}
@@ -85,7 +81,6 @@ static char	**ft_unquote_node(char **cmd)
 
 	i = 0;
 	ret = malloc(sizeof(char *) * (ft_tablen(cmd) + 1));
-	printf("-------unquote start--------\n");
 	ft_print_tab(cmd);
 	if (!ret)
 		hasta_la_vista(0);
@@ -110,5 +105,4 @@ void	ft_unquoting(void)
 			lst->token->cmd = ft_unquote_node(lst->token->cmd);
 		lst = lst->next;
 	}
-	//		ft_print_lst();
 }

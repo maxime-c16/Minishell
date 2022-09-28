@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/27 02:53:19 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:06:58 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char	**lcd_split(char *cmd)
 	int		len;
 
 	len = count_word(cmd);
-	dprintf(2, "len = %d\n", len);
 	out = malloc(sizeof(char *) * (len + 1));
 	if (!out)
 		return (out);
