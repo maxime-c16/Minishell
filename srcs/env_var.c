@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/30 15:12:21 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:46:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ char	**expand(char **token)
 		}
 		i++;
 	}
-	dprintf(2, ">>>>> i in expand = %d\n", i);
 	token[i] = NULL;
 	return (token);
 }

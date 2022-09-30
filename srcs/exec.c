@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/30 17:14:47 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:17:42 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,19 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
 		ft_exec_redir(&lst, &cmd);
+		if (is_builtin(cmd[0]))
+		{
+			ft_exec_builtin(cmd);
+			hasta_la_vista(1);
+		}
 		path = ft_path(env, cmd[0]);
 		if (!path || execve(path, cmd, env) == -1)
 		{
+			free(path);
 			ft_putstr_fd("minishell: command not found: ", 2);
 			ft_putendl_fd(cmd[0], 2);
-			exit(EXIT_FAILURE);
+			hasta_la_vista(1);
 		}
-		ft_free_tab(env);
-		free(path);
 	}
 }
 
@@ -87,8 +91,9 @@ void	ft_exec(void)
 	{
 		ft_free_tab(cmd);
 		multi_cmd_exec();
-		ft_waitpid();
 	}
+	if (!is_builtin(cmd[0]) && data->nb_cmd > 1)
+		ft_waitpid();
 	ft_close_fd();
 	unlink_hd();
 }

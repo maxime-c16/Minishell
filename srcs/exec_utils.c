@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/30 16:56:43 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:34:52 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	multi_cmd_exec(void)
 	}
 }
 
-static void	ft_exec_builtin(char **cmd)
+void	ft_exec_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "exit"))
 		exit_cmd(cmd);
