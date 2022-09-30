@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:13:25 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:56:43 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ void	ft_exec_one_builtin(void)
 	tmp = _lst();
 	save_in = dup(0);
 	save_out = dup(1);
-	cmd = tmp->token->cmd;
-	ft_exec_redir(&tmp, &cmd);
+//	cmd = tmp->token->cmd;
+//	ft_exec_redir(&tmp, &cmd);
+	ft_redirections(tmp);
+	cmd = ft_clean_redirection(tmp->token->cmd);
+//	ft_free_tab(tmp->token->cmd);
 	ft_exec_builtin(cmd);
 	dup2(save_in, 0);
 	dup2(save_out, 1);

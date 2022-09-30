@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/30 15:21:33 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:14:47 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 
 	temp = _data();
 	temp->pid[i] = fork();
-	env = ft_convert_dict_tab();
 	if (temp->pid[i] == 0)
 	{
+		env = ft_convert_dict_tab();
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
 		ft_exec_redir(&lst, &cmd);

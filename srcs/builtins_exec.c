@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:06:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 13:28:47 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:55:08 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,25 @@ void	exit_cmd(char **cmd)
 	if (ft_tablen(cmd) > 2)
 	{
 		g_value = 1;
+		ft_free_tab(cmd);
 		printf("Minishell: exit: too many arguments\n");
 	}
 	else if (!cmd[1])
+	{
+		ft_free_tab(cmd);
 		hasta_la_vista(0);
+	}
 	else if (ft_str_is_numeric(cmd[1]))
 	{
 		g_value = ft_atoi(cmd[1]);
+		ft_free_tab(cmd);
 		hasta_la_vista(0);
 	}
 	else
 	{
 		g_value = 255;
 		printf("Minishell: %s: numeric argument required\n", cmd[1]);
+		ft_free_tab(cmd);
 		hasta_la_vista(0);
 	}
 }
