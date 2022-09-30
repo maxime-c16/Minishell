@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/28 19:06:58 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:01:26 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	split_token(char **cmd, char **out, int *j)
 
 void	split_space(char **cmd)
 {
-	if (is_space(**cmd))
+	if (is_space(**cmd) && **cmd)
 	{
 		while (is_space(**cmd))
 			(*cmd)++;

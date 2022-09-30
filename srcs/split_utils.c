@@ -6,7 +6,7 @@
 /*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:09:38 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/27 16:10:16 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:04:36 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	skip_space(char **cmd, int *i, int *len)
 		(*len)++;
 		while (!is_space((*cmd)[*i]) && (*cmd)[*i])
 			(*i)++;
+		if (!(*cmd)[*i])
+			return ;
 		(*i)++;
 	}
 }

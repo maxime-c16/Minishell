@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/27 15:25:24 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:12:58 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	insert_if(t_list **data, int *i, int *k, char *token)
 	(*data)->token->cmd[1] = NULL;
 	(*data)->token->type = PIPE;
 	(*data)->next = NULL;
+	if (!token[*i])
+		return ;
 	(*i)++;
 	(*k)++;
 }
@@ -86,8 +88,10 @@ void	ft_parse_and_insert(char **token)
 		}
 		if (token[i])
 			init_new_token();
-		ft_free_tab(token);
+//		ft_free_tab(token);
+		dprintf(2, ">>>>> i = %d\n", i);
 	}
+		ft_free_tab(token);
 }
 
 
