@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/27 16:19:27 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:51:55 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static char	**ft_unquote_node(char **cmd)
 		i++;
 	}
 	ret[i] = NULL;
+	free(cmd);
 	return (ret);
 }
 

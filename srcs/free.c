@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 14:30:31 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:51:46 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	ft_free_lst(t_list *lst)
 {
 	t_list	*tmp;
+	int		i;
 
+	i = 0;
 	while (lst)
 	{
+		dprintf(2, "________FREEEEEEE IS : %d ________\n", i);
 		tmp = lst->next;
 		ft_free_tab(lst->token->cmd);
 		ft_free_tab(lst->h_docs->limit_herdocs);
@@ -26,8 +29,13 @@ void	ft_free_lst(t_list *lst)
 		free(lst->h_docs);
 		free(lst->token);
 		bzero(lst, sizeof(t_list));
+		if (i)
+			free(lst);
 		lst = tmp;
+		i++;
 	}
+	if (i)
+		free(lst);
 }
 
 void	free_env(t_dic *env)
