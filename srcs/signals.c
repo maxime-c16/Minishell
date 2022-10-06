@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 10:39:21 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:46 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:26:44 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ void	sig_choice(int sig)
 	{
 		signal(SIGINT, sig_handler);
 		signal(SIGQUIT, SIG_IGN);
+	}
+	else if (sig == 1)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, SIG_IGN);
 	}
 }
