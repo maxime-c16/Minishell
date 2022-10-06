@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 19:41:07 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/08/17 13:57:07 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:07:25 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	word_count(char const *s, char c)
 	return (wd);
 }
 
-static char **check_cmd(char const *s, int *i, char **tab, int *ind)
+static char	**check_cmd(char const *s, int *i, char **tab, int *ind)
 {
 	int		start;
 
@@ -96,6 +96,5 @@ char	**ft_split_parsing(char const *s, char c)
 			tab = check_cmd(s, &i, tab, &ind);
 		i++;
 	}
-//	tab[word_count(s, c) + 1] = 0;
 	return (tab);
 }

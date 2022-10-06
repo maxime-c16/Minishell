@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:32:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/03 20:51:46 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,50 @@
 void	ft_free_lst(t_list *lst)
 {
 	t_list	*tmp;
+	int		i;
 
+	i = 0;
 	while (lst)
 	{
+		dprintf(2, "________FREEEEEEE IS : %d ________\n", i);
 		tmp = lst->next;
 		ft_free_tab(lst->token->cmd);
 		ft_free_tab(lst->h_docs->limit_herdocs);
 		free(lst->h_docs->fd);
+		ft_free_tab(lst->h_docs->file_n);
 		free(lst->h_docs);
 		free(lst->token);
 		bzero(lst, sizeof(t_list));
+		if (i)
+			free(lst);
 		lst = tmp;
+		i++;
 	}
+	if (i)
+		free(lst);
+}
+
+void	free_env(t_dic *env)
+{
+	int	i;
+
+	i = 0;
+	while (i < _data()->env_len)
+	{
+		free(env[i].key);
+		free(env[i].value);
+		i++;
+	}
+	free(env);
+}
+
+void	free_data()
+{
+	t_data	*data;
+
+	data = _data();
+	free(data->fd);
+	free(data->pid);	
 }
 
 void	hasta_la_vista(int flag)
@@ -40,8 +72,12 @@ void	hasta_la_vista(int flag)
 	{
 		ft_free_lst(lst);
 	}
+	free_data();
 	if (flag == 0)
-		exit(0);
+	{
+		free_env(_data()->env);
+		exit(g_value); //free data
+	}
 }
 
 void	ft_free_tab(char **tab)

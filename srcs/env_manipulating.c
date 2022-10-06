@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/02 19:01:29 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:09 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,21 @@ char	*lcd_strcmp(char *s1, char *s2)
 
 char	*get_value(char *key)
 {
-	int		i;
 	t_data	*data;
+	int		i;
+	int		len;
 
-	i = 0;
 	data = _data();
-	dprintf(2, "len env: %d\n", data->env_len);
+	i = 0;
 	while (i < data->env_len)
 	{
-		if (ft_strlen(key) == ft_strlen(data->env[i].key))
+		if (ft_strlen(key) < ft_strlen(data->env[i].key))
+			len = ft_strlen(data->env[i].key);
+		else
+			len = ft_strlen(key);
+		if (!ft_strncmp(key, data->env[i].key, len))
 		{
-			if (!ft_strncmp(key, data->env[i].key, ft_strlen(data->env[i].key)))
-				return (data->env[i].value);
+			return (data->env[i].value);
 		}
 		i++;
 	}

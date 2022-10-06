@@ -6,18 +6,23 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/09/02 19:00:32 by mcauchy          ###   ########.fr        #
+=======
+#    Updated: 2022/09/27 16:13:12 by yschecro         ###   ########.fr        #
+>>>>>>> dbb4416dac935cf35f67e7b92f4abd0d10e72010
 #                                                                              #
 # **************************************************************************** #
 
 FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					path.c ft_split.c init.c data_struct.c utils.c \
 					env_parsing.c env_manipulating.c redirections.c \
-					redir_utils.c utils2.c heredocs.c \
+					redir_utils.c utils2.c utils3.c heredocs.c \
 					heredocs_utils.c builtins.c builtins_exec.c \
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
-					env_var.c\
+					env_var.c display_env.c unset_env.c ft_unquoting2.c \
+					signals.c split_utils.c lcd_better_split.c\
 
 SRC_DIR 		=	srcs
 
@@ -31,9 +36,9 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	 -g3
+CFLAGS 			=	-Wall -Wextra -Werror -g3 # -fsanitize=address
 
-NAME 				=	minishell
+NAME 			=	minishell
 
 HEADER  		=	includes/minishell.h
 

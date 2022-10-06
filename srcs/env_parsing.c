@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/09/02 19:01:39 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	test_env(char **env)
 	if (data->env)
 		free(data->env);
 	if (!env)
-		return 0;
+		return (0);
 	return (1);
 }
 

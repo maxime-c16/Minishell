@@ -6,7 +6,11 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/02 19:02:18 by mcauchy          ###   ########.fr       */
+=======
+/*   Updated: 2022/09/30 17:34:38 by yschecro         ###   ########.fr       */
+>>>>>>> dbb4416dac935cf35f67e7b92f4abd0d10e72010
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +39,9 @@
 # define FD_STDOUT 1
 # define FD_STDIN 0
 # define FD_STDERR 2
+# define EXPAND_CHAR "' \"[]$=,:.*!?-#@%="
+
+extern int	g_value;
 
 char	**ft_split(char const *s, char c);
 
@@ -42,6 +49,10 @@ char	**ft_split(char const *s, char c);
 
 void	ft_print_tab(char **tab);
 char	**ft_dup_tab(char **str);
+
+//split_utils.c
+
+int	count_word(char *cmd);
 
 //free.c
 
@@ -72,16 +83,16 @@ int		len_env(char **env);
 
 //parsing.c
 
-void		parsing(char *cmd, char **env);
+void		parsing(char *cmd);
 
 //insertion.c
 
 void	ft_insertion(char **token, int *i, t_list **lst, char **env);
-void	init_new_token(char **env);
+void	init_new_token(void);
 
 //data_struct.c
 
-void	ft_parse_and_insert(char **token, char **env);
+void	ft_parse_and_insert(char **token);
 int		ft_count_cmd(char **token, int i);
 
 //exec.c
@@ -92,7 +103,8 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i);
 //exec_utils.c
 
 void	multi_cmd_exec(void);
-void	one_builtin_exec(void);
+void	ft_exec_builtin(char **cmd);
+void	ft_exec_one_builtin(void);
 
 //paths.c
 
@@ -103,6 +115,11 @@ char	*ft_path(char **full_path, char *cmd);
 void	init_pid(void);
 void	init_fd(void);
 
+//srcs lcd_better_split.c
+
+char	**lcd_split(char *cmd);
+int		is_space(char c);
+
 //utils.c
 
 int		ft_lst_size_without_pipe(void);
@@ -110,6 +127,7 @@ void	ft_waitpid(void);
 void	ft_error(char *str);
 void	ft_dup2(int in, int out);
 void	init_heredocs(t_list **lst);
+int		ft_tablen(char **cmd);
 
 //redirections.c
 
@@ -126,6 +144,12 @@ void	ft_exec_redir(t_list **lst, char ***ad_cmd);
 
 int		ft_lst_heredocs(void);
 void	unlink_hd(void);
+void	search_and_replace_pwd(char *old_pwd, char *pwd);
+
+//utils3.c
+
+char	**ft_convert_dict_tab(void);
+int		skip_spaces(char *line);
 
 //heredocs.c
 
@@ -144,8 +168,9 @@ int	is_builtin(char *cmd);
 //builtins_exec.c
 
 void	echo_cmd(char **cmd);
-void	exit_cmd(void);
+void	exit_cmd(char **cmd);
 void	pwd_cmd(void);
+void	cd_cmd(char **cmd);
 
 //signals.c
 
@@ -163,5 +188,17 @@ int		is_in_quote(char *cmd, int index);
 //ft_unquoting.c
 
 void	ft_unquoting(void);
+void	ft_unquote_error(char *cmd, int i);
+char	find_next_quote(char *cmd, int i);
+
+
+//display_env.c
+
+void	print_env(void);
+void	add_to_env(char *str);
+
+//unset_env.c
+
+void	unset_var(char *str);
 
 #endif

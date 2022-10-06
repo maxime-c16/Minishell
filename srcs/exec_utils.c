@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:28:25 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/30 17:34:52 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,40 @@ void	multi_cmd_exec(void)
 	}
 }
 
-static void	ft_exec_builtin(char **cmd)
+void	ft_exec_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "exit"))
-		exit_cmd();
+		exit_cmd(cmd);
 	if (!ft_strcmp(cmd[0], "echo"))
 		echo_cmd(cmd);
 	if (!ft_strcmp(cmd[0], "pwd"))
 		pwd_cmd();
+	if (!ft_strcmp(cmd[0], "cd"))
+		cd_cmd(cmd);
+	if (!ft_strcmp(cmd[0], "env"))
+		print_env();
+	if (!ft_strcmp(cmd[0], "export"))
+		add_to_env(cmd[1]);
+	if (!ft_strcmp(cmd[0], "unset"))
+		unset_var(cmd[1]);
 }
 
-static void	ft_exec_one_builtin(t_list *tmp)
+void	ft_exec_one_builtin(void)
 {
 	char	**cmd;
 	int		save_in;
 	int		save_out;
-
-	save_in = dup(0);
-	save_out = dup(1);
-	cmd = tmp->token->cmd;
-	ft_exec_redir(&tmp, &cmd);
-	ft_exec_builtin(cmd);
-	dup2(save_in, 0);
-	dup2(save_out, 1);
-}
-
-void	one_builtin_exec(void)
-{
 	t_list	*tmp;
 
 	tmp = _lst();
-	ft_exec_one_builtin(tmp);
+	save_in = dup(0);
+	save_out = dup(1);
+//	cmd = tmp->token->cmd;
+//	ft_exec_redir(&tmp, &cmd);
+	ft_redirections(tmp);
+	cmd = ft_clean_redirection(tmp->token->cmd);
+//	ft_free_tab(tmp->token->cmd);
+	ft_exec_builtin(cmd);
+	dup2(save_in, 0);
+	dup2(save_out, 1);
 }

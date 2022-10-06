@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/08/30 14:23:49 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ void	ft_waitpid(void)
 	i = 0;
 	while (i < data->nb_cmd)
 	{
-		waitpid(data->pid[i], NULL, 0);
+		waitpid(data->pid[i], &g_value, 0);
 		i++;
 	}
+	g_value = WEXITSTATUS(g_value);
 }
 
 void	ft_error(char *str)
