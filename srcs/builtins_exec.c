@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:06:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/30 16:55:08 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/09 00:07:32 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	echo_cmd(char **cmd)
 
 	i = 1;
 	res = 1;
-	if (!cmd[i][0])
+	if (!cmd[i] || !cmd[i][0])
 		printf("\n");
 	while (cmd[i])
 	{
