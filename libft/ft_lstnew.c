@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/17 13:47:34 by maximecauch       #+#    #+#             */
-/*   Updated: 2022/09/13 10:51:54 by mcauchy          ###   ########.fr       */
+/*   Created: 2022/10/11 17:11:40 by mcauchy           #+#    #+#             */
+/*   Updated: 2022/10/11 17:11:44 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	*ft_lstnew(void)
 {
 	t_list	*new;
 
+	dprintf(2, "coucou\n");
 	new = (t_list *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
