@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/09 00:04:45 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:40:04 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,26 @@ void	free_env(t_dic *env)
 	i = 0;
 	while (i < _data()->env_len)
 	{
-		free(env[i].key);
-		free(env[i].value);
+		if (env[i].key)
+			free(env[i].key);
+		if (env[i].value)
+			free(env[i].value);
 		i++;
 	}
 	free(env);
 }
 
-void	free_data()
+void	free_data(void)
 {
 	t_data	*data;
 
 	data = _data();
 	if (data)
 	{
-		free(data->fd);
-		free(data->pid);
+		if (data->pid)
+			free(data->pid);
+		if (data->fd)
+			free(data->fd);
 	}
 }
 
@@ -79,6 +83,11 @@ void	hasta_la_vista(int flag)
 		free_data();
 		free_env(_data()->env);
 		exit(g_value); //free data
+	}
+	else if (flag == 2)
+	{
+		free_data();
+		free_env(_data()->env);
 	}
 }
 

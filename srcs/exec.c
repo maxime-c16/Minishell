@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/06 14:22:09 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:17:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,27 @@ static void	ft_link_fd(int i)
 	ft_close_fd();
 }
 
+static void	path_fault(char **path, char **cmd)
+{
+	if (path)
+		ft_free_tab(path);
+	ft_putstr_fd("minishell: command not found: ", 2);
+	ft_putendl_fd(cmd[0], 2);
+	hasta_la_vista(0);
+}
+
 void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
-	char	*path;
-	char	**env;
 	t_data	*temp;
+	char	**path;
+	char	**env;
+	int		j;
 
 	temp = _data();
 	temp->pid[i] = fork();
 	if (temp->pid[i] == 0)
 	{
+		j = 0;
 		env = ft_convert_dict_tab();
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
@@ -60,14 +71,15 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			ft_exec_builtin(cmd);
 			hasta_la_vista(0);
 		}
-		path = ft_path(env, cmd[0]);
-		if (!path || execve(path, cmd, env) == -1)
+		if (**cmd != '.' || **cmd != '/')
+			path = ft_path(env, cmd[0], &j);
+		else
 		{
-			free(path);
-			ft_putstr_fd("minishell: command not found: ", 2);
-			ft_putendl_fd(cmd[0], 2);
-			hasta_la_vista(0);
+			path = ft_binary_path(cmd[0]);
+			execve(path[0], cmd, env);
 		}
+		if (!path || execve(path[j], cmd, env) == -1)
+			path_fault(path, cmd);
 	}
 }
 
@@ -95,6 +107,7 @@ void	ft_exec(void)
 		ft_close_fd();
 		ft_waitpid();
 	}
-//	if (!is_builtin(cmd[0]) && data->nb_cmd > 1)
+	free(data->pid);
+	free(data->fd);
 	unlink_hd();
 }

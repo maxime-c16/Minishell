@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/26 18:17:18 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:09:48 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ void	ft_print_tab(char **tab)
 	int	i;
 
 	i = 0;
-	if (!tab)
+	if (!tab || !tab[0])
 		return ;
-	dprintf(2, "----------begin to print tab----------\n");
 	while (tab[i])
 	{
 		dprintf(2, "%d _%s_\n", i, tab[i]);
 		i++;
 	}
-	dprintf(2, "----------finish to print tab----------\n");
 }
 
 void	ft_print_lst(void)

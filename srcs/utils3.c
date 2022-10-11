@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/30 17:12:40 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:15:45 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,16 @@ int	skip_spaces(char *line)
 	if (!line[i])
 		return (-1);
 	return (0);
+}
+
+char	**ft_binary_path(char *cmd)
+{
+	char	**path;
+
+	path = malloc(sizeof(char *) * 2);
+	if (!path)
+		hasta_la_vista(1);
+	path[0] = ft_strdup(cmd);
+	path[1] = NULL;
+	return (path);
 }

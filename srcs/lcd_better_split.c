@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lcd_better_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/30 15:01:26 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:58:30 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**lcd_split(char *cmd)
 	int		len;
 
 	len = count_word(cmd);
-	out = malloc(sizeof(char *) * (len + 1));
+	out = malloc(sizeof(char *) * (len + 2));
 	if (!out)
 		return (out);
 	j = 0;
@@ -94,5 +94,6 @@ char	**lcd_split(char *cmd)
 		split_char(&cmd, out, &j);
 	}
 	out[j] = NULL;
+	dprintf(1, "cmd = %s\n", *out);
 	return (out);
 }

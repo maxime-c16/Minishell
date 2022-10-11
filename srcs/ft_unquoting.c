@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/03 18:51:55 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:37:22 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char	**ft_unquote_node(char **cmd)
 
 	i = 0;
 	ret = malloc(sizeof(char *) * (ft_tablen(cmd) + 1));
-	ft_print_tab(cmd);
+	//ft_print_tab(cmd);
 	if (!ret)
 		hasta_la_vista(0);
 	while (cmd[i])
@@ -99,7 +99,7 @@ void	ft_unquoting(void)
 	t_list	*lst;
 
 	lst = _lst();
-	ft_print_lst();
+	// ft_print_lst();
 	while (lst)
 	{
 		if (lst->token->cmd)

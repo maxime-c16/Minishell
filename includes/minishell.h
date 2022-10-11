@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:34 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:20:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ void	ft_exec_one_builtin(void);
 
 //paths.c
 
-char	*ft_path(char **full_path, char *cmd);
+char	**ft_path(char **full_path, char *cmd, int *j);
+void	free_data(void);
+char	**ft_binary_path(char *cmd);
 
 //init.c
 

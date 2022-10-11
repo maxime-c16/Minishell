@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:11:03 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	len_wo_redir(char **cmd)
 	while (cmd[i])
 	{
 		if (is_redirect(cmd[i]) == 1)
-			ret += 2;
+			ret += ft_strlen(cmd[i]);
 		i++;
 	}
 	return (i - ret);
@@ -45,6 +45,7 @@ char	**ft_clean_redirection(char **cmd)
 	i = 0;
 	j = 0;
 	new_cmd = malloc(sizeof(char *) * (len_wo_redir(cmd) + 1));
+	dprintf(2, "len_wo_redir = %d\n", len_wo_redir(cmd));
 	while (cmd[i])
 	{
 		if (is_redirect(cmd[i]) == 1)
