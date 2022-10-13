@@ -17,7 +17,6 @@ t_list	*ft_lstnew(void)
 {
 	t_list	*new;
 
-	dprintf(2, "coucou\n");
 	new = (t_list *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);

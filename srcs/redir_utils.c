@@ -45,7 +45,6 @@ char	**ft_clean_redirection(char **cmd)
 	i = 0;
 	j = 0;
 	new_cmd = malloc(sizeof(char *) * (len_wo_redir(cmd) + 1));
-	dprintf(2, "len_wo_redir = %d\n", len_wo_redir(cmd));
 	while (cmd[i])
 	{
 		if (is_redirect(cmd[i]) == 1)

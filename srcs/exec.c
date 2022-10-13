@@ -41,12 +41,14 @@ static void	ft_link_fd(int i)
 	ft_close_fd();
 }
 
-static void	path_fault(char **path, char **cmd)
+static void	path_fault(char **path, char **cmd, char **env)
 {
 	if (path)
 		ft_free_tab(path);
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putendl_fd(cmd[0], 2);
+	ft_free_tab(cmd);
+	ft_free_tab(env);
 	hasta_la_vista(0);
 }
 
@@ -71,7 +73,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			ft_exec_builtin(cmd);
 			hasta_la_vista(0);
 		}
-		if (**cmd != '.' || **cmd != '/')
+		if (**cmd != '.' && **cmd != '/')
 			path = ft_path(env, cmd[0], &j);
 		else
 		{
@@ -79,7 +81,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			execve(path[0], cmd, env);
 		}
 		if (!path || execve(path[j], cmd, env) == -1)
-			path_fault(path, cmd);
+			path_fault(path, cmd, env);
 	}
 }
 

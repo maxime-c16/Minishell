@@ -83,8 +83,8 @@ void	ft_parse_and_insert(char **token)
 			insert_if(&data, &i, &k, token[i]);
 		else
 		{
-			insert_else1(&data, &i, &j, &token);	
-			insert_else2(&data, &k, &j, &token);	
+			insert_else1(&data, &i, &j, &token);
+			insert_else2(&data, &k, &j, &token);
 		}
 		if (token[i])
 			init_new_token();

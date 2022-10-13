@@ -70,7 +70,7 @@ void	split_char(char **cmd, char **out, int *j)
 	{
 		out[*j] = ft_strndup(*cmd, i);
 		(*j)++;
-		(*cmd) += i;	
+		(*cmd) += i;
 	}
 }
 
@@ -94,6 +94,5 @@ char	**lcd_split(char *cmd)
 		split_char(&cmd, out, &j);
 	}
 	out[j] = NULL;
-	dprintf(1, "cmd = %s\n", *out);
 	return (out);
 }
