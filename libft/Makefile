@@ -29,7 +29,7 @@ OBJ				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
 HEADER			=	../includes/libft.h
 

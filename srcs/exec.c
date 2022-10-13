@@ -47,8 +47,10 @@ static void	path_fault(char **path, char **cmd, char **env)
 		ft_free_tab(path);
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putendl_fd(cmd[0], 2);
-	ft_free_tab(cmd);
 	ft_free_tab(env);
+	ft_free_tab(cmd);
+	free(_data()->pid);
+	free(_data()->fd);
 	hasta_la_vista(0);
 }
 
@@ -67,7 +69,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		env = ft_convert_dict_tab();
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
-		ft_exec_redir(&lst, &cmd);
+		cmd = ft_exec_redir(&lst);
 		if (is_builtin(cmd[0]))
 		{
 			ft_exec_builtin(cmd);
@@ -82,6 +84,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		}
 		if (!path || execve(path[j], cmd, env) == -1)
 			path_fault(path, cmd, env);
+		ft_free_tab(cmd);
 	}
 }
 

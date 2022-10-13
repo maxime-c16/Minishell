@@ -68,6 +68,7 @@ static void	ft_redirection_right_right(char **cmd, int i)
 	int	fd2;
 
 	fd2 = 0;
+
 	if (cmd[i + 0] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n");
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
@@ -114,11 +115,13 @@ void	ft_redirections(t_list *lst)
 	}
 }
 
-void	ft_exec_redir(t_list **lst, char ***ad_cmd)
+char	**ft_exec_redir(t_list **lst)
 {
 	t_list	*tmp;
+	char	**new_cmd;
 
 	tmp = *lst;
-	*ad_cmd = ft_clean_redirection(tmp->token->cmd);
+	new_cmd = ft_clean_redirection(tmp->token->cmd);
 	ft_redirections(tmp);
+	return (new_cmd);
 }

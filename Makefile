@@ -32,7 +32,7 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -g3 
+CFLAGS 			=	-Wall -Wextra -Werror -g3
 
 NAME 			=	minishell
 

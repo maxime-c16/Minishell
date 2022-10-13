@@ -130,13 +130,12 @@ int		ft_tablen(char **cmd);
 //redirections.c
 
 void	ft_redirections(t_list *lst);
-char	**ft_clean_redirection(char **cmd);
 
 //redirections_utils.c
 
-char	**ft_clean_redir_cmd(char **cmd);
+char	**ft_clean_redirection(char **cmd);
 int		ft_check_redir(char **cmd);
-void	ft_exec_redir(t_list **lst, char ***ad_cmd);
+char	**ft_exec_redir(t_list **lst);
 
 //utils2.c
 
@@ -148,6 +147,7 @@ void	search_and_replace_pwd(char *old_pwd, char *pwd);
 
 char	**ft_convert_dict_tab(void);
 int		skip_spaces(char *line);
+char	**ft_tabcpy(char **tab);
 
 //heredocs.c
 

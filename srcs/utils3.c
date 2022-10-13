@@ -80,3 +80,24 @@ char	**ft_binary_path(char *cmd)
 	path[1] = NULL;
 	return (path);
 }
+
+char	**ft_tabcpy(char **tab)
+{
+	char	**new;
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	if (!new)
+		hasta_la_vista(1);
+	i = 0;
+	while (tab[i])
+	{
+		new[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
+}
