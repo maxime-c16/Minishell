@@ -73,12 +73,16 @@ void	exit_cmd(char **cmd)
 	else if (!cmd[1])
 	{
 		ft_free_tab(cmd);
+		free(_data()->pid);
+		free(_data()->fd);
 		hasta_la_vista(0);
 	}
 	else if (ft_str_is_numeric(cmd[1]))
 	{
 		g_value = ft_atoi(cmd[1]);
 		ft_free_tab(cmd);
+		free(_data()->pid);
+		free(_data()->fd);
 		hasta_la_vista(0);
 	}
 	else

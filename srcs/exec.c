@@ -77,8 +77,8 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			path = ft_path(env, cmd[0], &j);
 		else
 		{
-			pat h = ft_binary_path(cmd[0]);
-			gitexecve(path[0], cmd, env);
+			path = ft_binary_path(cmd[0]);
+			execve(path[0], cmd, env);
 		}
 		if (!path || execve(path[j], cmd, env) == -1)
 			path_fault(path, cmd, env);

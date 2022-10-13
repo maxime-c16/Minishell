@@ -60,10 +60,7 @@ void	free_data(void)
 	data = _data();
 	if (data)
 	{
-		if (data->pid)
-			free(data->pid);
-		if (data->fd)
-			free(data->fd);
+		free_env(_data()->env);
 	}
 }
 
@@ -81,13 +78,12 @@ void	hasta_la_vista(int flag)
 	if (flag == 0)
 	{
 		free_data();
-		free_env(_data()->env);
 		exit(g_value); //free data
 	}
 	else if (flag == 2)
 	{
 		free_data();
-		free_env(_data()->env);
+		//free_env(_data()->env);
 	}
 }
 
