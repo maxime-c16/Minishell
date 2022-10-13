@@ -80,6 +80,7 @@ int	main(int ac, char **av, char **env)
 	using_history();
 	if (!test_env(env) || !split_env(env))
 		hasta_la_vista(1);
+	sig_choice(0);
 	while (42)
 	{
 		line = readline(ft_prompt_color());

@@ -18,7 +18,7 @@ void	sig_handler(int sig)
 	{
 		rl_on_new_line();
 		write(1, "\n", 1);
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -34,5 +34,10 @@ void	sig_choice(int sig)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);
+	}
+	else if (sig == 2)
+	{
+		signal(SIGINT, sig_handler);
+		signal(SIGQUIT, SIG_IGN);
 	}
 }
