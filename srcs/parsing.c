@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 15:56:11 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/14 15:44:56 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	parsing(char *cmd)
 
 	data = _data();
 	cmd = refacto_token_space(cmd);
-	token = ft_split(cmd, ' ');
-	// token = lcd_split(cmd);
+//	token = ft_split(cmd, ' ');
+	token = lcd_split(cmd);
+	ft_print_tab(token);
 	if (!cmd || !token)
 		hasta_la_vista(0);
 //	ft_print_tab(token);

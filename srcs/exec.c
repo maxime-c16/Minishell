@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 16:17:43 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:40:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	path_fault(char **path, char **cmd, char **env)
 		ft_free_tab(path);
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putendl_fd(cmd[0], 2);
+	g_value = 127;
 	ft_free_tab(env);
 	ft_free_tab(cmd);
 	free(_data()->pid);

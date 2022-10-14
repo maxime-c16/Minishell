@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/10/11 15:58:30 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/14 15:59:52 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,31 @@ void	split_quote(char **cmd, char quote, char **out, int *j)
 
 void	split_token(char **cmd, char **out, int *j)
 {
-	if (is_token(**cmd))
+/*	if (is_token(**cmd))
 	{
 		out[*j] = ft_strndup((*cmd), 1);
-		(*j)++;
 		(*cmd)++;
+		if (is_token(**cmd))
+		{
+			out[*j] = ft_strndup((*cmd), 1);
+			(*j)++;
+			(*cmd)++;
+		}
+		(*j)++;
+	}*/
+	if (is_token(**cmd))
+	{
+		out[*j] = ft_calloc(1, 3);
+		if (!out)
+			hasta_la_vista(1);
+		out[*j][0] = **cmd;
+		(*cmd)++;
+		if (is_token(**cmd))
+		{
+			out[*j][1] = **cmd;
+			(*cmd)++;
+		}
+		(*j)++;
 	}
 }
 
@@ -82,6 +102,7 @@ char	**lcd_split(char *cmd)
 
 	len = count_word(cmd);
 	out = malloc(sizeof(char *) * (len + 2));
+	dprintf(2, "len = %d\n", len);
 	if (!out)
 		return (out);
 	j = 0;
