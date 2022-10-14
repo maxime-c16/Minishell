@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/10/11 16:09:16 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/10/14 17:29:31 by yschecro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC 				=	gcc
 
-CFLAGS 			=	-Wall -Wextra -Werror -g3
+CFLAGS 			=	-g3
 
 NAME 			=	minishell
 

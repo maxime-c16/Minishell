@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/10/14 16:38:41 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:41:23 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,34 @@ char	*insert(char *token, int i)
 	return (free(token), out);
 }
 
+static void expand_utils(char ***token, int *i, int *j)
+{
+	int	is_in_quote;
+
+	is_in_quote == 0;
+	while (*token[*i][*j])
+	{
+		dprintf(2, "ta mere en string %s\n", *token[*i]);
+		if (*token[*i][*j] == '\"' && is_in_quote == 0)
+			is_in_quote = 1;
+		else if (*token[*i][*j] == '\"' && is_in_quote == 1)
+			is_in_quote = 0;
+		if (*token[*i][*j] == '\'')
+		{
+			(*j)++;
+			while (*token[*i][*j] != '\'' && *token[*i][*j])
+			{
+				if (*token[*i][*j] == '$' && is_in_quote == 1)
+					*token[*i] = insert(*token[*i], *j);
+				(*j)++;
+			}
+		}
+		if (*token[*i][*j] == '$')
+			*token[*i] = insert(*token[*i], *j);
+		(*j)++;
+	}
+}
+
 char	**expand(char **token)
 {
 	int	i;
@@ -116,18 +144,7 @@ char	**expand(char **token)
 	while (token[i])
 	{
 		j = 0;
-		while (token[i][j])
-		{
-			if (token[i][j] == '\'')
-			{
-				j++;
-				while (token[i][j] != '\'' && token[i][j])
-					j++;
-			}
-			if (token[i][j] == '$')
-				token[i] = insert(token[i], j);
-			j++;
-		}
+		expand_utils(&token, &i, &j);
 		i++;
 	}
 	token[i] = NULL;
