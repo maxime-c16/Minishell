@@ -81,8 +81,11 @@ int	main(int ac, char **av, char **env)
 	if (!test_env(env) || !split_env(env))
 		hasta_la_vista(1);
 	sig_choice(0);
+	line = NULL;
 	while (42)
 	{
+		_data()->save_in = dup(0);
+		_data()->save_out = dup(1);
 		line = readline(ft_prompt_color());
 		if (!line)
 			hasta_la_vista(0);

@@ -136,6 +136,7 @@ void	ft_redirections(t_list *lst);
 char	**ft_clean_redirection(char **cmd);
 int		ft_check_redir(char **cmd);
 char	**ft_exec_redir(t_list **lst);
+char	*lcd_strjoin3000(char *s1, char const *s2);
 
 //utils2.c
 

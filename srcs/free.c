@@ -69,8 +69,8 @@ void	hasta_la_vista(int flag)
 	t_list	*lst;
 
 	lst = _lst();
-	// close(_data()->save_in);
-	// close(_data()->save_out);
+	close(_data()->save_in);
+	close(_data()->save_out);
 	if (lst->token)
 	{
 		ft_free_lst(lst);

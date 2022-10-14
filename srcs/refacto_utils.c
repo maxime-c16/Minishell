@@ -86,19 +86,19 @@ void	refacto_help(char **ad_cmd, char *cmd, int *j)
 	new_cmd = *ad_cmd;
 	new_cmd = ft_strjoin_char(new_cmd, cmd[i]);
 	if (ft_isalnum(cmd[i]) && is_token(cmd[i + 1]))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	else if (cmd[i] == '|' && (cmd[i + 1] == '\"' || cmd[i + 1] == '\'')
 		&& !is_in_quote(cmd, i))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	else if (cmd[i] == '|' && (cmd[i + 1] == '>' || cmd[i + 1] == '<'))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	else if (is_token(cmd[i]) && ft_isalnum(cmd[i + 1]))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	else if (is_token(cmd[i]) && (cmd[i + 1] == '\"' || cmd[i + 1] == '\'')
 		&& !nb_quote_before_token(cmd, i, cmd[i + 1]))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	else if ((cmd[i] == '\"' || cmd[i] == '\"') && is_token(cmd[i + 1])
 		&& !nb_quote_before_token(cmd, i + 1, cmd[i]))
-		new_cmd = ft_strjoin(new_cmd, " ");
+		new_cmd = lcd_strjoin3000(new_cmd, " ");
 	*ad_cmd = new_cmd;
 }

@@ -61,13 +61,10 @@ void	ft_exec_builtin(char **cmd)
 void	ft_exec_one_builtin(void)
 {
 	char	**cmd;
-	int		save_in;
-	int		save_out;
+
 	t_list	*tmp;
 
 	tmp = _lst();
-	save_in = dup(0);
-	save_out = dup(1);
 //	cmd = tmp->token->cmd;
 //	ft_exec_redir(&tmp, &cmd);
 	ft_redirections(tmp);
@@ -75,8 +72,8 @@ void	ft_exec_one_builtin(void)
 //	ft_free_tab(tmp->token->cmd);
 	ft_exec_builtin(cmd);
 	ft_free_tab(cmd);
-	dup2(save_in, 0);
-	dup2(save_out, 1);
-	close(save_in);
-	close(save_out);
+	dup2(_data()->save_in, 0);
+	dup2(_data()->save_out, 1);
+	// close(_data()->save_in);
+	// close(_data()->save_out);
 }

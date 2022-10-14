@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-static char	*lcd_strjoin3000(char *s1, char const *s2)
+char	*lcd_strjoin3000(char *s1, char const *s2)
 {
 	char	*output;
 	int		i;
