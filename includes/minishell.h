@@ -55,6 +55,7 @@ int	count_word(char *cmd);
 void	hasta_la_vista(int flag);
 void	ft_free_tab(char **tab);
 void	ft_print_lst(void);
+void	free_env(t_dic *env);
 
 //singleton.c
 
@@ -122,7 +123,7 @@ int		is_space(char c);
 
 int		ft_lst_size_without_pipe(void);
 void	ft_waitpid(void);
-void	ft_error(char *str);
+void	ft_error(char *str, int ret);
 void	ft_dup2(int in, int out);
 void	init_heredocs(t_list **lst);
 int		ft_tablen(char **cmd);
@@ -158,7 +159,7 @@ void	close_hd(void);
 //heredocs_utils.c
 
 void	write_hd(void);
-void	ft_dup_heredocs(t_list *tmp);
+void	ft_dup_heredocs(t_list *tmp, char **cmd, int j);
 
 //builtins.c
 

@@ -113,7 +113,7 @@ static void expand_utils(char ***token, int *i, int *j)
 	char	**tmp;
 
 	tmp = *token;
-	is_in_quote == 0;
+	is_in_quote = 0;
 	while (tmp[*i][*j])
 	{
 		if (tmp[*i][*j] == '\"' && is_in_quote == 0)

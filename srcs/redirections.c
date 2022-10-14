@@ -19,18 +19,18 @@ static void	ft_redirection_right(char **cmd, int i)
 	fd2 = 0;
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\
-			\n");
+			\n", 2);
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
 		ft_error("minishell: syntax error near unexpected token `newline'\
-			\n");
+			\n", 2);
 	else if (cmd[i + 1][0] == '|')
 		ft_error("minishell: syntax error near unexpected token `newline'\
-			\n");
+			\n", 2);
 	else
 	{
 		fd2 = open(cmd[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd2 == -1)
-			ft_error("minishell: error while opening file\n");
+			ft_error("minishell: error while opening file\n", 2);
 		else
 		{
 			dup2(fd2, FD_STDOUT);
@@ -45,16 +45,16 @@ static void	ft_redirection_left(char **cmd, int i)
 
 	fd2 = 0;
 	if (cmd[i + 1] == NULL)
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '|')
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else
 	{
 		fd2 = open(cmd[i + 1], O_RDONLY);
 		if (fd2 == -1)
-			ft_error("minishell: error while opening file\n");
+			ft_error("minishell: error while opening file\n", 2);
 		else
 		{
 			dup2(fd2, FD_STDIN);
@@ -70,16 +70,16 @@ static void	ft_redirection_right_right(char **cmd, int i)
 	fd2 = 0;
 
 	if (cmd[i + 0] == NULL)
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '|')
-		ft_error("minishell: syntax error near unexpected token `newline'\n");
+		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else
 	{
 		fd2 = open(cmd[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (fd2 == -1)
-			ft_error("minishell: error while opening file\n");
+			ft_error("minishell: error while opening file\n", 2);
 		else
 		{
 			dup2(fd2, FD_STDOUT);
@@ -95,6 +95,7 @@ void	ft_redirections(t_list *lst)
 
 	j = 0;
 	cmd = lst->token->cmd;
+	ft_print_tab(cmd);
 	while (cmd[j])
 	{
 		if (cmd[j][0] == '>')
@@ -107,7 +108,7 @@ void	ft_redirections(t_list *lst)
 		else if (cmd[j][0] == '<')
 		{
 			if (cmd[j][1] == '<')
-				ft_dup_heredocs(lst);
+				ft_dup_heredocs(lst, cmd, j);
 			else
 				ft_redirection_left(cmd, j);
 		}
