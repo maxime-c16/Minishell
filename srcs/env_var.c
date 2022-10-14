@@ -109,28 +109,29 @@ char	*insert(char *token, int i)
 
 static void expand_utils(char ***token, int *i, int *j)
 {
-	int	is_in_quote;
+	int		is_in_quote;
+	char	**tmp;
 
+	tmp = *token;
 	is_in_quote == 0;
-	while (*token[*i][*j])
+	while (tmp[*i][*j])
 	{
-		dprintf(2, "ta mere en string %s\n", *token[*i]);
-		if (*token[*i][*j] == '\"' && is_in_quote == 0)
+		if (tmp[*i][*j] == '\"' && is_in_quote == 0)
 			is_in_quote = 1;
-		else if (*token[*i][*j] == '\"' && is_in_quote == 1)
+		else if (tmp[*i][*j] == '\"' && is_in_quote == 1)
 			is_in_quote = 0;
-		if (*token[*i][*j] == '\'')
+		if (tmp[*i][*j] == '\'')
 		{
 			(*j)++;
-			while (*token[*i][*j] != '\'' && *token[*i][*j])
+			while (tmp[*i][*j] != '\'' && tmp[*i][*j])
 			{
-				if (*token[*i][*j] == '$' && is_in_quote == 1)
-					*token[*i] = insert(*token[*i], *j);
+				if (tmp[*i][*j] == '$' && is_in_quote == 1)
+					tmp[*i] = insert(tmp[*i], *j);
 				(*j)++;
 			}
 		}
-		if (*token[*i][*j] == '$')
-			*token[*i] = insert(*token[*i], *j);
+		if (tmp[*i][*j] == '$')
+			tmp[*i] = insert(tmp[*i], *j);
 		(*j)++;
 	}
 }
