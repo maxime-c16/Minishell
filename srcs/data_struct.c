@@ -77,7 +77,8 @@ void	ft_parse_and_insert(char **token)
 	while (token[i])
 	{
 		data = ft_lstlast(data);
-		data->token = malloc(sizeof(t_token));
+		if (!data->token)
+			data->token = malloc(sizeof(t_token));
 		data->next = NULL;
 		if (token[i][0] == '|')
 			insert_if(&data, &i, &k, token[i]);

@@ -85,7 +85,6 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		}
 		if (!path || execve(path[j], cmd, env) == -1)
 			path_fault(path, cmd, env);
-		ft_free_tab(cmd);
 	}
 }
 

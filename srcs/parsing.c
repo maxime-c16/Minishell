@@ -21,7 +21,6 @@ void	parsing(char *cmd)
 	cmd = refacto_token_space(cmd);
 //	token = ft_split(cmd, ' ');
 	token = lcd_split(cmd);
-	ft_print_tab(token);
 	if (!cmd || !token)
 		hasta_la_vista(0);
 //	ft_print_tab(token);
