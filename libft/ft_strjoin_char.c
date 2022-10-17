@@ -22,6 +22,7 @@ char	*ft_strjoin_char(char *str, char c)
 	new_str = ft_strcpy(new_str, str);
 	new_str[ft_strlen(str)] = c;
 	new_str[ft_strlen(str) + 1] = '\0';
-	free(str);
+	if (str)
+		free(str);
 	return (new_str);
 }

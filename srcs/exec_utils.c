@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/01 11:13:25 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:37:47 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	multi_cmd_exec(void)
 	}
 }
 
-static void	ft_exec_builtin(char **cmd)
+void	ft_exec_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "exit"))
 		exit_cmd(cmd);
@@ -61,16 +61,13 @@ static void	ft_exec_builtin(char **cmd)
 void	ft_exec_one_builtin(void)
 {
 	char	**cmd;
-	int		save_in;
-	int		save_out;
 	t_list	*tmp;
 
 	tmp = _lst();
-	save_in = dup(0);
-	save_out = dup(1);
-	cmd = tmp->token->cmd;
-	ft_exec_redir(&tmp, &cmd);
+	ft_redirections(tmp);
+	cmd = ft_clean_redirection(tmp->token->cmd);
 	ft_exec_builtin(cmd);
-	dup2(save_in, 0);
-	dup2(save_out, 1);
+	ft_free_tab(cmd);
+	dup2(_data()->save_in, 0);
+	dup2(_data()->save_out, 1);
 }

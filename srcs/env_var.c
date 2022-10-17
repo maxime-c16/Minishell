@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/14 13:21:46 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:41:23 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_key(char *token, int i, int len)
 	int		j;
 
 	j = 0;
-	out= malloc(len + 1);
+	out = malloc(len + 1);
 	if (!out)
 		hasta_la_vista(1);
 	while (j < len)
@@ -43,11 +43,9 @@ char	*lcd_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	if (!s1)
-		return ((char *)s2);
 	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!output)
-		return (NULL);
+		hasta_la_vista(1);
 	i = 0;
 	j = 0;
 	while (s1[i])
@@ -59,61 +57,94 @@ char	*lcd_strjoin(char *s1, char *s2)
 	return (free(s1), output);
 }
 
-char	*change_var(char *token, char *key, int len)
+char	*change_var(char *token, char *key, int len, int start)
 {
 	char	*out;
 	char	*value;
+	int		lenght;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
 	value = get_value(key);
-	out = malloc(ft_strlen(token) - ft_strlen(key) + ft_strlen(get_value(key)));
+	lenght = ft_strlen(token) - ft_strlen(key) + ft_strlen(value);
+	out = ft_calloc(sizeof(char), lenght);
 	if (!out)
-		hasta_la_vista(1);
-	while (token[j] != '$')
+		hasta_la_vista(0);
+	while (i < start - 1 && token[j])
 		out[i++] = token[j++];
 	if (value)
-		out = ft_strjoin(out, value);
-	i += ft_strlen(value);
+		out = lcd_strjoin(out, value);
+	i = start + ft_strlen(value) - 1;
 	j += len + 1;
-	while (token[j])
-		out[i++] = token[j++];
+	while (i < lenght && token[j])
+	{
+		out[i] = token[j];
+		i++;
+		j++;
+	}
 	out[i] = 0;
 	return (out);
 }
 
-char	*insert(char *token)
+char	*insert(char *token, int i)
 {
-	int		i;
 	int		len;
 	char	*out;
 	char	*key;
 
-	i = 0;
 	len = 0;
-	while (token[i] != '$' && token[i])
-		i++;
 	i++;
 	while (!ft_strchr(EXPAND_CHAR, token[i + len]) && token[i])
 		len++;
 	key = get_key(token, i, len);
-	out = change_var(token, key, len);
+	if (*(token + 1) == '?')
+		return (free(token), ft_itoa(g_value));
+	out = change_var(token, key, len, i);
+	free(key);
 	return (free(token), out);
+}
+
+static void	expand_utils(char ***token, int *i, int *j)
+{
+	int		is_in_quote;
+	char	**tmp;
+
+	tmp = *token;
+	is_in_quote = 0;
+	while (tmp[*i][*j])
+	{
+		if (tmp[*i][*j] == '\"' && is_in_quote == 0)
+			is_in_quote = 1;
+		else if (tmp[*i][*j] == '\"' && is_in_quote == 1)
+			is_in_quote = 0;
+		if (tmp[*i][*j] == '\'')
+		{
+			(*j)++;
+			while (tmp[*i][*j] != '\'' && tmp[*i][*j])
+			{
+				if (tmp[*i][*j] == '$' && is_in_quote == 1)
+					tmp[*i] = insert(tmp[*i], *j);
+				(*j)++;
+			}
+		}
+		if (tmp[*i][*j] == '$')
+			tmp[*i] = insert(tmp[*i], *j);
+		(*j)++;
+	}
 }
 
 char	**expand(char **token)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (token[i])
 	{
-		while (ft_strchr(token[i], '$'))
-		{
-			token[i] = insert(token[i]);
-		}
+		j = 0;
+		expand_utils(&token, &i, &j);
 		i++;
 	}
 	token[i] = NULL;

@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/09 17:39:45 by mcauchy           #+#    #+#              #
-#    Updated: 2022/09/01 09:51:45 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/10/11 17:10:59 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,15 +29,16 @@ OBJ				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g3
 
 HEADER			=	../includes/libft.h
 
 all				:	$(NAME)
 
 $(NAME)			:	$(OBJ)
-					@ar rc $(NAME) $(OBJ)
-					@ranlib $(NAME)
+					@echo "Creating libft.a"
+					@ar rc $@ $^
+					@ranlib $@
 
 $(DIR_OBJ)/%.o	:	%.c $(HEADER)
 					@mkdir -p $(@D)

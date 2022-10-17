@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/13 10:56:54 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:40:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,50 @@ static void	ft_link_fd(int i)
 	ft_close_fd();
 }
 
+static void	path_fault(char **path, char **cmd, char **env)
+{
+	if (path)
+		ft_free_tab(path);
+	ft_putstr_fd("minishell: command not found: ", 2);
+	ft_putendl_fd(cmd[0], 2);
+	g_value = 127;
+	ft_free_tab(env);
+	ft_free_tab(cmd);
+	free(_data()->pid);
+	free(_data()->fd);
+	hasta_la_vista(0);
+}
+
 void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
-	char	*path;
-	char	**env;
 	t_data	*temp;
+	char	**path;
+	char	**env;
+	int		j;
 
 	temp = _data();
 	temp->pid[i] = fork();
-	env = ft_convert_dict_tab();
 	if (temp->pid[i] == 0)
 	{
+		j = 0;
+		env = ft_convert_dict_tab();
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
-		ft_exec_redir(&lst, &cmd);
-		path = ft_path(env, cmd[0]);
-		if (!path || execve(path, cmd, env) == -1)
+		cmd = ft_exec_redir(&lst);
+		if (is_builtin(cmd[0]))
 		{
-			ft_putstr_fd("minishell: command not found: ", 2);
-			ft_putendl_fd(cmd[0], 2);
-			exit(EXIT_FAILURE);
+			ft_exec_builtin(cmd);
+			hasta_la_vista(0);
 		}
-		ft_free_tab(env);
-		free(path);
+		if (**cmd != '.' && **cmd != '/')
+			path = ft_path(env, cmd[0], &j);
+		else
+		{
+			path = ft_binary_path(cmd[0]);
+			execve(path[0], cmd, env);
+		}
+		if (!path || execve(path[j], cmd, env) == -1)
+			path_fault(path, cmd, env);
 	}
 }
 
@@ -82,13 +103,16 @@ void	ft_exec(void)
 	{
 		ft_free_tab(cmd);
 		ft_exec_one_builtin();
+		ft_close_fd();
 	}
 	else
 	{
 		ft_free_tab(cmd);
 		multi_cmd_exec();
+		ft_close_fd();
+		ft_waitpid();
 	}
-	ft_close_fd();
-	ft_waitpid();
+	free(data->pid);
+	free(data->fd);
 	unlink_hd();
 }

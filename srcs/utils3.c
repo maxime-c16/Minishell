@@ -6,37 +6,50 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/13 11:59:15 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:15:45 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+char	*lcd_strjoin3000(char *s1, char const *s2)
+{
+	char	*output;
+	int		i;
+	int		j;
+
+	if (!s1)
+		return ((char *)s2);
+	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!output)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		output[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		output[j++] = s2[i++];
+	output[j] = '\0';
+	return (free(s1), output);
+}
+
 char	**ft_convert_dict_tab(void)
 {
 	t_data	*data;
-	char	*temp;
 	char	**env;
 	int		i;
 
 	i = 0;
 	data = _data();
-	env = malloc(sizeof(char *) * (data->env_len + 1));
-	bzero(env, sizeof(char *) * (data->env_len + 1));
+	env = ft_calloc(sizeof(char *), (data->env_len + 1));
 	if (!env)
-		return (0);
-	env[data->env_len] = NULL;
+		hasta_la_vista(1);
 	while (i < data->env_len)
 	{
-		temp = ft_strjoin(env[i], data->env[i].key);
-		free(env[i]);
-		env[i] = temp;
-		temp = ft_strjoin(env[i], "=");
-		free(env[i]);
-		env[i] = temp;
-		temp = ft_strjoin(env[i], data->env[i].value);
-		free(env[i]);
-		env[i] = temp;
+		env[i] = ft_strdup(data->env[i].key);
+		env[i] = lcd_strjoin3000(env[i], "=");
+		env[i] = lcd_strjoin3000(env[i], data->env[i].value);
 		i++;
 	}
 	return (env);
@@ -52,4 +65,37 @@ int	skip_spaces(char *line)
 	if (!line[i])
 		return (-1);
 	return (0);
+}
+
+char	**ft_binary_path(char *cmd)
+{
+	char	**path;
+
+	path = malloc(sizeof(char *) * 2);
+	if (!path)
+		hasta_la_vista(1);
+	path[0] = ft_strdup(cmd);
+	path[1] = NULL;
+	return (path);
+}
+
+char	**ft_tabcpy(char **tab)
+{
+	char	**new;
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	if (!new)
+		hasta_la_vista(1);
+	i = 0;
+	while (tab[i])
+	{
+		new[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
 }

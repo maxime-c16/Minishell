@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:34:17 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/08 19:13:30 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/09/28 19:03:12 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*refacto_token_space(char *cmd)
 	int		i;
 
 	i = 0;
-	new_cmd = malloc(sizeof(char) * (ft_strlen(cmd)
+	new_cmd = ft_calloc(sizeof(char), (ft_strlen(cmd)
 				+ ft_refacto_len(cmd) + 1));
 	if (!new_cmd)
 		hasta_la_vista(1);

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:00:56 by yschecro          #+#    #+#             */
-/*   Updated: 2022/09/14 13:29:51 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:09 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ char	*get_value(char *key)
 
 	data = _data();
 	i = 0;
-	if (ft_strlen(key) < ft_strlen(data->env[i].key))
-		len = ft_strlen(data->env[i].key);
-	else
-		len = ft_strlen(key);
 	while (i < data->env_len)
 	{
+		if (ft_strlen(key) < ft_strlen(data->env[i].key))
+			len = ft_strlen(data->env[i].key);
+		else
+			len = ft_strlen(key);
 		if (!ft_strncmp(key, data->env[i].key, len))
+		{
 			return (data->env[i].value);
+		}
 		i++;
 	}
 	return (NULL);

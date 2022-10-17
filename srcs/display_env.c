@@ -54,7 +54,7 @@ t_dic	*dup_env(void)
 	data = _data();
 	new_dic = malloc(sizeof(t_dic) * (data->env_len + 1));
 	if (!new_dic)
-		hasta_la_vista(0);
+		hasta_la_vista(1);
 	while (i < data->env_len)
 	{
 		new_dic[i].key = ft_strdup(data->env[i].key);

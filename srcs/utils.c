@@ -57,9 +57,10 @@ void	ft_waitpid(void)
 	g_value = WEXITSTATUS(g_value);
 }
 
-void	ft_error(char *str)
+void	ft_error(char *str, int ret)
 {
 	ft_putstr_fd(str, 2);
+	g_value = ret;
 	hasta_la_vista(0);
 	return ;
 }

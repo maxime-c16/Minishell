@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/28 10:31:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:13:10 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,16 @@ void	close_hd(void)
 	}
 }
 
-void	ft_dup_heredocs(t_list *tmp)
+void	ft_dup_heredocs(t_list *tmp, char **cmd, int j)
 {
 	int	i;
 
 	i = 0;
+	if (cmd[j + 1] == NULL)
+		ft_error("syntax error near unexpected token `newline'", 2);
+	else if (cmd[j + 1][0] == '<' || cmd[j + 1][0] == '>'
+			|| cmd[j + 1][0] == '|')
+		ft_error("syntax error near unexpected token `newline'", 2);
 	while (i < tmp->hd_node)
 	{
 		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i], O_RDONLY,

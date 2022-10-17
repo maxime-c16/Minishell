@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/09/13 12:50:35 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/10/17 14:04:00 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					exec_utils.c refacto_token.c refacto_utils.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
 					env_var.c display_env.c unset_env.c ft_unquoting2.c \
-					signals.c \
+					signals.c split_utils.c lcd_better_split.c exit_cmd.c\
+					builtins_exec_utils.c utils4.c
 
 SRC_DIR 		=	srcs
 
@@ -30,7 +31,7 @@ SRCS 				=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 OBJS 				=	$(addprefix $(DIR_OBJ)/, $(notdir $(SRCS:.c=.o)))
 
-CC 				=	clang
+CC 				=	gcc
 
 CFLAGS 			=	-Wall -Wextra -Werror -g3
 
@@ -41,12 +42,12 @@ HEADER  		=	includes/minishell.h
 all				: 	MK_LIBFT $(NAME)
 
 $(NAME) 		: 	$(OBJS)
-					# @clear
+					@clear
 					@echo "Linking $(NAME)..."
 					@$(CC) $(CFLAGS) $^ $(LIBFT_DIR)/libft.a -o $@ -lreadline
-					# @clear
+					@clear
 					@echo "Compilation done."
-					# @clear
+					@clear
 					@echo "        :::   :::   ::::::::::: ::::    ::: ::::::::::: ::::::::  :::    ::: :::::::::: :::        :::  ";
 					@echo "      :+:+: :+:+:      :+:     :+:+:   :+:     :+:    :+:    :+: :+:    :+: :+:        :+:        :+:   ";
 					@echo "    +:+ +:+:+ +:+     +:+     :+:+:+  +:+     +:+    +:+        +:+    +:+ +:+        +:+        +:+    ";
@@ -72,14 +73,14 @@ clean						:
 									@/bin/rm -f $(OBJS)
 									@/bin/rm -rf $(DIR_OBJ)
 									@make -C $(LIBFT_DIR) clean
-									# @clear
+									@clear
 									@echo "Cleaned."
 
 fclean					:	clean
-									# @clear
+									@clear
 									@/bin/rm -f $(NAME)
 									make -C $(LIBFT_DIR) fclean
-									# @clear
+									@clear
 									@echo "Fully cleaned."
 
 re							:	fclean  all

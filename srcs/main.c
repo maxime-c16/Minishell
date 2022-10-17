@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 17:49:56 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:44:27 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_print_tab(char **tab)
 	int	i;
 
 	i = 0;
-	if (!tab)
+	if (!tab || !tab[0])
 		return ;
 	while (tab[i])
 	{
@@ -81,8 +81,12 @@ int	main(int ac, char **av, char **env)
 	using_history();
 	if (!test_env(env) || !split_env(env))
 		hasta_la_vista(1);
+	sig_choice(0);
+	line = NULL;
 	while (42)
 	{
+		_data()->save_in = dup(0);
+		_data()->save_out = dup(1);
 		line = readline(ft_prompt_color());
 		if (!line)
 			hasta_la_vista(0);

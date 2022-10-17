@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 12:28:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:20:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ char	**ft_split(char const *s, char c);
 void	ft_print_tab(char **tab);
 char	**ft_dup_tab(char **str);
 
+//split_utils.c
+
+int	count_word(char *cmd);
+
 //free.c
 
 void	hasta_la_vista(int flag);
 void	ft_free_tab(char **tab);
 void	ft_print_lst(void);
+void	free_env(t_dic *env);
 
 //singleton.c
 
 t_list	*_lst(void);
 t_data	*_data(void);
-
 
 //env_var.c
 
@@ -96,22 +100,30 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i);
 //exec_utils.c
 
 void	multi_cmd_exec(void);
+void	ft_exec_builtin(char **cmd);
 void	ft_exec_one_builtin(void);
 
 //paths.c
 
-char	*ft_path(char **full_path, char *cmd);
+char	**ft_path(char **full_path, char *cmd, int *j);
+void	free_data(void);
+char	**ft_binary_path(char *cmd);
 
 //init.c
 
 void	init_pid(void);
 void	init_fd(void);
 
+//srcs lcd_better_split.c
+
+char	**lcd_split(char *cmd);
+int		is_space(char c);
+
 //utils.c
 
 int		ft_lst_size_without_pipe(void);
 void	ft_waitpid(void);
-void	ft_error(char *str);
+void	ft_error(char *str, int ret);
 void	ft_dup2(int in, int out);
 void	init_heredocs(t_list **lst);
 int		ft_tablen(char **cmd);
@@ -119,13 +131,13 @@ int		ft_tablen(char **cmd);
 //redirections.c
 
 void	ft_redirections(t_list *lst);
-char	**ft_clean_redirection(char **cmd);
 
 //redirections_utils.c
 
-char	**ft_clean_redir_cmd(char **cmd);
+char	**ft_clean_redirection(char **cmd);
 int		ft_check_redir(char **cmd);
-void	ft_exec_redir(t_list **lst, char ***ad_cmd);
+char	**ft_exec_redir(t_list **lst);
+char	*lcd_strjoin3000(char *s1, char const *s2);
 
 //utils2.c
 
@@ -137,6 +149,7 @@ void	search_and_replace_pwd(char *old_pwd, char *pwd);
 
 char	**ft_convert_dict_tab(void);
 int		skip_spaces(char *line);
+char	**ft_tabcpy(char **tab);
 
 //heredocs.c
 
@@ -146,7 +159,7 @@ void	close_hd(void);
 //heredocs_utils.c
 
 void	write_hd(void);
-void	ft_dup_heredocs(t_list *tmp);
+void	ft_dup_heredocs(t_list *tmp, char **cmd, int j);
 
 //builtins.c
 
