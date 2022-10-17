@@ -78,12 +78,7 @@ void	hasta_la_vista(int flag)
 	if (flag == 0)
 	{
 		free_data();
-		exit(g_value); //free data
-	}
-	else if (flag == 2)
-	{
-		free_data();
-		//free_env(_data()->env);
+		exit(g_value);
 	}
 }
 

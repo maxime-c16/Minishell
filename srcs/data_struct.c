@@ -36,15 +36,12 @@ void	insert_if(t_list **data, int *i, int *k, char *token)
 	(*data)->token->cmd[1] = NULL;
 	(*data)->token->type = PIPE;
 	(*data)->next = NULL;
-//	if (!token[*i])
-//		return ;
 	(*i)++;
 	(*k)++;
 }
 
 void	insert_else1(t_list **data, int *i, int *j, char ***token)
 {
-
 	(*j) = ft_count_cmd(*token, *i);
 	(*i) += (*j);
 	(*data)->token->cmd = malloc(sizeof(char *) * ((*j) + 1));
@@ -89,48 +86,6 @@ void	ft_parse_and_insert(char **token)
 		}
 		if (token[i])
 			init_new_token();
-//		if (!token[i])
-//			break;
-//		ft_free_tab(token);
 	}
 	ft_free_tab(token);
 }
-
-
-	//void	parse_if(**lst, )
-	/*
-	   void	ft_parse_and_insert(char **token)
-	   {
-	   t_list	*lst;
-	   t_list	*new;
-	   int		i;
-	   int		j;
-
-	   i = 0;
-	   lst = _lst();
-	   while (token[i])
-	   {
-	   j = 0;
-	   new = malloc(sizeof(t_list));
-	   if (!new)
-	   hasta_la_vista(1);
-	   if (token[i][0] != '|')
-	   {
-	   while (token[i] && token[i][0] != '|')
-	   {
-	   new->token->cmd[j] = token[i];
-	   i++;
-	   j++;
-	   }
-	   new->token->cmd[j] = 0;
-	   ft_lstadd_back(&lst, new);
-	   }
-	   else if (token[i][0] == '|')
-	   {
-	   new->token->cmd[0] = token[i];
-	   ft_lstadd_back(&lst, new);
-	   i++;
-	   }
-	   }
-	   i++;
-	   }*/

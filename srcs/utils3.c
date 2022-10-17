@@ -43,10 +43,8 @@ char	**ft_convert_dict_tab(void)
 	i = 0;
 	data = _data();
 	env = ft_calloc(sizeof(char *), (data->env_len + 1));
-//	bzero(env, sizeof(char *) * (data->env_len + 1));
 	if (!env)
 		hasta_la_vista(1);
-//	env[data->env_len] = NULL;
 	while (i < data->env_len)
 	{
 		env[i] = ft_strdup(data->env[i].key);

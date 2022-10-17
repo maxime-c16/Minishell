@@ -71,7 +71,7 @@ char	*change_var(char *token, char *key, int len, int start)
 	lenght = ft_strlen(token) - ft_strlen(key) + ft_strlen(value);
 	out = ft_calloc(sizeof(char), lenght);
 	if (!out)
-		hasta_la_vista(1);
+		hasta_la_vista(0);
 	while (i < start - 1 && token[j])
 		out[i++] = token[j++];
 	if (value)
@@ -99,7 +99,6 @@ char	*insert(char *token, int i)
 	while (!ft_strchr(EXPAND_CHAR, token[i + len]) && token[i])
 		len++;
 	key = get_key(token, i, len);
-	dprintf(2, "		g_value = %d\n", g_value);
 	if (*(token + 1) == '?')
 		return (free(token), ft_itoa(g_value));
 	out = change_var(token, key, len, i);
@@ -107,7 +106,7 @@ char	*insert(char *token, int i)
 	return (free(token), out);
 }
 
-static void expand_utils(char ***token, int *i, int *j)
+static void	expand_utils(char ***token, int *i, int *j)
 {
 	int		is_in_quote;
 	char	**tmp;

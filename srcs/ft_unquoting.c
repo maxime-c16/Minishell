@@ -66,7 +66,7 @@ static char	*ft_unquote_line(char *cmd)
 			}
 			i++;
 			if (cmd[i] == '\0')
-				break;
+				break ;
 		}
 		ret[j++] = cmd[i++];
 	}
@@ -81,7 +81,6 @@ static char	**ft_unquote_node(char **cmd)
 
 	i = 0;
 	ret = malloc(sizeof(char *) * (ft_tablen(cmd) + 1));
-	//ft_print_tab(cmd);
 	if (!ret)
 		hasta_la_vista(0);
 	while (cmd[i])
@@ -99,7 +98,6 @@ void	ft_unquoting(void)
 	t_list	*lst;
 
 	lst = _lst();
-	// ft_print_lst();
 	while (lst)
 	{
 		if (lst->token->cmd)

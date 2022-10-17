@@ -14,7 +14,6 @@
 
 void	ft_unquote_error(char *cmd, int i)
 {
-//	printf("error: _%c_\n", cmd[i]);
 	if (cmd[i] == '\0')
 	{
 		printf("minishell: error: quote not closed\n");

@@ -19,17 +19,11 @@ void	parsing(char *cmd)
 
 	data = _data();
 	cmd = refacto_token_space(cmd);
-//	token = ft_split(cmd, ' ');
 	token = lcd_split(cmd);
 	if (!cmd || !token)
 		hasta_la_vista(0);
-//	ft_print_tab(token);
 	token = expand(token);
-//	printf("avant parse\n");
 	ft_parse_and_insert(token);
-//	printf("apres parse\n");
-//	ft_print_lst();
-//	dprintf(2, "-----------unquoting--------------\n");
 	ft_unquoting();
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();

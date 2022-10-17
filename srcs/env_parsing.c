@@ -54,6 +54,17 @@ char	*ft_strndup(char *str, int n)
 	return (out);
 }
 
+t_data	*malloc_env(char **ev)
+{
+	t_data	*data;
+
+	data = _data();
+	data->env = malloc(sizeof(t_dic) * len_env(ev) + 2);
+	if (!data->env)
+		hasta_la_vista(0);
+	return (data);
+}
+
 int	split_env(char **ev)
 {
 	int		i;
@@ -62,10 +73,7 @@ int	split_env(char **ev)
 	t_data	*data;
 
 	i = 0;
-	data = _data();
-	data->env = malloc(sizeof(t_dic) * len_env(ev) + 2);
-	if (!data->env)
-		return (0);
+	data = malloc_env(ev);
 	data->env_len = len_env(ev);
 	while (ev[i])
 	{

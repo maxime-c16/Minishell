@@ -61,19 +61,13 @@ void	ft_exec_builtin(char **cmd)
 void	ft_exec_one_builtin(void)
 {
 	char	**cmd;
-
 	t_list	*tmp;
 
 	tmp = _lst();
-//	cmd = tmp->token->cmd;
-//	ft_exec_redir(&tmp, &cmd);
 	ft_redirections(tmp);
 	cmd = ft_clean_redirection(tmp->token->cmd);
-//	ft_free_tab(tmp->token->cmd);
 	ft_exec_builtin(cmd);
 	ft_free_tab(cmd);
 	dup2(_data()->save_in, 0);
 	dup2(_data()->save_out, 1);
-	// close(_data()->save_in);
-	// close(_data()->save_out);
 }

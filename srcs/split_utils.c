@@ -55,5 +55,5 @@ int	count_word(char *cmd)
 		while (cmd[i] && is_space(cmd[i]))
 			i++;
 	}
-	return(len);
+	return (len);
 }

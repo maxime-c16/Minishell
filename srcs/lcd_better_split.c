@@ -6,20 +6,11 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/10/14 15:59:52 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:02:46 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	is_space(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\n' || c == '\r' \
-			|| c == '\f')
-		return (1);
-	return (0);
-}
-
 
 void	split_quote(char **cmd, char quote, char **out, int *j)
 {
@@ -39,18 +30,6 @@ void	split_quote(char **cmd, char quote, char **out, int *j)
 
 void	split_token(char **cmd, char **out, int *j)
 {
-/*	if (is_token(**cmd))
-	{
-		out[*j] = ft_strndup((*cmd), 1);
-		(*cmd)++;
-		if (is_token(**cmd))
-		{
-			out[*j] = ft_strndup((*cmd), 1);
-			(*j)++;
-			(*cmd)++;
-		}
-		(*j)++;
-	}*/
 	if (is_token(**cmd))
 	{
 		out[*j] = ft_calloc(1, 3);
@@ -102,7 +81,6 @@ char	**lcd_split(char *cmd)
 
 	len = count_word(cmd);
 	out = malloc(sizeof(char *) * (len + 2));
-	dprintf(2, "len = %d\n", len);
 	if (!out)
 		return (out);
 	j = 0;

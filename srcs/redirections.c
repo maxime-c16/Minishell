@@ -68,7 +68,6 @@ static void	ft_redirection_right_right(char **cmd, int i)
 	int	fd2;
 
 	fd2 = 0;
-
 	if (cmd[i + 0] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
@@ -95,7 +94,6 @@ void	ft_redirections(t_list *lst)
 
 	j = 0;
 	cmd = lst->token->cmd;
-	ft_print_tab(cmd);
 	while (cmd[j])
 	{
 		if (cmd[j][0] == '>')

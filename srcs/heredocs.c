@@ -90,7 +90,8 @@ void	ft_dup_heredocs(t_list *tmp, char **cmd, int j)
 	i = 0;
 	if (cmd[j + 1] == NULL)
 		ft_error("syntax error near unexpected token `newline'", 2);
-	else if (cmd[j + 1][0] == '<' || cmd[j + 1][0] == '>' || cmd[j + 1][0] == '|')
+	else if (cmd[j + 1][0] == '<' || cmd[j + 1][0] == '>'
+			|| cmd[j + 1][0] == '|')
 		ft_error("syntax error near unexpected token `newline'", 2);
 	while (i < tmp->hd_node)
 	{
