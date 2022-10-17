@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 12:29:21 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:11:28 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int					save_in;
 	int					save_out;
 	int					env_len;
+	int					error;
 }			t_data;
 
 typedef struct s_token

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 16:16:41 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:26:46 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	parsing(char *cmd)
 	token = expand(token);
 	ft_parse_and_insert(token);
 	ft_unquoting();
+	if (_data()->error)
+		return ;
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();
 	free(cmd);
