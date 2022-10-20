@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:00:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 17:17:09 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:17:38 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_unquote_error(char *cmd, int i)
 	{
 		printf("minishell: error: quote not closed\n");
 		_data()->error = 1;
-//		hasta_la_vista(1);
 	}
 }
 

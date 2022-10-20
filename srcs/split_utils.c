@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yschecro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:09:38 by yschecro          #+#    #+#             */
-/*   Updated: 2022/10/17 16:12:28 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/20 09:57:30 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	count_word(char *cmd)
 
 	i = 0;
 	len = 0;
-//	if (!cmd)
-//		return (0);
 	while (cmd[i])
 	{
 		skip_char(&cmd, &i, &len, '\'');

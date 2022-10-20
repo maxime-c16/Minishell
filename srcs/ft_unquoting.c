@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 17:23:58 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:17:16 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	*ft_unquote_line(char *cmd)
 				ret[j++] = cmd[i++];
 				ft_unquote_error(cmd, i);
 				if (_data()->error)
-					return(free(ret), NULL);
+					return (free(ret), NULL);
 			}
 			i++;
 			if (cmd[i] == '\0')

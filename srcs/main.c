@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 17:31:37 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:15:33 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int	main(int ac, char **av, char **env)
 	using_history();
 	if (!test_env(env) || !split_env(env))
 		hasta_la_vista(1);
-	sig_choice(0);
-	line = NULL;
 	while (42)
 	{
 		_data()->error = 0;
