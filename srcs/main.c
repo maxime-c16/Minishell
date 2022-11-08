@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/20 10:15:33 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/03 10:27:30 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_print_tab(char **tab)
 		return ;
 	while (tab[i])
 	{
-		dprintf(2, "%d _%s_\n", i, tab[i]);
+		dprintf(2, "%dth %s\n", i, tab[i]);
 		i++;
 	}
 }
@@ -56,7 +56,7 @@ void	ft_print_lst(void)
 	i = 0;
 	while (lst)
 	{
-		dprintf(2, "------------nouveau maillon %d ----------\n", i);
+		dprintf(2, "------------| maillon %d |----------\n", i);
 		ft_print_tab(lst->token->cmd);
 		lst = lst->next;
 		i++;

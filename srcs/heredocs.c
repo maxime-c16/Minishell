@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 16:13:10 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/03 10:18:40 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ static void	check_heredocs(t_list *list, int *k)
 static void	open_heredocs(t_list *tmp)
 {
 	static int		nb_file = 0;
+	char			*itoa_file;
 	int				i;
 
 	i = 0;
+	itoa_file = 0;
 	while (tmp->h_docs->limit_herdocs[i])
 	{
-		tmp->h_docs->file_n[i] = ft_strjoin(".hdoc", ft_itoa(nb_file));
+		itoa_file = ft_itoa(nb_file);
+		tmp->h_docs->file_n[i] = ft_strjoin(".hdoc", itoa_file);
 		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i],
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (tmp->h_docs->fd[i] == -1)
@@ -46,6 +49,7 @@ static void	open_heredocs(t_list *tmp)
 		nb_file++;
 		i++;
 	}
+	free(itoa_file);
 }
 
 void	limit_heredocs(void)
