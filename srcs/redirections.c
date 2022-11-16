@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/14 14:46:42 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:09:39 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static void	ft_redirection_right_right(char **cmd, int i)
 	fd2 = 0;
 	if (cmd[i + 0] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
-	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
+	else if (cmd[i + 1] && (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>'))
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
-	else if (cmd[i + 1][0] == '|')
+	else if (cmd[i + 1] && (cmd[i + 1][0] == '|'))
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else
 	{
@@ -120,7 +120,11 @@ char	**ft_exec_redir(t_list **lst)
 	char	**new_cmd;
 
 	tmp = *lst;
+	new_cmd = NULL;
 	new_cmd = ft_clean_redirection(tmp->token->cmd);
+	dprintf(2, "new_cmd :\n");
+	ft_print_tab(new_cmd);
+	ft_print_lst();
 	ft_redirections(tmp);
 	return (new_cmd);
 }

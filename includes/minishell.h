@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 15:20:43 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/16 18:55:39 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_dup_tab(char **str);
 
 //split_utils.c
 
-int	count_word(char *cmd);
+int		count_word(char *cmd);
 
 //free.c
 
@@ -64,11 +64,12 @@ t_data	*_data(void);
 
 //env_var.c
 
-char **expand(char **token);
+char	**expand(char **token);
+char	*insert(char *token, int i);
 
 //env_manipulating.c
 
-char *lcd_strcmp(char *s1, char *s2);
+char	*lcd_strcmp(char *s1, char *s2);
 char	*get_value(char *key);
 
 //env_parsing.c
@@ -80,7 +81,7 @@ int		len_env(char **env);
 
 //parsing.c
 
-void		parsing(char *cmd);
+void	parsing(char *cmd);
 
 //insertion.c
 
@@ -163,7 +164,7 @@ void	ft_dup_heredocs(t_list *tmp, char **cmd, int j);
 
 //builtins.c
 
-int	is_builtin(char *cmd);
+int		is_builtin(char *cmd);
 
 //builtins_exec.c
 
@@ -190,7 +191,6 @@ int		is_in_quote(char *cmd, int index);
 void	ft_unquoting(void);
 void	ft_unquote_error(char *cmd, int i);
 char	find_next_quote(char *cmd, int i);
-
 
 //display_env.c
 

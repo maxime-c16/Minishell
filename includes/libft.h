@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:45:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 17:11:28 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:56:47 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_heredocs
 	char		**file_n;
 }				t_heredocs;
 
-typedef struct	s_dic
+typedef struct s_dic
 {
 	char	*key;
 	char	*value;

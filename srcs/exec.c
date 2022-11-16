@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/03 10:19:14 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/16 19:06:44 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		}
 		if (!path || execve(path[j], cmd, env) == -1)
 			path_fault(path, cmd, env);
+		ft_free_tab(cmd);
 	}
 }
 
@@ -94,11 +95,13 @@ void	ft_exec(void)
 	char	**cmd;
 
 	data = _data();
+	sig_choice(0);
 	write_hd();
 	close_hd();
 	init_fd();
 	init_pid();
 	cmd = ft_clean_redirection(_lst()->token->cmd);
+	sig_choice(2);
 	if (data->nb_cmd == 1 && is_builtin(cmd[0]))
 	{
 		ft_free_tab(cmd);
@@ -112,6 +115,7 @@ void	ft_exec(void)
 		ft_close_fd();
 		ft_waitpid();
 	}
+	rl_redisplay();
 	free(data->pid);
 	free(data->fd);
 	unlink_hd();

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:17:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/02 18:48:39 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/15 16:57:34 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	hd_help(int *j)
 
 	i = *j;
 	lst = _lst();
+	sig_choice(3);
 	while (lst)
 	{
 		i = 0;
@@ -47,6 +48,7 @@ static void	hd_help(int *j)
 		}
 		lst = lst->next;
 	}
+	sig_choice(0);
 }
 
 void	write_hd(void)

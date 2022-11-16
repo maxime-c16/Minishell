@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 10:39:21 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/06 14:26:44 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/09 12:57:51 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	sig_handler(int sig)
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_redisplay();
+		g_value = 130;
 	}
+	else if (sig == SIGQUIT)
+		g_value = 131;
 }
 
 void	sig_choice(int sig)
@@ -36,6 +39,11 @@ void	sig_choice(int sig)
 		signal(SIGINT, SIG_IGN);
 	}
 	else if (sig == 2)
+	{
+		signal(SIGINT, sig_handler);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	else if (sig == 3)
 	{
 		signal(SIGINT, sig_handler);
 		signal(SIGQUIT, SIG_IGN);
