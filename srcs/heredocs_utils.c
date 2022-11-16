@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:17:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/15 16:57:34 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/16 19:55:09 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ void	write_hd(void)
 		return ;
 	pid = fork();
 	if (pid == 0)
+	{
 		hd_help(&i);
+		close_hd();
+		hasta_la_vista(0);
+	}
 	else
 		waitpid(pid, NULL, 0);
 }
