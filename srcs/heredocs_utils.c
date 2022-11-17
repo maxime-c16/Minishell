@@ -12,6 +12,15 @@
 
 #include "../includes/minishell.h"
 
+static void	hd_message(char *msg)
+{
+	ft_putstr_fd("bash: warning: here-document at line ", 2);
+	ft_putstr_fd("1 delimited by end-of-file (wanted `", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("')", 2);
+	ft_putstr_fd("\n", 2);
+}
+
 static void	write_forked_hd(t_list *lst, int i)
 {
 	char	*ret;
@@ -19,8 +28,10 @@ static void	write_forked_hd(t_list *lst, int i)
 	while (42)
 	{
 		ret = readline("> ");
-		if (!ret || g_value == 160903)
-			break ;
+		if (!ret && g_value == 160903 && printf("\n"))
+			hasta_la_vista(0);
+		if (!ret)
+			hd_message(lst->h_docs->limit_herdocs[i]);
 		if (!ft_strcmp(ret, lst->h_docs->limit_herdocs[i]))
 			break ;
 		ft_putendl_fd(ret, lst->h_docs->fd[i]);

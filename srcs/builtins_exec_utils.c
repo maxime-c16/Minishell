@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:57:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/19 12:16:56 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 23:53:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_arg(char *cmd)
 
 	i = 1;
 	size = ft_strlen(cmd);
-	if (cmd[0] == '\0')
+	if (!cmd[0])
 		return (0);
 	while (cmd[i])
 	{
@@ -31,7 +31,7 @@ static int	is_arg(char *cmd)
 		}
 		i++;
 	}
-	if (i == size)
+	if (i == size && i != 0 && i != 1)
 		return (1);
 	return (0);
 }
@@ -47,7 +47,7 @@ void	echo_cmd(char **cmd)
 	{
 		if (is_arg(cmd[i]))
 			printf("%s", cmd[i]);
-		if (cmd[i + 1] && !is_arg(cmd[i + 1]))
+		if (cmd[i + 1] && is_arg(cmd[i + 1]))
 			printf(" ");
 		i++;
 	}

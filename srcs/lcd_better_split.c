@@ -6,92 +6,139 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/10/17 14:02:46 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 22:03:27 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	split_quote(char **cmd, char quote, char **out, int *j)
+int	ft_is_quote(char c)
 {
-	int	i;
-
-	i = 0;
-	if ((*cmd)[i] == quote)
-	{
-		i++;
-		while ((*cmd)[i] != quote && (*cmd)[i])
-			i++;
-		out[*j] = ft_strndup(*cmd, i + 1);
-		(*j)++;
-		(*cmd) += i + 1;
-	}
+	if (c == '\'' || c == '"')
+		return (c);
+	return (0);
 }
 
-void	split_token(char **cmd, char **out, int *j)
+void	ft_pass_quote(char *cmd, int *j)
 {
-	if (is_token(**cmd))
+	char	c;
+
+	c = ft_is_quote(cmd[(*j)]);
+	(*j)++;
+	while (cmd[(*j)] != c && cmd[(*j)])
+		(*j)++;
+}
+
+int	ft_count(char *cmd)
+{
+	int		total;
+	int		i;
+
+	i = 0;
+	total = 0;
+	while (cmd[i])
 	{
-		out[*j] = ft_calloc(1, 3);
-		if (!out)
-			hasta_la_vista(1);
-		out[*j][0] = **cmd;
-		(*cmd)++;
-		if (is_token(**cmd))
+		if (!is_space(cmd[i]))
 		{
-			out[*j][1] = **cmd;
-			(*cmd)++;
+			while (!is_space(cmd[i]) && cmd[i])
+			{
+				if (ft_is_quote(cmd[i]))
+				{
+					ft_pass_quote(cmd, &i);
+					++i;
+				}
+				else
+					++i;
+			}
+			total++;
 		}
-		(*j)++;
+		else
+			++i;
 	}
+	return (total);
 }
 
-void	split_space(char **cmd)
+static void	ft_pass_quote_sp(char *cmd, int i, int *j)
 {
-	if (is_space(**cmd) && **cmd)
-	{
-		while (is_space(**cmd))
-			(*cmd)++;
-	}
+	char	c;
+
+	c = ft_is_quote(cmd[i + (*j)]);
+	(*j)++;
+	while (cmd[i + (*j)] != c && cmd[i + (*j)])
+		(*j)++;
 }
 
-void	split_char(char **cmd, char **out, int *j)
+static char	*ft_fill(char *s, int size, int *index)
+{
+	char	*output;
+	int		i;
+
+	output = malloc(sizeof(char) * (size + 1));
+	if (!output)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		output[i] = s[*index];
+		i++;
+		*index += 1;
+	}
+	output[i] = 0;
+	return (output);
+}
+
+static char	**ft_dfill(char ***output, char *cmd, char c)
+{
+	t_help	help;
+
+	help.i = 0;
+	help.p = 0;
+	while (cmd[help.i])
+	{
+		if (cmd[help.i] != c)
+		{
+			help.j = 0;
+			while (cmd[help.i + help.j] != c && cmd[help.i + help.j])
+			{
+				if (ft_is_quote(cmd[help.i + help.j]))
+					ft_pass_quote_sp(cmd, help.i, &help.j);
+				++help.j;
+			}
+			(*output)[help.p] = ft_fill(cmd, help.j, &help.i);
+			if (!(*output))
+				return (ft_free_tab((*output)), NULL);
+			help.p++;
+		}
+		else
+			help.i++;
+	}
+	(*output)[help.p] = NULL;
+	return (free(cmd), (*output));
+}
+
+static int	ft_is_space(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (!is_token((*cmd)[i]) && (*cmd)[i] && \
-			!is_space((*cmd)[i]) && (*cmd)[i] != '\'' && (*cmd)[i] != '\"')
+	while (str[i])
 	{
+		if (str[i] != ' ')
+			return (-1);
 		i++;
 	}
-	if (i)
-	{
-		out[*j] = ft_strndup(*cmd, i);
-		(*j)++;
-		(*cmd) += i;
-	}
+	return (1);
 }
 
 char	**lcd_split(char *cmd)
 {
-	char	**out;
-	int		j;
-	int		len;
+	char	**output;
 
-	len = count_word(cmd);
-	out = malloc(sizeof(char *) * (len + 2));
-	if (!out)
-		return (out);
-	j = 0;
-	while (j < len && *cmd)
-	{
-		split_quote(&cmd, '\'', out, &j);
-		split_quote(&cmd, '\"', out, &j);
-		split_token(&cmd, out, &j);
-		split_space(&cmd);
-		split_char(&cmd, out, &j);
-	}
-	out[j] = NULL;
-	return (out);
+	if (!cmd || ft_is_space(cmd) == 1)
+		return (free(cmd), NULL);
+	output = malloc(sizeof(char *) *(ft_count(cmd) + 1));
+	if (!output)
+		return (free(cmd), NULL);
+	return (ft_dfill(&output, cmd, ' '));
 }
+

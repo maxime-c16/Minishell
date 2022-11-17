@@ -42,6 +42,7 @@ static void	open_heredocs(t_list *tmp)
 	{
 		itoa_file = ft_itoa(nb_file);
 		tmp->h_docs->file_n[i] = ft_strjoin(".hdoc", itoa_file);
+		free(itoa_file);
 		tmp->h_docs->fd[i] = open(tmp->h_docs->file_n[i],
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (tmp->h_docs->fd[i] == -1)
@@ -49,7 +50,6 @@ static void	open_heredocs(t_list *tmp)
 		nb_file++;
 		i++;
 	}
-	free(itoa_file);
 }
 
 void	limit_heredocs(void)
