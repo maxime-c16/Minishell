@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/16 19:33:44 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 00:50:32 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	ft_free_lst(t_list *lst)
 	{
 		tmp = lst->next;
 		ft_free_tab(lst->token->cmd);
-		ft_free_tab(lst->h_docs->limit_herdocs);
-		free(lst->h_docs->fd);
-		ft_free_tab(lst->h_docs->file_n);
-		free(lst->h_docs);
+		if (lst->h_docs)
+		{
+			ft_free_tab(lst->h_docs->limit_herdocs);
+			free(lst->h_docs->fd);
+			ft_free_tab(lst->h_docs->file_n);
+			free(lst->h_docs);
+		}
 		free(lst->token);
 		bzero(lst, sizeof(t_list));
 		if (i)
@@ -71,6 +74,7 @@ void	hasta_la_vista(int flag)
 	close(_data()->save_out);
 	if (lst->token)
 	{
+		dprintf(2, "coucou tu veux voir mon giga sexe ?\n");
 		ft_free_lst(lst);
 	}
 	if (flag == 0)

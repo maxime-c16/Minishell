@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/19 12:17:16 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 00:40:08 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,24 @@ static void	init_unquote(int *i, int *j, char **ret, char *cmd)
 		hasta_la_vista(0);
 }
 
+static int is_last_quote(char *cmd, int index, char first_quote)
+{
+	int i;
+	int len;
+	
+	i = 0;
+	len = 0;
+	while (cmd[i] && i <= index)
+	{
+		if (cmd[i] == first_quote)
+			len++;
+		i++;
+	}
+	if (len % 2 == 0)
+		return (0);
+	return (1);
+}
+
 static char	*ft_unquote_line(char *cmd)
 {
 	char	*ret;
@@ -58,14 +76,23 @@ static char	*ft_unquote_line(char *cmd)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 		{
+			printf("je suis une erreur2\n");
 			first_quotes = cmd[i++];
-			while (cmd[i] != first_quotes && cmd[i])
+			if (!cmd[i] && is_last_quote(cmd, i, first_quotes))
+			{
+				ft_unquote_error(cmd, i);
+				return (free(ret), NULL);
+			}
+			while (cmd[i] && cmd[i] != first_quotes)
 			{
 				ret[j++] = cmd[i++];
+				printf("je suis une erreur\n");
 				ft_unquote_error(cmd, i);
 				if (_data()->error)
 					return (free(ret), NULL);
 			}
+			if (cmd[i] == '\0')
+				break ;
 			i++;
 			if (cmd[i] == '\0')
 				break ;
@@ -106,6 +133,8 @@ void	ft_unquoting(void)
 	{
 		if (lst->token->cmd)
 			lst->token->cmd = ft_unquote_node(lst->token->cmd);
+		if (!lst->token->cmd)
+			hasta_la_vista(1);
 		lst = lst->next;
 	}
 }

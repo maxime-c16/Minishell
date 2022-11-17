@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 13:55:04 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 00:49:20 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	insert_else2(t_list **data, int *k, int *j, char ***token)
 	int	save_k;
 
 	save_k = (*k) + (*j);
+	dprintf(2, "char = %s \n", (*token)[(*k) + (*j)]);
 	while ((*j)--)
 		(*data)->token->cmd[*j] = ft_strdup((*token)[(*k) + (*j)]);
 	(*k) = save_k;

@@ -37,8 +37,10 @@ static void	expand_utils(char ***token, int *i, int *j)
 		}
 		if (tmp[*i][*j] == '$')
 			tmp[*i] = insert(tmp[*i], *j);
+		if (!tmp[*i] || !tmp[*i][*j])
+			return ;
 		(*j)++;
-//		printf("i == %d		j == %d		tmp[*i][*j] == %c\n", *i, *j, tmp[*i][*j]);
+		printf("i == %d		j == %d		tmp[*i][*j] == %c\n", *i, *j, tmp[*i][*j]);
 		if (!tmp[*i] || !tmp[*i][*j])
 			return ;
 	}

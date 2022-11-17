@@ -38,13 +38,15 @@ int	ft_count(char *cmd)
 	total = 0;
 	while (cmd[i])
 	{
-		if (!is_space(cmd[i]))
+		if (cmd[i] && !is_space(cmd[i]))
 		{
-			while (!is_space(cmd[i]) && cmd[i])
+			while (cmd[i] && !is_space(cmd[i]))
 			{
 				if (ft_is_quote(cmd[i]))
 				{
 					ft_pass_quote(cmd, &i);
+					if (!cmd[i])
+						break;
 					++i;
 				}
 				else
@@ -98,10 +100,12 @@ static char	**ft_dfill(char ***output, char *cmd, char c)
 		if (cmd[help.i] != c)
 		{
 			help.j = 0;
-			while (cmd[help.i + help.j] != c && cmd[help.i + help.j])
+			while (cmd[help.i + help.j] && cmd[help.i + help.j] != c && cmd[help.i + help.j])
 			{
 				if (ft_is_quote(cmd[help.i + help.j]))
 					ft_pass_quote_sp(cmd, help.i, &help.j);
+				if (!cmd[help.i + help.j])
+					break ;
 				++help.j;
 			}
 			(*output)[help.p] = ft_fill(cmd, help.j, &help.i);

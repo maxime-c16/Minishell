@@ -43,6 +43,11 @@ void	echo_cmd(char **cmd)
 
 	i = 1;
 	res = 1;
+	if (!cmd[i][0])
+	{
+		printf("\n");
+		printf("akecoucou");
+	}
 	while (cmd[i])
 	{
 		if (is_arg(cmd[i]))
