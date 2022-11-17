@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 10:39:21 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/09 12:57:51 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 16:12:42 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,22 @@ void	sig_handler(int sig)
 		g_value = 131;
 }
 
+static void	hd_sig_handler(int sig)
+{
+	(void)sig;
+	close(STDIN_FILENO);
+	open("/dev/stdin", O_RDWR);
+	g_value = 160903;
+}
+
 void	sig_choice(int sig)
 {
-	if (sig == 0)
+	if (sig == 1)
 	{
 		signal(SIGINT, sig_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
-	else if (sig == 1)
+	else if (sig == 0)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);
@@ -45,7 +53,7 @@ void	sig_choice(int sig)
 	}
 	else if (sig == 3)
 	{
-		signal(SIGINT, sig_handler);
+		signal(SIGINT, hd_sig_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
 }

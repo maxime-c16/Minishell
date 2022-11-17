@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/08 15:41:39 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 16:29:07 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_exec_one_builtin(void)
 	ft_redirections(tmp);
 	cmd = ft_clean_redirection(tmp->token->cmd);
 	ft_exec_builtin(cmd);
+	ft_free_tab(cmd);
 	dup2(_data()->save_in, 0);
 	dup2(_data()->save_out, 1);
 }

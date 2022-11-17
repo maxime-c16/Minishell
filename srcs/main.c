@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/16 18:12:24 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 15:56:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ int	main(int ac, char **av, char **env)
 		parsing(line);
 		if (_data()->error)
 			continue ;
-		dprintf(2, "before exec\n");
-		ft_print_lst();
 		ft_exec();
 		hasta_la_vista(1);
 	}

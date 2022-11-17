@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:17:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/16 19:55:09 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/17 15:47:53 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	write_forked_hd(t_list *lst, int i)
 	while (42)
 	{
 		ret = readline("> ");
-		if (!ret)
+		if (!ret || g_value == 160903)
 			break ;
 		if (!ft_strcmp(ret, lst->h_docs->limit_herdocs[i]))
 			break ;
