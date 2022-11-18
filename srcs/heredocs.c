@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:38:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:36:03 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 16:57:13 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_dup_heredocs(t_list *tmp, char **cmd, int j)
 	if (cmd[j + 1] == NULL)
 		ft_error("syntax error near unexpected token `newline'", 2);
 	else if (cmd[j + 1] && (cmd[j + 1][0] == '<' || cmd[j + 1][0] == '>'
-			|| cmd[j + 1][0] == '|'))
+			|| cmd[j + 1][0] == '|' || cmd[j][2] == '<' || cmd[j][2] == '>'))
 		ft_error("syntax error near unexpected token `newline'", 2);
 	while (i < tmp->hd_node)
 	{
