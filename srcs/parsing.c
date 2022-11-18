@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:38:03 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 23:41:24 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:09:39 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ void	parsing(char *cmd)
 		return ;
 	data->nb_cmd = ft_lst_size_without_pipe();
 	limit_heredocs();
-//	free(cmd);
 }

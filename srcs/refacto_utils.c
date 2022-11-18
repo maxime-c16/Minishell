@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 16:20:55 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/09/28 19:06:30 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:08:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,16 @@ int	is_in_quote(char *cmd, int index)
 	{
 		if (cmd[i] == '\"')
 		{
-			i++;
 			odd++;
-			while (cmd[i] && cmd[i] != '\"' && i < index)
+			while (cmd[i++] && cmd[i] != '\"' && i < index)
 				i++;
 			if (cmd[i] == '\"')
 				odd--;
 		}
 		else if (cmd[i] == '\'')
 		{
-			i++;
 			odd++;
-			while (cmd[i] && cmd[i] != '\'' && i < index)
+			while (cmd[i++] && cmd[i] != '\'' && i < index)
 				i++;
 			if (cmd[i] == '\'')
 				odd--;

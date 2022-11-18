@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/17 22:03:27 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:09:59 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,4 +145,3 @@ char	**lcd_split(char *cmd)
 		return (free(cmd), NULL);
 	return (ft_dfill(&output, cmd, ' '));
 }
-
