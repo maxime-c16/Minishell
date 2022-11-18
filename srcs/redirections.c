@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 13:21:15 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:12:13 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	ft_redirections(t_list *lst)
 				ft_redirection_right_right(cmd, j);
 			else
 				ft_redirection_right(cmd, j);
+			if (g_value == 2)
+				return ;
 		}
 		else if (cmd[j][0] == '<')
 		{
@@ -109,6 +111,8 @@ void	ft_redirections(t_list *lst)
 				ft_dup_heredocs(lst, cmd, j);
 			else
 				ft_redirection_left(cmd, j);
+			if (g_value == 2)
+				return ;
 		}
 		j++;
 	}
@@ -122,6 +126,7 @@ char	**ft_exec_redir(t_list **lst)
 	tmp = *lst;
 	new_cmd = NULL;
 	new_cmd = ft_clean_redirection(tmp->token->cmd);
-	ft_redirections(tmp);
+	if (g_value != 2)
+		ft_redirections(tmp);
 	return (new_cmd);
 }

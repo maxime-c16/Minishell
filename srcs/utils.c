@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:27:02 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/08/30 14:23:49 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:06:21 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_error(char *str, int ret)
 {
 	ft_putstr_fd(str, 2);
 	g_value = ret;
-	hasta_la_vista(0);
+	hasta_la_vista(1);
 	return ;
 }
 

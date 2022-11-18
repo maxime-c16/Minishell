@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:58:13 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 01:42:42 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:39:53 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	exit_cmd_one(char **cmd)
 		g_value = 1;
 		ft_free_tab(cmd);
 		printf("exit\nMinishell: exit: too many arguments\n");
+		free(_data()->pid);
+		free(_data()->fd);
 		hasta_la_vista(0);
 	}
 	else if (!cmd[1])

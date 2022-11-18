@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 16:20:03 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:05:18 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		if (temp->nb_cmd > 1)
 			ft_link_fd(i);
 		cmd = ft_exec_redir(&lst);
+		if (g_value == 2)
+		{
+			ft_free_tab(env);
+			ft_free_tab(cmd);
+			free(_data()->pid);
+			free(_data()->fd);
+			hasta_la_vista(0);
+		}
 		if (is_builtin(cmd[0]))
 		{
 			ft_exec_builtin(cmd);
