@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:18:27 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 17:56:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ char	**ft_dup_tab(char **str);
 
 //split_utils.c
 
-int		count_word(char *cmd);
+void	ft_pass_quote(char *cmd, int *j);
+int		count_utils(char *cmd, int *i);
+int		ft_count(char *cmd);
+int		ft_is_quote(char c);
+void	ft_pass_quote_sp(char *cmd, int i, int *j);
+
 
 //free.c
 
