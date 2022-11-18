@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 17:56:41 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:48:47 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i);
 void	multi_cmd_exec(void);
 void	ft_exec_builtin(char **cmd);
 void	ft_exec_one_builtin(void);
+
+//exec_utils2.c
+
+void	free_exec(char **cmd, char **env);
+void	ft_close_fd(void);
+void	ft_link_fd(int i);
 
 //paths.c
 
