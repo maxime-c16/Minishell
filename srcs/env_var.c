@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/18 01:38:59 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:23:55 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,8 @@ char	*change_var(char *token, char *key, int len, int start)
 	j += len + 1;
 	while (i < lenght && token[j])
 	{
-		out = ft_strjoin_char(out, token[j]);
+		out = ft_strjoin_char(out, token[j++]);
 		i++;
-		j++;
 	}
 	return (out);
 }
