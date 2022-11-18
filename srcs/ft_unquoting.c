@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:31:56 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:38:03 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	check_quote(int is_in_quote, char c, int *i)
 {
+	dprintf(2, "c is %c,    in quote is %d\n", c, is_in_quote);
 	if (c == '\'' && is_in_quote == 1)
 		return ((*i)++, 0);
 	if (c == '\"' && is_in_quote == 1)
@@ -26,6 +27,24 @@ int	check_quote(int is_in_quote, char c, int *i)
 		return (2);
 	if (c == '\"' && is_in_quote == 2)
 		return ((*i)++, 0);
+	return (is_in_quote);
+}
+
+static	int unquote_utils(int is_in_quote, char c)
+{
+	dprintf(2, "c is %c,    in quote is %d\n", c, is_in_quote);
+	if (c == '\'' && is_in_quote == 1)
+		return (0);
+	if (c == '\"' && is_in_quote == 1)
+		return (1);
+	if (c == '\'' && is_in_quote == 0)
+		return (1);
+	if (c == '\"' && is_in_quote == 0)
+		return (2);
+	if (c == '\'' && is_in_quote == 2)
+		return (2);
+	if (c == '\"' && is_in_quote == 2)
+		return (0);
 	return (is_in_quote);
 }
 
@@ -48,8 +67,12 @@ static char	*unquote_line(char	*str)
 		if ((str[i] == '\'' || str[i] == '\"') && !is_in_quote)
 			continue ;
 		out = ft_strjoin_char(out, str[i]);
+		is_in_quote = unquote_utils(is_in_quote, str[i]);
+		if (!str[i])
+			break ;
 		i++;
 	}
+	dprintf(2, "last c is %c\n", str[i]);
 	if (is_in_quote == 1 || is_in_quote == 2)
 		return (free(str), free(out), ft_unquote_error(), NULL);
 	return (free(str), out);
