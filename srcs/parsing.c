@@ -24,6 +24,7 @@ void	parsing(char *cmd)
 		hasta_la_vista(0);
 	token = expand(token);
 	ft_parse_and_insert(token);
+	ft_print_lst();
 	ft_unquoting();
 	if (_data()->error)
 		return ;

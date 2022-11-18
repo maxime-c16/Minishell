@@ -80,7 +80,7 @@ char	*change_var(char *token, char *key, int len, int start)
 	j += len + 1;
 	while (i < lenght && token[j])
 	{
-		out[i] = token[j];
+		out = ft_strjoin_char(out, token[j]);
 		i++;
 		j++;
 	}
