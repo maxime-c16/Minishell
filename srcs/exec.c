@@ -6,49 +6,11 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:30:49 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 16:50:15 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static void	free_exec(char **cmd, char **env)
-{
-	ft_free_tab(env);
-	ft_free_tab(cmd);
-	free(_data()->pid);
-	free(_data()->fd);
-	hasta_la_vista(0);
-}
-
-static void	ft_close_fd(void)
-{
-	int		i;
-	t_data	*data;
-
-	i = 0;
-	data = _data();
-	while (i < data->nb_cmd - 1)
-	{
-		close(data->fd[i * 2]);
-		close(data->fd[i * 2 + 1]);
-		i++;
-	}
-}
-
-static void	ft_link_fd(int i)
-{
-	t_data	*temp;
-
-	temp = _data();
-	if (i == 0)
-		dup2(temp->fd[1], FD_STDOUT);
-	else if (i == temp->nb_cmd - 1)
-		dup2(temp->fd[2 * i - 2], FD_STDIN);
-	else
-		ft_dup2(temp->fd[2 * i - 2], temp->fd[2 * i + 1]);
-	ft_close_fd();
-}
 
 static void	path_fault(char **path, char **cmd, char **env)
 {
@@ -64,10 +26,27 @@ static void	path_fault(char **path, char **cmd, char **env)
 	hasta_la_vista(0);
 }
 
+static void	exec_cmd_help(int *i, char **cmd, char **env)
+{
+	char	**path;
+	int		j;
+
+	j = *i;
+	if (**cmd != '.' && **cmd != '/')
+		path = ft_path(env, cmd[0], &j);
+	else
+	{
+		path = ft_binary_path(cmd[0]);
+		execve(path[0], cmd, env);
+	}
+	if (!path || execve(path[j], cmd, env) == -1)
+		path_fault(path, cmd, env);
+	ft_free_tab(cmd);
+}
+
 void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 {
 	t_data	*temp;
-	char	**path;
 	char	**env;
 	int		j;
 
@@ -87,16 +66,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			ft_exec_builtin(cmd);
 			free_exec(cmd, env);
 		}
-		if (**cmd != '.' && **cmd != '/')
-			path = ft_path(env, cmd[0], &j);
-		else
-		{
-			path = ft_binary_path(cmd[0]);
-			execve(path[0], cmd, env);
-		}
-		if (!path || execve(path[j], cmd, env) == -1)
-			path_fault(path, cmd, env);
-		ft_free_tab(cmd);
+		exec_cmd_help(&j, cmd, env);
 	}
 }
 

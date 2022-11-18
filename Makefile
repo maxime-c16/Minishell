@@ -6,7 +6,7 @@
 #    By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 11:45:51 by mcauchy           #+#    #+#              #
-#    Updated: 2022/11/16 18:54:44 by mcauchy          ###   ########.fr        #
+#    Updated: 2022/11/18 16:45:29 by mcauchy          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FILES 			=	main.c singleton.c free.c parsing.c exec.c \
 					env_parsing.c env_manipulating.c  ft_unquoting.c \
 					env_var.c display_env.c unset_env.c ft_unquoting2.c \
 					signals.c split_utils.c lcd_better_split.c exit_cmd.c\
-					builtins_exec_utils.c utils4.c env_var2.c
+					builtins_exec_utils.c utils4.c env_var2.c exec_utils2.c \
 
 SRC_DIR 		=	srcs
 
