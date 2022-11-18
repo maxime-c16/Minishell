@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/16 19:17:43 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 01:47:41 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	print_env(void)
 	{
 		printf("%s", data->env[i].key);
 		printf("=");
-		printf("%s\n", data->env[i].value);
+		if (data->env[i].value)
+			printf("%s", data->env[i].value);
+		printf("\n");
 		i++;
 	}
 }
@@ -103,9 +105,11 @@ void	add_to_env(char *str)
 	if (str[0] >= '0' && str[0] <= '9')
 	{
 		printf("export: not an identifier: %s\n", to_add[0]);
+		ft_free_tab(to_add);
 		return ;
 	}
 	data->env_len++;
 	data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
+	ft_free_tab(to_add);
 }
