@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:57:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 02:06:02 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:06:37 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_arg(char *cmd)
 		while (cmd[i] && cmd[i] == 'n')
 			i++;
 	}
-	if (i == size_arg)
+	if (i == size_arg && i != 1)
 		return (1);
 	else
 		return (0);
