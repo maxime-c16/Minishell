@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:47 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/16 19:17:52 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 14:56:48 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ void	unset_var(char *str)
 	i++;
 	while (i < data->env_len)
 		cpy_dic(&i, &j, &new_dic);
+	free_env(data->env);
 	data->env_len--;
+	data->env = new_dic;
 }
