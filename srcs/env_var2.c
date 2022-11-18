@@ -6,11 +6,23 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:54:05 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 14:13:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:09:52 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int	expand_utils_utils(char ***tmp, int *i, int *j)
+{
+	if ((*tmp)[*i][*j] == '$')
+		(*tmp)[*i] = insert((*tmp)[*i], *j);
+	if (!(*tmp)[*i] || !(*tmp)[*i][*j])
+		return (0);
+	(*j)++;
+	if (!(*tmp)[*i] || !(*tmp)[*i][*j])
+		return (0);
+	return (1);
+}
 
 static void	expand_utils(char ***token, int *i, int *j)
 {
@@ -35,12 +47,7 @@ static void	expand_utils(char ***token, int *i, int *j)
 				(*j)++;
 			}
 		}
-		if (tmp[*i][*j] == '$')
-			tmp[*i] = insert(tmp[*i], *j);
-		if (!tmp[*i] || !tmp[*i][*j])
-			return ;
-		(*j)++;
-		if (!tmp[*i] || !tmp[*i][*j])
+		if (!expand_utils_utils(&tmp, i, j))
 			return ;
 	}
 }
