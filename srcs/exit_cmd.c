@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:58:13 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/17 13:59:38 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 01:42:42 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	exit_cmd_two(char **cmd)
 	else
 	{
 		g_value = 255;
+		free(_data()->pid);
+		free(_data()->fd);
 		printf("exit\n");
 		printf("Minishell: %s: numeric argument required\n", cmd[1]);
 		ft_free_tab(cmd);
