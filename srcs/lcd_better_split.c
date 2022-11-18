@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/18 17:57:29 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:02:18 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	dfill_utils(char **cmd, t_help *help, char c)
 			break ;
 		++help->j;
 	}
-
 }
 
 char	**ft_dfill(char ***output, char *cmd, char c)

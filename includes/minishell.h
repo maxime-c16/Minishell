@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 16:48:47 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 18:03:02 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int		count_utils(char *cmd, int *i);
 int		ft_count(char *cmd);
 int		ft_is_quote(char c);
 void	ft_pass_quote_sp(char *cmd, int i, int *j);
-
 
 //free.c
 
