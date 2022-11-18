@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 04:02:47 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 04:17:52 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ static char	*unquote_line(char	*str)
 		hasta_la_vista(0);
 	while (str[i])
 	{
-		dprintf(2, "actual char is %c and is_quote_value is %d\n", str[i], is_in_quote);
 		is_in_quote = check_quote(is_in_quote, str[i], &i);
 		if ((str[i] == '\'' || str[i] == '\"') && !is_in_quote)
 			continue ;
@@ -206,9 +205,8 @@ static char	*unquote_line(char	*str)
 			break ;
 		i++;
 	}
-		dprintf(2, "actual char is %c and is_quote_value is %d\n", str[i], is_in_quote);
 	if (is_in_quote == 1 || is_in_quote == 2)
-		return (free(str), ft_unquote_error(), NULL);
+		return (free(str), free(out), ft_unquote_error(),  NULL);
 	return (free(str), out);
 }
 
@@ -226,7 +224,7 @@ static char	**unquote_cmd(char **cmd)
 	{
 		out[i] = unquote_line(cmd[i]);
 		if (!out[i])
-			return (ft_free_tab(out), ft_free_tab(cmd), NULL);
+			return (ft_free_tab(out), free(cmd), NULL);
 		i++;
 	}
 	free(cmd);
