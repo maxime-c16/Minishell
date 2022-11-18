@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 15:56:06 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:34:55 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ static char	*ft_prompt_color(void)
 		return (C_RED"Minishell"C_RESET"$> ");
 }
 
+static void	main_help(void)
+{
+	_data()->error = 0;
+	_data()->save_in = dup(0);
+	_data()->save_out = dup(1);
+	sig_choice(1);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
@@ -83,10 +91,7 @@ int	main(int ac, char **av, char **env)
 		hasta_la_vista(1);
 	while (42)
 	{
-		_data()->error = 0;
-		_data()->save_in = dup(0);
-		_data()->save_out = dup(1);
-		sig_choice(1);
+		main_help();
 		line = readline(ft_prompt_color());
 		if (!line)
 			hasta_la_vista(0);
