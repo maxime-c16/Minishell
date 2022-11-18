@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:57:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 01:12:56 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 02:06:02 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,63 @@
 
 static int	is_arg(char *cmd)
 {
+	int	size_arg;
 	int	i;
-	int	size;
 
-	i = 1;
-	size = ft_strlen(cmd);
-	if (!cmd[0])
-		return (0);
-	while (cmd[i])
+	i = 0;
+	size_arg = ft_strlen(cmd);
+	if (cmd[i] == '-')
 	{
-		if (cmd[0] == '-')
-		{
+		i++;
+		while (cmd[i] && cmd[i] == 'n')
 			i++;
-			while (cmd[i] && cmd[i] == 'n')
-				i++;
-		}
+	}
+	if (i == size_arg)
+		return (1);
+	else
+		return (0);
+}
+
+static void	ft_echo_n(char **cmd)
+{
+	int	len_cmd;
+	int	i;
+
+	i = 2;
+	len_cmd = ft_tablen(cmd);
+	if (!cmd[i])
+		return ;
+	while (is_arg(cmd[i]) == 1)
+		i++;
+	while (i < len_cmd - 1)
+	{
+		printf("%s ", cmd[i]);
 		i++;
 	}
-	if (i == size && i != 0 && i != 1)
-		return (1);
-	return (0);
+	printf("%s", cmd[i]);
 }
 
 void	echo_cmd(char **cmd)
 {
 	int	i;
-	int	res;
 
 	i = 1;
-	res = 1;
-	if (!cmd[i][0])
+	if (!cmd[1] || !(*(cmd[i])))
 	{
 		printf("\n");
+		return ;
 	}
-	while (cmd[i])
+	if (is_arg(cmd[1]) == 1)
+		ft_echo_n(cmd);
+	else
 	{
-		if (is_arg(cmd[i]))
-			printf("%s", cmd[i]);
-		if (cmd[i + 1] && is_arg(cmd[i + 1]))
-			printf(" ");
-		i++;
-	}
-	i = 1;
-	while (cmd[i])
-	{
-		res *= is_arg(cmd[i]);
-		i++;
-	}
-	if (res == 1)
+		while (cmd[i])
+		{
+			printf("%s ", cmd[i]);
+			i++;
+		}
 		printf("\n");
+	}
+	g_value = 0;
 }
+
