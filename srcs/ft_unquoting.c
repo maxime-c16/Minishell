@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 01:07:49 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:10:23 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static char	*ft_unquote_line(char *cmd)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 		{
-			printf("je suis une erreur2\n");
 			first_quotes = cmd[i++];
 			if (!cmd[i] && is_last_quote(cmd, i, first_quotes))
 			{
@@ -86,7 +85,6 @@ static char	*ft_unquote_line(char *cmd)
 			while (cmd[i] && cmd[i] != first_quotes)
 			{
 				ret[j++] = cmd[i++];
-				printf("je suis une erreur\n");
 				ft_unquote_error(cmd, i);
 				if (_data()->error)
 					return (free(ret), NULL);

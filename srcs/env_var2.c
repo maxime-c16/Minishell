@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:54:05 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 23:34:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:15:06 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	expand_utils(char ***token, int *i, int *j)
 		if (!tmp[*i] || !tmp[*i][*j])
 			return ;
 		(*j)++;
-		printf("i == %d		j == %d		tmp[*i][*j] == %c\n", *i, *j, tmp[*i][*j]);
 		if (!tmp[*i] || !tmp[*i][*j])
 			return ;
 	}

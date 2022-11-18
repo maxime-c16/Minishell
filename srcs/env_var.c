@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/17 23:40:38 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:14:56 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*lcd_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	dprintf(2, "len of calloc is %d\n", (ft_strlen(s1) + ft_strlen(s2) + 1));
 	output = ft_calloc(sizeof(char), ((ft_strlen(s1) + ft_strlen(s2) + 2)));
 	if (!output)
 		hasta_la_vista(1);
@@ -70,7 +69,6 @@ char	*change_var(char *token, char *key, int len, int start)
 	j = 0;
 	value = get_value(key);
 	lenght = ft_strlen(token) - ft_strlen(key) + ft_strlen(value);
-	dprintf(2, "len = %d\n", lenght);
 	out = ft_calloc(sizeof(char), lenght + 2);
 	if (!out)
 		hasta_la_vista(0);

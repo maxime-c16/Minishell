@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:57:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 23:53:41 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:12:56 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	echo_cmd(char **cmd)
 	if (!cmd[i][0])
 	{
 		printf("\n");
-		printf("akecoucou");
 	}
 	while (cmd[i])
 	{

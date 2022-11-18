@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:32:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 00:50:32 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:15:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	hasta_la_vista(int flag)
 	close(_data()->save_out);
 	if (lst->token)
 	{
-		dprintf(2, "coucou tu veux voir mon giga sexe ?\n");
 		ft_free_lst(lst);
 	}
 	if (flag == 0)
