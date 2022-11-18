@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 19:08:51 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 19:10:39 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_quote(int is_in_quote, char c, int *i)
 	return (is_in_quote);
 }
 
-static	int unquote_utils(int is_in_quote, char c)
+static int	unquote_utils(int is_in_quote, char c)
 {
 	if (c == '\'' && is_in_quote == 1)
 		return (0);
