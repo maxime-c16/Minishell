@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:34:55 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:42:02 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,6 @@ char	**ft_dup_tab(char **str)
 	return (tab);
 }
 
-void	ft_print_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab || !tab[0])
-		return ;
-	while (tab[i])
-	{
-		dprintf(2, "%dth %s\n", i, tab[i]);
-		i++;
-	}
-}
-
-void	ft_print_lst(void)
-{
-	t_list	*lst;
-	int		i;
-
-	lst = _lst();
-	i = 0;
-	while (lst)
-	{
-		dprintf(2, "------------| maillon %d |----------\n", i);
-		ft_print_tab(lst->token->cmd);
-		lst = lst->next;
-		i++;
-	}
-}
-
 static char	*ft_prompt_color(void)
 {
 	if (g_value == 0)
@@ -79,16 +49,21 @@ static void	main_help(void)
 	sig_choice(1);
 }
 
+static void	super_main_helper(char **env)
+{
+	sig_choice(0);
+	using_history();
+	if (!test_env(env) || !split_env(env))
+		hasta_la_vista(1);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
 
 	(void)ac;
 	(void)av;
-	sig_choice(0);
-	using_history();
-	if (!test_env(env) || !split_env(env))
-		hasta_la_vista(1);
+	super_main_helper(env);
 	while (42)
 	{
 		main_help();
