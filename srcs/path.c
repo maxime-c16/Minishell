@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:18:34 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 15:51:46 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:24:22 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ static char	**ft_cat_path_with_cmd(char **path, char *cmd)
 	return (tab);
 }
 
+static void	path_help(char **free1, char **free2)
+{
+	ft_free_tab(free1);
+	ft_free_tab(free2);
+}
+
 char	**ft_path(char **full_path, char *cmd, int *j)
 {
 	char	**path;
@@ -42,9 +48,8 @@ char	**ft_path(char **full_path, char *cmd, int *j)
 	char	*temp;
 	int		i;
 
-	i = 0;
-	(*j) = 0;
-	while (full_path[i])
+	i = -1;
+	while (full_path[++i])
 	{
 		(*j) = 0;
 		temp = (ft_strdup(full_path[i] + 5));
@@ -58,11 +63,9 @@ char	**ft_path(char **full_path, char *cmd, int *j)
 					return (free(temp), tmp_path);
 				(*j)++;
 			}
-			ft_free_tab(tmp_path);
-			ft_free_tab(path);
+			path_help(path, tmp_path);
 		}
 		free(temp);
-		i++;
 	}
 	return (NULL);
 }
