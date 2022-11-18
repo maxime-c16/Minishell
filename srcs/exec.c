@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 13:50:14 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 14:02:32 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 			free_exec(cmd, env);
 		}
 		if (**cmd != '.' && **cmd != '/')
-			path = (env, cmd[0], &j);ft_path
+			path = ft_path(env, cmd[0], &j);
 		else
 		{
 			path = ft_binary_path(cmd[0]);
