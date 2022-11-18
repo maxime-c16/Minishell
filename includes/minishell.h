@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 03:19:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:18:27 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,12 @@ int		ft_tablen(char **cmd);
 //redirections.c
 
 void	ft_redirections(t_list *lst);
+void	ft_redirection_right(char **cmd, int i);
+void	ft_redirection_right_right(char **cmd, int i);
 
 //redirections_utils.c
 
+int		redir_help(int *i, char **cmd);
 char	**ft_clean_redirection(char **cmd);
 int		ft_check_redir(char **cmd);
 char	**ft_exec_redir(t_list **lst);
@@ -189,7 +192,7 @@ int		is_in_quote(char *cmd, int index);
 //ft_unquoting.c
 
 void	ft_unquoting(void);
-void	ft_unquote_error();
+void	ft_unquote_error(void);
 char	find_next_quote(char *cmd, int i);
 
 //display_env.c

@@ -6,11 +6,25 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 16:11:03 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:16:12 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	redir_help(int *i, char **cmd)
+{
+	int j;
+
+	j = *i;
+	if (cmd[j][1] == '>')
+		ft_redirection_right_right(cmd, j);
+	else
+		ft_redirection_right(cmd, j);
+	if (g_value == 2)
+		return (1);
+	return (0);
+}
 
 static int	is_redirect(char *cmd)
 {

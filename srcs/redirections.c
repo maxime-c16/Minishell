@@ -6,13 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 12:12:13 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:18:20 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	ft_redirection_right(char **cmd, int i)
+void	ft_redirection_right(char **cmd, int i)
 {
 	int	fd2;
 
@@ -63,7 +63,7 @@ static void	ft_redirection_left(char **cmd, int i)
 	}
 }
 
-static void	ft_redirection_right_right(char **cmd, int i)
+void	ft_redirection_right_right(char **cmd, int i)
 {
 	int	fd2;
 
@@ -98,11 +98,7 @@ void	ft_redirections(t_list *lst)
 	{
 		if (cmd[j][0] == '>')
 		{
-			if (cmd[j][1] == '>')
-				ft_redirection_right_right(cmd, j);
-			else
-				ft_redirection_right(cmd, j);
-			if (g_value == 2)
+			if (redir_help(&j, cmd) == 1)
 				return ;
 		}
 		else if (cmd[j][0] == '<')

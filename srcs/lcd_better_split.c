@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:39:04 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/18 14:09:59 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:12:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_count(char *cmd)
 				{
 					ft_pass_quote(cmd, &i);
 					if (!cmd[i])
-						break;
+						break ;
 					++i;
 				}
 				else
@@ -100,7 +100,8 @@ static char	**ft_dfill(char ***output, char *cmd, char c)
 		if (cmd[help.i] != c)
 		{
 			help.j = 0;
-			while (cmd[help.i + help.j] && cmd[help.i + help.j] != c && cmd[help.i + help.j])
+			while (cmd[help.i + help.j] && cmd[help.i + help.j] != c
+				&& cmd[help.i + help.j])
 			{
 				if (ft_is_quote(cmd[help.i + help.j]))
 					ft_pass_quote_sp(cmd, help.i, &help.j);
