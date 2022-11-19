@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 18:05:47 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/19 14:46:22 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ static char	*unquote_line(char	*str)
 		is_in_quote = check_quote(is_in_quote, str[i], &i);
 		if (!str[i])
 			break ;
-		if ((str[i] == '\'' || str[i] == '\"') && !is_in_quote)
+		if ((str[i] == '\'' && is_in_quote == 1) || \
+				(str[i] == '\"' && is_in_quote == 2))
 			continue ;
 		out = ft_strjoin_char(out, str[i]);
 		is_in_quote = unquote_utils(is_in_quote, str[i]);
-		if (!str[i])
-			break ;
 		i++;
 	}
 	if (is_in_quote == 1 || is_in_quote == 2)
