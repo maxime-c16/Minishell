@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:18:20 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/19 17:03:32 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char	**ft_exec_redir(t_list **lst)
 	tmp = *lst;
 	new_cmd = NULL;
 	new_cmd = ft_clean_redirection(tmp->token->cmd);
+	ft_print_lst();
 	if (g_value != 2)
 		ft_redirections(tmp);
 	return (new_cmd);
