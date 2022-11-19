@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 18:38:03 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:05:47 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_quote(int is_in_quote, char c, int *i)
 {
-	dprintf(2, "c is %c,    in quote is %d\n", c, is_in_quote);
 	if (c == '\'' && is_in_quote == 1)
 		return ((*i)++, 0);
 	if (c == '\"' && is_in_quote == 1)
@@ -30,9 +29,8 @@ int	check_quote(int is_in_quote, char c, int *i)
 	return (is_in_quote);
 }
 
-static	int unquote_utils(int is_in_quote, char c)
+static int	unquote_utils(int is_in_quote, char c)
 {
-	dprintf(2, "c is %c,    in quote is %d\n", c, is_in_quote);
 	if (c == '\'' && is_in_quote == 1)
 		return (0);
 	if (c == '\"' && is_in_quote == 1)
@@ -72,7 +70,6 @@ static char	*unquote_line(char	*str)
 			break ;
 		i++;
 	}
-	dprintf(2, "last c is %c\n", str[i]);
 	if (is_in_quote == 1 || is_in_quote == 2)
 		return (free(str), free(out), ft_unquote_error(), NULL);
 	return (free(str), out);

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:03:15 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:42:07 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/19 14:43:21 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	ft_print_lst(void)
 		lst = lst->next;
 		i++;
 	}
+}
+
+void	close_main(char *line)
+{
+	free(line);
+	close(_data()->save_in);
+	close(_data()->save_out);
 }

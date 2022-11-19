@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:42:02 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/19 14:44:04 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int ac, char **av, char **env)
 			hasta_la_vista(0);
 		if (!line[0] || skip_spaces(line) == -1)
 		{
-			free(line);
+			close_main(line);
 			continue ;
 		}
 		add_history(line);

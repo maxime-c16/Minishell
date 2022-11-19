@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 18:03:02 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/19 14:43:49 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	ft_error(char *str, int ret);
 void	ft_dup2(int in, int out);
 void	init_heredocs(t_list **lst);
 int		ft_tablen(char **cmd);
+void	close_main(char *line);
 
 //redirections.c
 
