@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 17:20:29 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/19 17:18:41 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	redir_help(int *i, char **cmd)
 
 static int	is_redirect(char *cmd)
 {
-	if (ft_strncmp(cmd, ">  ", 3) == 0 || ft_strncmp(cmd, "<  ", 3) == 0 || \
-			ft_strncmp(cmd, ">> ", 3) == 0 || ft_strncmp(cmd, "<< ", 3) == 0)
+	if (ft_strcmp(cmd, ">") == 0 || ft_strcmp(cmd, "<") == 0 || \
+			ft_strcmp(cmd, ">>") == 0 || ft_strcmp(cmd, "<<") == 0)
 		return (1);
 	return (0);
 }
