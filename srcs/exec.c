@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 16:50:15 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 16:14:03 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 	int		j;
 
 	temp = _data();
+	sig_choice(0);
 	temp->pid[i] = fork();
 	if (temp->pid[i] == 0)
 	{
+		sig_choice(1);
 		j = 0;
 		env = ft_convert_dict_tab();
 		if (temp->nb_cmd > 1)
