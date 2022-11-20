@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/18 15:23:55 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:00:19 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,12 @@ char	*insert(char *token, int i)
 
 	len = 0;
 	i++;
+	dprintf(2, "token of insert is %s\n", token);
 	while (!ft_strchr(EXPAND_CHAR, token[i + len]) && token[i])
 		len++;
 	key = get_key(token, i, len);
+	if (!ft_strlen(key))
+		return (free(key), free(token), ft_strdup("?"));
 	if (*(token + 1) == '?')
 		return (free(key), free(token), ft_itoa(g_value));
 	out = change_var(token, key, len, i);

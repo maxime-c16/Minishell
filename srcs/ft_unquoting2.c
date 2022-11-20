@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:00:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 15:27:19 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 20:05:28 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,24 @@ char	find_next_quote(char *cmd, int i)
 		i++;
 	}
 	return ('\0');
+}
+
+char	*ft_unquote_join(char *str, char c, int is_in_quote)
+{
+	if (c == '\'')
+	{
+		if (is_in_quote == 1 || !is_in_quote)
+			return (str);
+		else
+			return (ft_strjoin_char(str, c));
+	}
+	else if (c == '\"')
+	{
+		if (is_in_quote == 2 || !is_in_quote)
+			return (str);
+		else
+			return (ft_strjoin_char(str, c));
+	}
+	else
+		return (ft_strjoin_char(str, c));
 }

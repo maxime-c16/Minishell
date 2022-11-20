@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/19 14:43:49 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 16:16:33 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ int		is_in_quote(char *cmd, int index);
 void	ft_unquoting(void);
 void	ft_unquote_error(void);
 char	find_next_quote(char *cmd, int i);
+char	*ft_unquote_join(char *str, char c, int is_in_quote);
 
 //display_env.c
 
