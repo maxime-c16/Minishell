@@ -6,12 +6,12 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/19 14:46:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 16:15:50 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*
 int	check_quote(int is_in_quote, char c, int *i)
 {
 	if (c == '\'' && is_in_quote == 1)
@@ -28,7 +28,7 @@ int	check_quote(int is_in_quote, char c, int *i)
 		return ((*i)++, 0);
 	return (is_in_quote);
 }
-
+*/
 static int	unquote_utils(int is_in_quote, char c)
 {
 	if (c == '\'' && is_in_quote == 1)
@@ -59,14 +59,10 @@ static char	*unquote_line(char	*str)
 		hasta_la_vista(0);
 	while (str[i])
 	{
-		is_in_quote = check_quote(is_in_quote, str[i], &i);
+		is_in_quote = unquote_utils(is_in_quote, str[i]);
 		if (!str[i])
 			break ;
-		if ((str[i] == '\'' && is_in_quote == 1) || \
-				(str[i] == '\"' && is_in_quote == 2))
-			continue ;
-		out = ft_strjoin_char(out, str[i]);
-		is_in_quote = unquote_utils(is_in_quote, str[i]);
+		out = ft_unquote_join(out, str[i], is_in_quote);
 		i++;
 	}
 	if (is_in_quote == 1 || is_in_quote == 2)

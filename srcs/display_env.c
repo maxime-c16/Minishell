@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 14:09:45 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 20:44:55 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,13 @@ void	add_to_env(char *str)
 		ft_free_tab(to_add);
 		return ;
 	}
-	data->env_len++;
-	data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
+	if (!get_value(to_add[0]))
+	{
+		data->env_len++;
+		data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
+		data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
+		return(ft_free_tab(to_add));
+	}
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
-	ft_free_tab(to_add);
+	return(ft_free_tab(to_add));
 }

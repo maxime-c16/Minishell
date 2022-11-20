@@ -6,12 +6,12 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/10/11 16:15:45 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 19:40:26 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*
 char	*lcd_strjoin3000(char *s1, char const *s2)
 {
 	char	*output;
@@ -33,7 +33,7 @@ char	*lcd_strjoin3000(char *s1, char const *s2)
 	output[j] = '\0';
 	return (free(s1), output);
 }
-
+*/
 char	**ft_convert_dict_tab(void)
 {
 	t_data	*data;
