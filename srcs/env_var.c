@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/20 20:00:19 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/20 22:23:52 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,21 @@ char	*get_key(char *token, int i, int len)
 	int		j;
 
 	j = 0;
-	out = malloc(len + 1);
+	out = malloc(len + 2);
 	if (!out)
 		hasta_la_vista(1);
-	while (j < len)
+	if (token[i] == '?')
 	{
-		out[j] = token[i + j];
+		out[0] = '?';
 		j++;
+	}
+	else
+	{
+		while (j < len)
+		{
+			out[j] = token[i + j];
+			j++;
+		}
 	}
 	out[j] = 0;
 	return (out);
@@ -94,12 +102,11 @@ char	*insert(char *token, int i)
 
 	len = 0;
 	i++;
-	dprintf(2, "token of insert is %s\n", token);
 	while (!ft_strchr(EXPAND_CHAR, token[i + len]) && token[i])
 		len++;
 	key = get_key(token, i, len);
 	if (!ft_strlen(key))
-		return (free(key), free(token), ft_strdup("?"));
+		return (free(key), free(token), ft_strdup("$"));
 	if (*(token + 1) == '?')
 		return (free(key), free(token), ft_itoa(g_value));
 	out = change_var(token, key, len, i);
