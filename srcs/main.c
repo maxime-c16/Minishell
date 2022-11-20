@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:39:58 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 10:10:22 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 16:36:03 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int ac, char **av, char **env)
 	{
 		main_help();
 		line = readline(ft_prompt_color());
-		if (!line)
+		if (!line || !isatty(0))
 			hasta_la_vista(0);
 		if (!line[0] || skip_spaces(line) == -1)
 		{
