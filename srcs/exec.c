@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 23:38:36 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/21 12:10:29 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_exec(void)
 	init_fd();
 	init_pid();
 	cmd = ft_clean_redirection(_lst()->token->cmd);
-	if (!cmd | !cmd[0])
+	if (!cmd || !cmd[0])
 	{
 		free(data->pid);
 		free(data->fd);
