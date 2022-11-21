@@ -6,20 +6,22 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/21 00:56:10 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/21 02:19:49 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-/*
-char	*lcd_strjoin3000(char *s1, char const *s2)
+
+static char	*strjoin_conv_dict(char *s1, char const *s2)
 {
 	char	*output;
 	int		i;
 	int		j;
 
 	if (!s1)
-		return ((char *)s2);
+		return (NULL);
+	if (!s2)
+		return (free(s1), NULL);
 	output = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!output)
 		return (NULL);
@@ -33,7 +35,7 @@ char	*lcd_strjoin3000(char *s1, char const *s2)
 	output[j] = '\0';
 	return (free(s1), output);
 }
-*/
+
 char	**ft_convert_dict_tab(void)
 {
 	t_data	*data;
@@ -48,8 +50,8 @@ char	**ft_convert_dict_tab(void)
 	while (i < data->env_len)
 	{
 		env[i] = ft_strdup(data->env[i].key);
-		env[i] = lcd_strjoin3000(env[i], "=");
-		env[i] = lcd_strjoin3000(env[i], data->env[i].value);
+		env[i] = strjoin_conv_dict(env[i], "=");
+		env[i] = strjoin_conv_dict(env[i], data->env[i].value);
 		i++;
 	}
 	return (env);
