@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:46 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 19:40:26 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/21 00:56:10 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_convert_dict_tab(void)
 	data = _data();
 	env = ft_calloc(sizeof(char *), (data->env_len + 1));
 	if (!env)
-		hasta_la_vista(1);
+		hasta_la_vista(0);
 	while (i < data->env_len)
 	{
 		env[i] = ft_strdup(data->env[i].key);

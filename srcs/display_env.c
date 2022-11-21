@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 20:44:55 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/21 01:03:13 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,22 @@ static void	ft_free_dic(void)
 	free(data->env);
 }
 
+char	*lcd_strdup6000(char *str)
+{
+	char	*out;
+
+	if (!str || !ft_strlen(str))
+	{
+		out = ft_calloc(1, 1);
+		_data()->env_len++;
+	}
+	else
+		out = ft_strdup(str);
+	if (!out)
+		hasta_la_vista(0);
+	return (out);	
+}
+
 t_dic	*dup_env(void)
 {
 	t_dic	*new_dic;
@@ -56,15 +72,11 @@ t_dic	*dup_env(void)
 	data = _data();
 	new_dic = malloc(sizeof(t_dic) * (data->env_len + 1));
 	if (!new_dic)
-		hasta_la_vista(1);
+		hasta_la_vista(0);
 	while (i < data->env_len)
 	{
-		new_dic[i].key = ft_strdup(data->env[i].key);
-		if (!new_dic[i].key)
-			hasta_la_vista(0);
-		new_dic[i].value = ft_strdup(data->env[i].value);
-		if (!new_dic[i].value)
-			hasta_la_vista(0);
+		new_dic[i].key = lcd_strdup6000(data->env[i].key);
+		new_dic[i].value = lcd_strdup6000(data->env[i].value);
 		i++;
 	}
 	ft_free_dic();
@@ -112,7 +124,7 @@ void	add_to_env(char *str)
 		data->env_len++;
 		data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
 		data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
-		return(ft_free_tab(to_add));
+		return (ft_free_tab(to_add));
 	}
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
 	return(ft_free_tab(to_add));

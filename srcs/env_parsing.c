@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:28:21 by yoseph            #+#    #+#             */
-/*   Updated: 2022/10/06 14:05:12 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/21 00:47:07 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	split_env(char **ev)
 	i = 0;
 	data = malloc_env(ev);
 	data->env_len = len_env(ev);
+	dprintf(2, "len env is %d\n", data->env_len);
 	while (ev[i])
 	{
 		j = 0;
