@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 16:11:38 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/20 23:16:43 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_redirection_left(char **cmd, int i)
 	fd2 = 0;
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
-	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
+	else if (cmd[i][1] == '<' || cmd[i][1] == '>')
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1][0] == '|')
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
@@ -70,7 +70,7 @@ void	ft_redirection_right_right(char **cmd, int i)
 	fd2 = 0;
 	if (cmd[i + 0] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
-	else if (cmd[i + 1] && (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>'))
+	else if (cmd[i][2] == '<' || cmd[i][2] == '>')
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
 	else if (cmd[i + 1] && (cmd[i + 1][0] == '|'))
 		ft_error("minishell: syntax error near unexpected token `newline'\n", 2);
