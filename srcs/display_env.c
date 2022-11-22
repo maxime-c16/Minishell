@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 01:44:01 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 02:46:03 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,22 @@ static int	no_equal(char *str)
 	return (0);
 }
 
+int	is_charset(char *str, char *charset)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (charset[i])
+	{
+		if (ft_strchr(str, charset[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	add_to_env(char *str)
 {
 	t_data	*data;
@@ -95,19 +111,18 @@ void	add_to_env(char *str)
 	if (no_equal(str) == 0)
 		return ;
 	to_add = ft_split(str, '=');
-	if (str[0] >= '0' && str[0] <= '9')
+	if ((str[0] >= '0' && str[0] <= '9') || !is_charset(to_add[0], EXPAND_CHAR))
 	{
 		printf("export: not an identifier: %s\n", to_add[0]);
 		ft_free_tab(to_add);
 		return ;
 	}
-	if (!get_value(to_add[0]))
-	{
-		data->env_len++;
-		data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
-		data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
-		return (ft_free_tab(to_add));
-	}
+	if (get_value(to_add[0]))
+		unset_var(to_add[0]);
+	data->env_len++;
+	data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
+	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
+	return (ft_free_tab(to_add));
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
 	return (ft_free_tab(to_add));
 }
