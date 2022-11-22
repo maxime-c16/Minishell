@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/21 16:14:14 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 02:48:06 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,7 @@ void	ft_exec(void)
 	char	**cmd;
 
 	data = _data();
-	sig_choice(0);
-	write_hd();
-	close_hd();
-	init_fd();
-	init_pid();
+	help_exec();
 	cmd = ft_clean_redirection(_lst()->token->cmd);
 	if (!cmd || !cmd[0])
 	{
@@ -101,11 +97,7 @@ void	ft_exec(void)
 	}
 	sig_choice(2);
 	if (data->nb_cmd == 1 && is_builtin(cmd[0]))
-	{
-		ft_free_tab(cmd);
-		ft_exec_one_builtin();
-		ft_close_fd();
-	}
+		super_exec_helper(cmd);
 	else
 		exec_help(cmd);
 	free(data->pid);
