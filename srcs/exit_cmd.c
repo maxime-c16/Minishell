@@ -6,13 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:58:13 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 04:11:34 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 04:21:00 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	exit_cmd_one(char **cmd)
+static int	exit_cmd_one(char **cmd)
 {
 	if (ft_tablen(cmd) > 2)
 	{
@@ -26,7 +26,10 @@ static void	exit_cmd_one(char **cmd)
 		if (_data()->nb_cmd > 1)
 			hasta_la_vista(0);
 		else
+		{
 			hasta_la_vista(1);
+			return (1);			
+		}
 	}
 	else if (!cmd[1])
 	{
@@ -36,6 +39,7 @@ static void	exit_cmd_one(char **cmd)
 		printf("exit\n");
 		hasta_la_vista(0);
 	}
+	return (0);
 }
 
 static void	exit_cmd_two(char **cmd)
@@ -63,8 +67,7 @@ static void	exit_cmd_two(char **cmd)
 
 void	exit_cmd(char **cmd)
 {
-	exit_cmd_one(cmd);
-	if (g_value == 1)
+	if (exit_cmd_one(cmd) == 1)
 		return ;
 	exit_cmd_two(cmd);
 }
