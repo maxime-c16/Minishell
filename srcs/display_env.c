@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 02:46:03 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 03:17:20 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*lcd_strdup6000(char *str)
 {
 	char	*out;
 
-	if (!str || !ft_strlen(str))
+	if (!str ||(str && !ft_strlen(str)))
 	{
 		out = ft_calloc(1, 1);
 		_data()->env_len++;
@@ -58,7 +58,8 @@ t_dic	*dup_env(void)
 	while (i < data->env_len)
 	{
 		new_dic[i].key = lcd_strdup6000(data->env[i].key);
-		new_dic[i].value = lcd_strdup6000(data->env[i].value);
+		if (data->env[i].value)
+			new_dic[i].value = lcd_strdup6000(data->env[i].value);
 		i++;
 	}
 	ft_free_dic();
@@ -107,10 +108,8 @@ void	add_to_env(char *str)
 	if (!str)
 		return ;
 	data = _data();
-	data->env = dup_env();
-	if (no_equal(str) == 0)
-		return ;
 	to_add = ft_split(str, '=');
+	ft_print_tab(to_add);
 	if ((str[0] >= '0' && str[0] <= '9') || !is_charset(to_add[0], EXPAND_CHAR))
 	{
 		printf("export: not an identifier: %s\n", to_add[0]);
@@ -119,10 +118,11 @@ void	add_to_env(char *str)
 	}
 	if (get_value(to_add[0]))
 		unset_var(to_add[0]);
+	data->env = dup_env();
+	if (no_equal(str) == 0)
+		return ;
 	data->env_len++;
 	data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
-	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
-	return (ft_free_tab(to_add));
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
 	return (ft_free_tab(to_add));
 }
