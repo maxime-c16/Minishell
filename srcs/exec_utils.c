@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/17 16:29:07 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 04:08:39 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ void	ft_exec_builtin(char **cmd)
 {
 	if (!ft_strcmp(cmd[0], "exit"))
 		exit_cmd(cmd);
-	if (!ft_strcmp(cmd[0], "echo"))
+	else if (!ft_strcmp(cmd[0], "echo"))
 		echo_cmd(cmd);
-	if (!ft_strcmp(cmd[0], "pwd"))
+	else if (!ft_strcmp(cmd[0], "pwd"))
 		pwd_cmd();
-	if (!ft_strcmp(cmd[0], "cd"))
+	else if (!ft_strcmp(cmd[0], "cd"))
 		cd_cmd(cmd);
-	if (!ft_strcmp(cmd[0], "env"))
+	else if (!ft_strcmp(cmd[0], "env"))
 		print_env();
-	if (!ft_strcmp(cmd[0], "export"))
+	else if (!ft_strcmp(cmd[0], "export"))
 		add_to_env(cmd[1]);
-	if (!ft_strcmp(cmd[0], "unset"))
+	else if (!ft_strcmp(cmd[0], "unset"))
 		unset_var(cmd[1]);
 }
 
@@ -67,7 +67,8 @@ void	ft_exec_one_builtin(void)
 	ft_redirections(tmp);
 	cmd = ft_clean_redirection(tmp->token->cmd);
 	ft_exec_builtin(cmd);
-	ft_free_tab(cmd);
+	if (g_value != 1)
+		ft_free_tab(cmd);
 	dup2(_data()->save_in, 0);
 	dup2(_data()->save_out, 1);
 }
