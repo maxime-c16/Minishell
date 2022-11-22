@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:45:36 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/21 16:22:29 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 02:49:22 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,21 @@ void	ft_link_fd(int i)
 		dup2(temp->fd[2 * i - 2], FD_STDIN);
 	else
 		ft_dup2(temp->fd[2 * i - 2], temp->fd[2 * i + 1]);
+	ft_close_fd();
+}
+
+void	help_exec(void)
+{
+	sig_choice(0);
+	write_hd();
+	close_hd();
+	init_fd();
+	init_pid();
+}
+
+void	super_exec_helper(char **cmd)
+{
+	ft_free_tab(cmd);
+	ft_exec_one_builtin();
 	ft_close_fd();
 }

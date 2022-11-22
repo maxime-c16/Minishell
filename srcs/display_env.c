@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 03:36:10 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 03:19:22 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_dic	*dup_env(void)
 		new_dic[i].key = lcd_strdup6000(data->env[i].key);
 		if (data->env[i].value)
 			new_dic[i].value = lcd_strdup6000(data->env[i].value);
+		else
+			new_dic[i].value =  NULL;
 		i++;
 	}
 	ft_free_dic();
