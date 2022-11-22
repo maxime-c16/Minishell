@@ -29,6 +29,8 @@ void	init_fd(void)
 
 	i = 0;
 	data = _data();
+	if (data->nb_cmd < 1)
+		return ;
 	data->fd = malloc(sizeof(int) * ((data->nb_cmd - 1) * 2));
 	if (data->fd == NULL)
 		hasta_la_vista(0);

@@ -105,7 +105,10 @@ void	add_to_env(char *str)
 		unset_var(to_add[0]);
 	data->env = dup_env();
 	if (no_equal(str) == 0)
+	{
+		ft_free_tab(to_add);
 		return ;
+	}
 	data->env_len++;
 	data->env[data->env_len - 1].key = ft_strdup(to_add[0]);
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);

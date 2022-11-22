@@ -97,10 +97,8 @@ void	ft_unquoting(void)
 	lst = _lst();
 	while (lst)
 	{
-		if (lst->token->cmd)
+		if (lst->token && lst->token->cmd)
 			lst->token->cmd = unquote_cmd(lst->token->cmd);
-		if (!lst->token->cmd)
-			hasta_la_vista(1);
 		lst = lst->next;
 	}
 }

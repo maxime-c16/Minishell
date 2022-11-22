@@ -76,7 +76,8 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		add_history(line);
-		parsing(line);
+		if (parsing(line) == -1)
+			continue ;
 		if (_data()->error)
 			continue ;
 		ft_exec();

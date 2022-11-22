@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 05:32:02 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 06:09:39 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		len_env(char **env);
 
 //parsing.c
 
-void	parsing(char *cmd);
+int		parsing(char *cmd);
 
 //insertion.c
 
