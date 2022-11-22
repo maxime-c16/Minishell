@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 23:47:17 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/21 02:43:19 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ char	**ft_clean_redirection(char **cmd)
 	i = 0;
 	j = 0;
 	if (len_wo_redir(cmd) == -1)
-		return (NULL);
+			return (printf("ntm\n"), hasta_la_vista(1), NULL);
+//	if (len_wo_redir(cmd) == -1)
+//		return (NULL);
 	new_cmd = malloc(sizeof(char *) * (len_wo_redir(cmd) + 1));
 	while (cmd[i])
 	{
