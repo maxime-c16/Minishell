@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:47 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 14:56:48 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 05:21:12 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,20 @@ void	unset_var(char *str)
 	free_env(data->env);
 	data->env_len--;
 	data->env = new_dic;
+}
+
+int	is_charset(char *str, char *charset)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (charset[i])
+	{
+		if (ft_strchr(str, charset[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

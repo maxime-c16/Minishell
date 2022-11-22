@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 04:37:01 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 05:22:24 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*lcd_strdup6000(char *str)
 {
 	char	*out;
 
-	if (!str ||(str && !ft_strlen(str)))
+	if (!str || (str && !ft_strlen(str)))
 	{
 		out = ft_calloc(1, 1);
 		_data()->env_len++;
@@ -61,7 +61,7 @@ t_dic	*dup_env(void)
 		if (data->env[i].value)
 			new_dic[i].value = lcd_strdup6000(data->env[i].value);
 		else
-			new_dic[i].value =  NULL;
+			new_dic[i].value = NULL;
 		i++;
 	}
 	ft_free_dic();
@@ -84,22 +84,6 @@ static int	no_equal(char *str)
 	if (ret == 1)
 		return (1);
 	return (0);
-}
-
-int	is_charset(char *str, char *charset)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (charset[i])
-	{
-		if (ft_strchr(str, charset[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	add_to_env(char *str)

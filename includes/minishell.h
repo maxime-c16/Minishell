@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:26:45 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 02:56:30 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 05:21:35 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,6 @@ void	add_to_env(char *str);
 //unset_env.c
 
 void	unset_var(char *str);
+int		is_charset(char *str, char *charset);
 
 #endif
