@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/22 01:36:50 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 02:20:15 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,14 @@ char	*insert(char *token, int i)
 	while (!ft_strchr(EXPAND_CHAR, token[i + len]) && token[i])
 		len++;
 	key = get_key(token, i, len);
+	if (*(token + 1) == '<' || *(token + 1) == '>')
+		return (free(key), free(token),
+			printf("bash: syntax error near unexpected token `newline'\n"),
+			ft_strdup("$"));
 	if (!ft_strlen(key))
 		return (free(key), free(token), ft_strdup("$"));
 	if (*(token + 1) == '?')
 		return (free(key), free(token), ft_itoa(g_value));
-	if (*(token + 1) == '<' || *(token + 1) == '>')
-		return (free(key), free(token), ft_strdup(""));
 	out = change_var(token, key, len, i);
 	free(key);
 	return (free(token), out);
