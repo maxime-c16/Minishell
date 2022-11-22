@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 03:17:20 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 03:36:10 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	add_to_env(char *str)
 		return ;
 	data = _data();
 	to_add = ft_split(str, '=');
-	ft_print_tab(to_add);
 	if ((str[0] >= '0' && str[0] <= '9') || !is_charset(to_add[0], EXPAND_CHAR))
 	{
 		printf("export: not an identifier: %s\n", to_add[0]);
