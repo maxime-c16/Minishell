@@ -6,31 +6,13 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:17:42 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/21 01:03:13 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:44:01 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print_env(void)
-{
-	t_data	*data;
-	int		i;
-
-	i = 0;
-	data = _data();
-	while (i < data->env_len)
-	{
-		printf("%s", data->env[i].key);
-		printf("=");
-		if (data->env[i].value)
-			printf("%s", data->env[i].value);
-		printf("\n");
-		i++;
-	}
-}
-
-static void	ft_free_dic(void)
+void	ft_free_dic(void)
 {
 	t_data	*data;
 	int		i;
@@ -59,7 +41,7 @@ char	*lcd_strdup6000(char *str)
 		out = ft_strdup(str);
 	if (!out)
 		hasta_la_vista(0);
-	return (out);	
+	return (out);
 }
 
 t_dic	*dup_env(void)
@@ -127,5 +109,5 @@ void	add_to_env(char *str)
 		return (ft_free_tab(to_add));
 	}
 	data->env[data->env_len - 1].value = ft_strdup(to_add[1]);
-	return(ft_free_tab(to_add));
+	return (ft_free_tab(to_add));
 }

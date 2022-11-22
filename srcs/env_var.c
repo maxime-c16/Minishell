@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 22:50:26 by yschecro          #+#    #+#             */
-/*   Updated: 2022/11/20 22:23:52 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:36:50 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ char	*insert(char *token, int i)
 		return (free(key), free(token), ft_strdup("$"));
 	if (*(token + 1) == '?')
 		return (free(key), free(token), ft_itoa(g_value));
+	if (*(token + 1) == '<' || *(token + 1) == '>')
+		return (free(key), free(token), ft_strdup(""));
 	out = change_var(token, key, len, i);
 	free(key);
 	return (free(token), out);
