@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 13:13:06 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 01:39:24 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 01:51:08 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,13 @@ static int	len_wo_redir(char **cmd)
 	return (i - ret);
 }
 
-char	**ft_clean_redirection(char **cmd)
+char	**clean_help(char **cmd, char **new_cmd)
 {
-	int		i;
-	int		j;
-	char	**new_cmd;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	if (len_wo_redir(cmd) == -1)
-		return (NULL);
-	new_cmd = ft_calloc(sizeof(char *), (len_wo_redir(cmd) + ft_strlen(*cmd) + 1));
-	if (!new_cmd)
-		hasta_la_vista(0);
 	while (cmd[i])
 	{
 		if (is_redirect(cmd[i]) == 1)
@@ -80,5 +74,20 @@ char	**ft_clean_redirection(char **cmd)
 		i++;
 		j++;
 	}
+	return (new_cmd);
+}
+
+char	**ft_clean_redirection(char **cmd)
+{
+	char	**new_cmd;
+
+	new_cmd = NULL;
+	if (len_wo_redir(cmd) == -1)
+		return (NULL);
+	new_cmd = ft_calloc(sizeof(char *),
+			(len_wo_redir(cmd) + ft_strlen(*cmd) + 1));
+	if (!new_cmd)
+		hasta_la_vista(0);
+	new_cmd = clean_help(cmd, new_cmd);
 	return (new_cmd);
 }
