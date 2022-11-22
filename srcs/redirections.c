@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 21:07:31 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 02:50:57 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/22 04:52:51 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_redirection_right(char **cmd, int i)
 	if (cmd[i + 1] == NULL)
 		ft_error("minishell: syntax error near unexpected token `newline'\
 			\n", 2);
-	else if (cmd[i + 1][0] == '<' || cmd[i + 1][0] == '>')
+	else if (cmd[i][1] == '<' || cmd[i][1] == '>')
 		ft_error("minishell: syntax error near unexpected token `newline'\
 			\n", 2);
 	else if (cmd[i + 1][0] == '|')
