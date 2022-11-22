@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:30:18 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 04:57:09 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 05:32:26 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,15 @@ void	ft_exec_one_builtin(void)
 		ft_free_tab(cmd);
 	dup2(_data()->save_in, 0);
 	dup2(_data()->save_out, 1);
+}
+
+void	exec_utils(char **env, char **cmd)
+{
+	ft_free_tab(env);
+	env = NULL;
+	ft_exec_builtin(cmd);
+	if (g_value == 1)
+		return ;
+	free_exec(cmd, env);
+	return ;
 }

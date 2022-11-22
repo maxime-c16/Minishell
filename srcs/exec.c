@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:33:04 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 04:09:06 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 05:31:31 by yschecro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,7 @@ void	ft_exec_cmd(t_list *lst, char **cmd, int i)
 		if (g_value == 2)
 			free_exec(cmd, env);
 		if (is_builtin(cmd[0]))
-		{
-			ft_free_tab(env);
-			env = NULL;
-			ft_exec_builtin(cmd);
-			if (g_value == 1)
-				return ;
-			free_exec(cmd, env);
-		}
+			exec_utils(env, cmd);
 		exec_cmd_help(&j, cmd, env);
 	}
 }
