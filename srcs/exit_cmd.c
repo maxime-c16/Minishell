@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:58:13 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/22 04:21:00 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 05:09:57 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	exit_cmd_one(char **cmd)
 		else
 		{
 			hasta_la_vista(1);
-			return (1);			
+			return (1);
 		}
 	}
 	else if (!cmd[1])
