@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:58:44 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 16:15:50 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:30:08 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_unquoting(void)
 		if (lst->token->cmd)
 			lst->token->cmd = unquote_cmd(lst->token->cmd);
 		if (!lst->token->cmd)
-			hasta_la_vista(1);
+			hasta_la_vista(0);
 		lst = lst->next;
 	}
 }

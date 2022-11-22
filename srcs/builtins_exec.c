@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:06:57 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/20 16:29:16 by mcauchy          ###   ########.fr       */
+/*   Updated: 2022/11/22 02:35:23 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	cd_cmd(char **cmd)
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-		hasta_la_vista(0);
+		return ;
 	if (chdir(cmd[1]) == -1)
 	{
 		printf("Minishell: cd: %s: No such file or directory\n", cmd[1]);
@@ -43,7 +43,10 @@ void	cd_cmd(char **cmd)
 	}
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		hasta_la_vista(0);
+	{
+		free(pwd);
+		return ;
+	}
 	search_and_replace_pwd(cwd, pwd);
 	free(pwd);
 	free(cwd);

@@ -6,7 +6,7 @@
 /*   By: mcauchy <mcauchy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:09:32 by mcauchy           #+#    #+#             */
-/*   Updated: 2022/11/18 01:14:01 by yschecro         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:27:28 by mcauchy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_parse_and_insert(char **token)
 	i = 0;
 	k = 0;
 	data = _lst();
-	while (token[i])
+	while (token && token[i])
 	{
 		data = ft_lstlast(data);
 		if (!data->token)
